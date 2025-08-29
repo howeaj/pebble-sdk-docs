@@ -17,24 +17,24 @@ Press to launch a cloud development environment:
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/coredevices/codespaces-pebble?quickstart=1)
 
-This lets you build Pebble apps without needing to install the Pebble SDK on your computer.
+To resume your Codespace later, visit [cloud.repebble.com](https://cloud.repebble.com).
 
 ## Usage
 
-Your GitHub Codespace will launch into an example project with the C file already open. Press the button at the top right of the C file called "Run on Emulator." It may take a minute for this button to appear.
+Your Codespace will launch into an example project with the C file already open. Press the button at the top right of the C file called "Run on Emulator." It will take a minute for this button to appear.
 
-You can play around with the example project. Then, once you're ready to create your own Pebble app, press the smartwatch icon on the left sidebar of VS Code and select **New Project**.
+Once you're ready to create your own Pebble app, press the smartwatch icon on the left sidebar of VS Code and select **New Project**.
 
-Save your changes as a repository in your GitHub account by pressing the Source Control icon in VS Code's left sidebar. All the projects in your codespace will be saved in one repository. 
+#### Save to GitHub
+
+You should connect your Codespace to a GitHub repository to ensure permanent storage of your project code. 
+
+To do this, press the Source Control icon in the left sidebar of VS Code, then press "Publish Branch." Approve the pop-up asking to sign in with GitHub, select your GitHub account, then select "Publish to GitHub private repository." When you make changes, you can commit and push to that GitHub repo. All projects in your codespace will be saved in one repo.
 
 #### Import an existing project
 
-Press the menu icon on the top-left (three horizontal lines) and select File -> Open Folder. Make sure the pop-up prompts you to open "/workspaces/codespaces-pebble/". Press OK.
+In your terminal, paste `code /workspaces/codespaces-pebble`. VS Code will reload and open to that folder.
 
 If there's a "build" folder in the project you want to import, delete it to speed up the upload.
 
-Drag and drop your project into the pane on the left listing your files and folders. Wait for the upload to complete (you'll see a progress indicator in the bottom status bar). Then, press the Pebble icon in the left sidebar, select "Open Project", and select the project you just uploaded. You can now develop on it!
-
-#### Troubleshooting
-
-If you press "Run on Emulator" and see "Connection refused," press the button again.
+Drag and drop your project into the file list pane on the left. Wait for the upload to complete. Then, press the Pebble icon in the left sidebar, select "Open Project", and select the project you just uploaded. You can now continue developing it!
