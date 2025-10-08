@@ -122,8 +122,8 @@ jobs:
       - name: Build site
         run: bundle exec jekyll build
         env:
-          URL: https://developer.rebble.io
-          HTTPS_URL: https://developer.rebble.io
+          URL: https://developer.repebble.com
+          HTTPS_URL: https://developer.repebble.com
           JEKYLL_ENV: production
           DOCS_URL: /tmp/docs/
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
