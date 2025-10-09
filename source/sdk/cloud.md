@@ -9,9 +9,11 @@ scripts:
   - sdk/index
 ---
 
+This is the fastest way to get started building Pebble apps and watchfaces! Seriously. Press the button and in 1 minute you'll be up and running.
+
 ## Get started
 
-You can develop Pebble apps using a browser-based version of VS Code with the Pebble SDK pre-installed.
+Develop Pebble apps using a browser-based version of VS Code with the Pebble SDK pre-installed.
 
 Press to launch a cloud development environment:
 
@@ -21,9 +23,24 @@ To resume your Codespace later, visit [cloud.repebble.com](https://cloud.repebbl
 
 ## Usage
 
-Your Codespace will launch into an example project with the C file already open. Press the button at the top right of the C file called "Run on Emulator." It will take a minute for this button to appear.
+Your Codespace will launch into an example project with the C file already open. 
 
-Once you're ready to create your own Pebble app, press the smartwatch icon on the left sidebar of VS Code and select **New Project**.
+**Step 1**
+![Codespaces Step 1](/images/sdk/codespaces1.png)
+**Step 2**
+![Codespaces Step 2](/images/sdk/codespaces2.png)
+**Step 3**
+![Codespaces Step 3](/images/sdk/codespaces3.png)
+**Step 4**
+![Codespaces Step 4](/images/sdk/codespaces4.png)
+
+Copy an example or write your own app, then click Emulator on the left to rebuild. When you're ready to install the app on your watch, grab the new Pebble mobile app (install at [rePebble.com/app](https://repebble.com/app)) -> go to Devices -> tap 3 dots -> Enable Dev Connect -> Sign into GitHub. Then back on your computer, click Run -> Phone. That's it! 
+
+
+#### Learn more
+
+The best way to learn is by checking out our examples apps: [weather](https://github.com/pebble-examples/pebblekit-js-weather/), [simple game](https://github.com/pebble-hacks/pandas-and-bananas/), [concentricity watchface](https://github.com/pebble-examples/concentricity/), and [many more](/examples)! Or try [tutorials](/tutorials/) for a step-by-step guide on how
+to write a simple C Pebble application.
 
 #### Save to GitHub
 
