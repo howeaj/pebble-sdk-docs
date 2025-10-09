@@ -27,7 +27,7 @@ plugins_dir: plugins/
 
 debug: true
 
-plugins: [jekyll-paginate]
+plugins: [jekyll-paginate, jekyll-sitemap]
 
 # Blog Options
 permalink: none
