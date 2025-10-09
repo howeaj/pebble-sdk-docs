@@ -23,6 +23,10 @@ scripts:
   - sdk/index
 ---
 
+The easiest way to start building a Pebble watchface or app is with the [Cloud IDE](/sdk/cloud/) - no installation required. It runs entirely in your browser!
+
+Otherwise, if you are somewhat command-line knowledgeable, you can follow the instructions below to install the SDK locally on your computer.
+
 ## Install dependencies
 
 #### MacOS
@@ -93,15 +97,19 @@ Install the app on an emulator for the Pebble Time:
 pebble install --emulator basalt
 ```
 
-Or, install the app/watchface on your phone (replace IP with your phone's IP shown in the Pebble app):
+Or, install the app/watchface on your phone. 
+
+Requires the new Pebble mobile app (install at [rePebble.com/app](https://repebble.com/app)) -> go to Devices -> tap 3 dots -> Enable Dev Connect -> Sign into GitHub. Then back on your computer, run
 
 ```bash
-pebble install --phone IP
+pebble login # Sign into GitHub
+pebble install --cloudpebble
 ```
 
 #### Learn more
 
-Check out the [Tutorials](/tutorials/) for a step-by-step guide on how
+The best way to learn is by checking out our examples apps: [weather](https://github.com/pebble-examples/pebblekit-js-weather/), [simple game](https://github.com/pebble-hacks/pandas-and-bananas/), [concentricity watchface](https://github.com/pebble-examples/concentricity/), and [many more](/examples)! 
+or [Tutorials](/tutorials/) for a step-by-step guide on how
 to write a simple C Pebble application.
 
 ### Installation Problems?
