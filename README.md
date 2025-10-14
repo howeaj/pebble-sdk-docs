@@ -1,6 +1,6 @@
-# [developer.rebble.io][site]
+# [developer.repebble.com][site]
 
-[![Build static site](https://github.com/pebble-dev/developer.rebble.io/actions/workflows/build.yml/badge.svg)](https://github.com/pebble-dev/developer.rebble.io/actions/workflows/build.yml)
+[![Build static site](https://github.com/coredevices/sdk-docs/actions/workflows/build.yml/badge.svg)](https://github.com/coredevices/sdk-docs/actions/workflows/build.yml)
 
 This is the repository for the [Pebble Developer website][site].
 
@@ -190,7 +190,7 @@ the text color, use `--fg-<COLOR>`.
 
 Trouble building the developer site? Read the [Troubleshooting](/docs/troubleshooting.md) page for some possible solutions.
 
-[site]: https://developer.rebble.io
+[site]: https://developer.repebble.com
 [markdown]: ./docs/markdown.md
 [slick]: http://kenwheeler.github.io/slick/
 [tinypng]: https://tinypng.com/

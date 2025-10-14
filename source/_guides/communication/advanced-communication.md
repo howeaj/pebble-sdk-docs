@@ -431,7 +431,7 @@ data in the correct format:
 
 ```js
 function downloadImage() {
-  var url = 'https://developer.rebble.io/assets/images/guides/pebble-apps/communications/html5-logo-small.png';
+  var url = 'https://developer.repebble.com/assets/images/guides/pebble-apps/communications/html5-logo-small.png';
 
   var request = new XMLHttpRequest();
   request.onload = function() {
