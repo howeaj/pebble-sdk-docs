@@ -23,7 +23,7 @@ scripts:
   - sdk/index
 ---
 
-The easiest way to start building a Pebble watchface or app is with the [Cloud IDE](/sdk/cloud/) - no installation required. It runs entirely in your browser!
+The easiest way to start building a Pebble watchface or app is with the [Cloud IDE](/sdk/cloud) - no installation required. It runs entirely in your browser!
 
 Otherwise, if you are somewhat command-line knowledgeable, you can follow the instructions below to install the SDK locally on your computer.
 
