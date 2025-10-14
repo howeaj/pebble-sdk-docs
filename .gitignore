@@ -6,6 +6,7 @@ source/stylesheets/
 log/
 .bundle/
 coverage/
+old-repos/
 node_modules/
 vendor/
 .jekyll-metadata

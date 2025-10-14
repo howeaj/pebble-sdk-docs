@@ -26,8 +26,8 @@ created. Depending on the type of app, different sets of additional resources
 are required. These resources are then used to generate the listing pages
 visible to potential users in the Pebble appstore, which is embedded within the Pebble mobile app.
 
-You can also view the [watchfaces](http://apps.rebble.io/en_US/watchfaces)
-and [watchapps](http://apps.rebble.io/en_US/watchapps) from a desktop
+You can also view the [watchfaces](http://apps.repebble.com/en_US/watchfaces)
+and [watchapps](http://apps.repebble.com/en_US/watchapps) from a desktop
 computer, as well as perform searches and get shareable links.
 
 

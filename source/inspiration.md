@@ -53,7 +53,7 @@ that’s simple and efficient?
 ### Transit
 
 Our Pebblers in the SF Bay Area rave about the
-[Caltrain app](http://apps.rebble.io/application/53eb5caf6743f7a863000201),
+[Caltrain app](http://apps.rePebble.com/application/53eb5caf6743f7a863000201),
 which gives us the closest Caltrain station, time until the next train,
 and future train schedules. It has simplified our morning commute
 dramatically and lets us keep our phones in our pockets at the right time.
@@ -85,7 +85,7 @@ to walk into your favorite retailer, concert, sports game, pharmacy, or
 gas station and have to do nothing but flash your magic wrist-wand? Pretty
 cool.
 
-Working with [Eventbrite](https://apps.rebble.io/application/55b7e74d180264f33f00007e)
+Working with [Eventbrite](https://apps.repebble.com/application/55b7e74d180264f33f00007e)
 made a lot of sense - get events on your Pebble timeline and launch your tickets
 right from your wrist. How can we get everyone’s tickets and cards onto
 their wrists?
@@ -111,7 +111,7 @@ how can we bring this to Pebble?
 Simply put - Pebblers are awesome, and awesome people should stick
 together. How cool would it be if you could communicate with other
 Pebblers without even needing a phone?
-[Boopy](https://apps.rebble.io/application/556211d49853b8c3f30000b9)
+[Boopy](https://apps.repebble.com/application/556211d49853b8c3f30000b9)
 is an awesome start - how far can we take this?
 
 [Join the Discussion >{more}](https://forums.getpebble.com/discussion/28489/watch-to-watch-communication#latest)
@@ -128,7 +128,7 @@ ultimate tool for productivity.
 
 ## Addictive Games
 
-> Ever played [Pixel Miner](https://apps.rebble.io/application/539e18f21a19dec6ca0000aa)?
+> Ever played [Pixel Miner](https://apps.repebble.com/application/539e18f21a19dec6ca0000aa)?
   That’s one we can never put down….
 
 Whether it’s about trivia, flapping birds, or paper planes, we’d love
@@ -148,7 +148,7 @@ coming back… (e.g. [timeline pins](/guides/pebble-timeline/), the
 Studies show over 80% of Americans have at some point in their life
 misplaced one of the above. With more of your home getting smarter and
 more connected, Pebble can become the primary controller and monitor for everything.
-[Leaf](https://apps.rebble.io/applications/52ccd42551a80d792600002c)
+[Leaf](https://apps.repebble.com/applications/52ccd42551a80d792600002c)
 is an awesome example -- let’s keep it going.
 
 [Join the Discussion >{more}](https://forums.getpebble.com/discussion/28492/pebble-for-the-home#latest)
@@ -157,7 +157,7 @@ is an awesome example -- let’s keep it going.
 
 > Pebble unlocks what matters
 
-[Authenticator](https://apps.rebble.io/applications/52f1a4c3c4117252f9000bb8)
+[Authenticator](https://apps.repebble.com/applications/52f1a4c3c4117252f9000bb8)
 has shown us the power of Pebble for easy two factor authentication. Whether
 it’s for physical or digital spaces, a watch that’s always on you is the perfect
 tool to keep what matters safe. Let’s see what else Pebble can unlock...
