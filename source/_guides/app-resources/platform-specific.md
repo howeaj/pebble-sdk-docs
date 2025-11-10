@@ -32,8 +32,8 @@ The follows tags exist for each platform:
 |---------|------------|------------|---------|------------|---------|
 | rect    | rect       | round      | rect    | rect       | rect    |
 | bw      | color      | color      | bw      | color      | bw      |
-| aplite  | basalt     | chalk      | diroite | emery      | flint   |
-| 144w    | 144w       | 180w       | 144w    | 220w       | 144w    |
+| aplite  | basalt     | chalk      | diorite | emery      | flint   |
+| 144w    | 144w       | 180w       | 144w    | 200w       | 144w    |
 | 168h    | 168h       | 180h       | 168h    | 228h       | 168h    |
 | compass | compass    | compass    |         | compass    | compass |
 |         | mic        | mic        | mic     | mic        | mic     |
