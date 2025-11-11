@@ -17,10 +17,8 @@ title: Getting Started with Pebble Time Round
 description: |
   Details on all the new features and APIs available for the Chalk platfom, or
   Pebble Time Round.
-layout: sdk/markdown
-permalink: /round/getting-started/
-generate_toc: true
-search_index: true
+guide_group: tools-and-resources
+order: 99
 ---
 
 With the addition of Pebble Time Round to the Pebble hardware family, the Pebble
