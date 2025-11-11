@@ -19,6 +19,7 @@ description: |
 guide_group: appstore-publishing
 generate_toc: false
 order: 4
+published: false
 ---
 
 Pebble is part of the Made For iPhone program, a requirement that hardware
