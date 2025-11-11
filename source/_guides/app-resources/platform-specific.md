@@ -38,7 +38,7 @@ The follows tags exist for each platform:
 | compass | compass    | compass    |         | compass    | compass |
 |         | mic        | mic        | mic     | mic        | mic    |
 |         | strap      | strap      | strap   | strap      | strap  |
-|         | strappower | strappower |         |            |barometer|
+|         | strappower | strappower |         |            |        |
 |         | health     | health     | health  | health     | health |
 
 
