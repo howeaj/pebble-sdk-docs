@@ -18,6 +18,9 @@ title: PebbleKit iOS Documentation
 docs_language: pebblekit_ios
 ---
 
+> **Important: PebbleKit iOS has been discontinued.** Apple has made it increasingly difficult for third-party smartwatches to provide a competitive experience on iOS. Over the years, Apple has systematically restricted capabilities that were essential to Pebble's functionality, including the ability to reply to notifications, send messages, enable inter-app communication, and properly function when the companion app is in the background. These restrictions have made it nearly impossible to build a smartwatch experience on iOS that matches the capabilities available on Android. We encourage developers to focus on Android development where Pebble can deliver its full potential without artificial platform limitations. Learn more about Apple's restrictions and their impact on third-party wearables in [this blog post](https://ericmigi.com/blog/apple-restricts-pebble-from-being-awesome-with-iphones).
+
+<!--
 This is the contents page for the PebbleKit iOS SDK documentation, which
 includes all information on the main reference sections below.
 
@@ -34,6 +37,7 @@ You can find the source code for PebbleKit iOS
 [on GitHub](https://github.com/pebble/pebble-ios-sdk), and the documentation
 is also available on
 [CocoaDocs](http://cocoadocs.org/docsets/PebbleKit/{{ site.data.sdk.pebblekit-ios.version }}/).
+-->
 
 {% for module in site.data.docs_tree.pebblekit_ios %}
 <h3>{{ module.name }}</h3>

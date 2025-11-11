@@ -19,10 +19,14 @@ guide_group: communication
 order: 3
 ---
 
+> **Important: PebbleKit iOS has been discontinued.** Apple has made it increasingly difficult for third-party smartwatches to provide a competitive experience on iOS. Over the years, Apple has systematically restricted capabilities that were essential to Pebble's functionality, including the ability to reply to notifications, send messages, enable inter-app communication, and properly function when the companion app is in the background. These restrictions have made it nearly impossible to build a smartwatch experience on iOS that matches the capabilities available on Android. We encourage developers to focus on Android development where Pebble can deliver its full potential without artificial platform limitations. Learn more about Apple's restrictions and their impact on third-party wearables in [this blog post](https://ericmigi.com/blog/apple-restricts-pebble-from-being-awesome-with-iphones).
+
+<!--
 [PebbleKit iOS](https://github.com/pebble/pebble-ios-sdk/) is an Objective-C
 framework that works with the Pebble SDK and can be embedded in any iOS
 application for **iOS 7.1** and above. Using the classes and methods in this
 framework, an iOS app can find and exchange data with a Pebble watch.
+-->
 
 This section assumes that the reader has a basic knowledge of Objective-C, Xcode
 as an IDE, and the delegate and block patterns.
