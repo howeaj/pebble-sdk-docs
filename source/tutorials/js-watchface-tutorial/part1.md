@@ -26,6 +26,9 @@ generate_toc: true
 
 {% include tutorials/rocky-js-warning.html %}
 
+> **Note:** We're working on a brand new JavaScript runtime for Pebble! The previous Rocky.js implementation is being replaced with [Moddable](https://www.moddable.com/), a modern open-source JavaScript engine that will bring enhanced capabilities to Pebble development. Moddable will enable developers to write apps that blend C and JavaScript with a more full-featured runtime and SDK. Learn more about our plans in [this blog post](https://ericmigi.com/blog/how-to-build-a-smartwatch-software-setting-expectations-and-roadmap#pebbleos-firmware-pl). This tutorial is archived for reference but may not work with future SDK versions.
+
+<!--
 In this tutorial we'll cover the basics of writing a simple watchface with
 Rocky.js, Pebble's JavaScript API. Rocky.js enables developers to create
 beautiful and feature-rich watchfaces with a modern programming language.
@@ -34,6 +37,7 @@ Rocky.js should not be confused with Pebble.js which also allowed developers to
 write applications in JavaScript. Unlike Pebble.js, Rocky.js runs natively on
 the watch and is now the only offically supported method for developing
 JavaScript applications for Pebble smartwatches.
+-->
 
 We're going to start with some basics, then create a simple digital watchface
 and finally create an analog clock which looks just like this:

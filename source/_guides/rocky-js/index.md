@@ -23,6 +23,7 @@ generate_toc: false
 hide_comments: true
 ---
 
+<!--
 This section of the developer guides contains information and resources
 surrounding creating Pebble watchfaces using the Rocky.js JavaScript API.
 
@@ -35,6 +36,9 @@ with [JerryScript](https://github.com/pebble/jerryscript).
 
 At present, Rocky.js can only be used to create watchfaces, but we're adding
 more APIs and functionality with every release.
+-->
+
+**We're working on a brand new JavaScript runtime for Pebble!** The previous Rocky.js implementation is being replaced with [Moddable](https://www.moddable.com/), a modern open-source JavaScript engine that will bring enhanced capabilities to Pebble development. Moddable will enable developers to write apps that blend C and JavaScript with a more full-featured runtime and SDK. Learn more about our plans in [this blog post](https://ericmigi.com/blog/how-to-build-a-smartwatch-software-setting-expectations-and-roadmap#pebbleos-firmware-pl). Stay tuned for updates!
 
 
 ## Contents

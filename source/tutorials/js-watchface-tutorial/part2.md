@@ -26,11 +26,15 @@ generate_toc: true
 
 {% include tutorials/rocky-js-warning.html %}
 
+> **Note:** We're working on a brand new JavaScript runtime for Pebble! The previous Rocky.js implementation is being replaced with [Moddable](https://www.moddable.com/), a modern open-source JavaScript engine that will bring enhanced capabilities to Pebble development. Moddable will enable developers to write apps that blend C and JavaScript with a more full-featured runtime and SDK. Learn more about our plans in [this blog post](https://ericmigi.com/blog/how-to-build-a-smartwatch-software-setting-expectations-and-roadmap#pebbleos-firmware-pl). This tutorial is archived for reference but may not work with future SDK versions.
+
+<!--
 In the [previous tutorial](/tutorials/js-watchface-tutorial/part1), we looked
 at the process of creating a basic watchface using Pebble's new JavaScript API.
 
 In this tutorial, we'll extend the example to add weather conditions from the
 Internet to our watchface.
+-->
 
 ![rocky >{pebble-screenshot,pebble-screenshot--time-red}](/images/tutorials/js-watchface-tutorial/tictoc-weather.png)
 
