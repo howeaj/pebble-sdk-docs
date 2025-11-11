@@ -15,12 +15,21 @@
  */
 
 .sdk4-landing {
-  background-image: url('../images/landing-page/devblog.jpg');
+  background-image: url('../images/landing-page/pebbleisback.png');
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: cover;
 
   @include bp-max (xs) {
     height: 120%;
+  }
+
+  .landing-slider__strap {
+    padding: 0.75em 1.5em;
+
+    .round-landing__text {
+      margin: 0;
+      width: 100%;
+    }
   }
 }

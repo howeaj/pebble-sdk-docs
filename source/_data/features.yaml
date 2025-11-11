@@ -12,17 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- title: SDK 4.0 Now Available!
-  url: /sdk4
-  background_image: /images/landing-page/devblog.jpg
+- title: Pebble is back!
+  url: /weareback
+  background_image: /images/landing-page/pebbleisback.png
   button_text: Find out more
   button_fg: white
   button_bg: red
   duration: 4000
-- title: Pebble's Global Community of Meetups!
-  url: /community/events/
-  background_image: https://pebble-developer-site-server.herokuapp.com/events/upcoming.png
-  button_text: Find A Meetup Near You
-  button_fg: white
-  button_bg: purple
-  duration: 3000
+# - title: Pebble's Global Community of Meetups!
+#   url: /community/events/
+#   background_image: https://pebble-developer-site-server.herokuapp.com/events/upcoming.png
+#   button_text: Find A Meetup Near You
+#   button_fg: white
+#   button_bg: purple
+#   duration: 3000

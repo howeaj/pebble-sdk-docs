@@ -303,7 +303,7 @@ static void prv_unobstructed_change(AnimationProgress progress, void *context) {
 
 ### Toggling Timeline Quick View
 
-The `pebble` tool which shipped as part of [SDK 4.0](/sdk4),
+The `pebble` tool which shipped as part of SDK 4.0,
 allows developers to enable and disable Timeline Quick View, which is
 incredibly useful for debugging purposes.
 
