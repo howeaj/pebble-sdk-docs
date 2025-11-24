@@ -21,7 +21,7 @@ order: 1
 ---
 
 When an app is ready for publishing, the `.pbw` file needs to be uploaded to the
-Pebble [Developer Portal]({{ site.links.devportal }}), where a listing is
+Pebble [Developer Dashboard]({{ site.links.devportal }}), where a listing is
 created. Depending on the type of app, different sets of additional resources
 are required. These resources are then used to generate the listing pages
 visible to potential users in the Pebble appstore, which is embedded within the Pebble mobile app.

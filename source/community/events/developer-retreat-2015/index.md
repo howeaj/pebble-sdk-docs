@@ -211,7 +211,7 @@ community. Forums, Slack, surveys, code samples, our newsletter, and community p
 
 #### Data Analytics and Pebble 
 
-Jack Chai (Data Scientist) takes us through the new Developer Portal analytics
+Jack Chai (Data Scientist) takes us through the new Developer Dashboard analytics
 and delves into battery performance. He also reveals some interesting
 insights into levels of user interaction and how your projects could benefit
 from integration with timeline.

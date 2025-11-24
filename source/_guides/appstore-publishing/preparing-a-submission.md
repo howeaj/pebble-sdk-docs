@@ -21,7 +21,7 @@ order: 0
 ---
 
 Once a new Pebble watchface or watchapp has been created, the
-[Pebble Developer Portal]({{ site.links.devportal }}) allows the
+[Pebble Developer Dashboard]({{ site.links.devportal }}) allows the
 developer to publish their creation to the appstore either publicly, or
 privately. The appstore is built into the official mobile apps and means that
 every new app can be found and also featured for increased exposure and

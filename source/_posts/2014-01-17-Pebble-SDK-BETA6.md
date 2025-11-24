@@ -57,13 +57,13 @@ Have you already submitted your app? Or are you about to submit? Here is a quick
 
  * Is your application in the 'Published' state? Publishing a release is not enough. You need to click the 'Publish' button in the top right corner to make sure your app is visible. Please double-check this!
 
- * If you had a 1.x version of your app, did you provide the name and UUID of your 1.x app in the developer portal? This will allow us to automatically migrate your users to the 2.0 version.
+ * If you had a 1.x version of your app, did you provide the name and UUID of your 1.x app in the developer dashboard? This will allow us to automatically migrate your users to the 2.0 version.
 
  * Did you upload a header image for your app (not required for watchfaces)? If not, we provide the [Pebble appstore marketing materials](/guides/appstore-publishing/appstore-assets/) to help you.
 
 ## Deep links to Pebble applications
 
-You can link directly to a Pebble app or watchface in the Pebble appstore. Simply grab your Pebble application identifier in the URL of the developer portal and append it to: `pebble://appstore/`.
+You can link directly to a Pebble app or watchface in the Pebble appstore. Simply grab your Pebble application identifier in the URL of the developer dashboard and append it to: `pebble://appstore/`.
 
 For example, if your application in the portal has the URL `https://dev-portal.getpebble.com/applications/52d396683e2e256b6c00001e`, then a deep-link for your app is `pebble://appstore/52d396683e2e256b6c00001e`.
 

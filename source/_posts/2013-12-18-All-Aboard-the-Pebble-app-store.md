@@ -24,16 +24,16 @@ If your Pebble app requires a companion iOS or Android app, you can also include
 Submitting an application on the Pebble appstore is free and open to everyone. To get started:
 
  1. Read the [*Appstore Publishing*](/guides/appstore-publishing) guides.
- 1. Join the [developer portal](http://dev-portal.getpebble.com/).
+ 1. Join the [developer dashboard](http://dev-portal.getpebble.com/).
 
-![An application on the Pebble Developer Portal](/images/blog/pebble_appstore_webportal.png)
+![An application on the Pebble Developer Dashboard](/images/blog/pebble_appstore_webportal.png)
 
 More information and answers to common questions after the break!
 
 
-### What is the developer portal?
+### What is the developer dashboard?
 
-The developer portal is the web application that developers use to publish an iOS or an Android application to the Pebble appstore. The URL for the developer portal is [https://dev-portal.getpebble.com](https://dev-portal.getpebble.com). Access to the developer portal is free.
+The developer dashboard is the web application that developers use to publish an iOS or an Android application to the Pebble appstore. The URL for the developer dashboard is [https://dev-portal.getpebble.com](https://dev-portal.getpebble.com). Access to the developer dashboard is free.
 
 ### Will you validate / approve applications?
 

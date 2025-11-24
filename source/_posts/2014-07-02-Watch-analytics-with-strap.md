@@ -40,7 +40,7 @@ with the REST service provided by What3Words.
 Note: If you have a companion app for iOS or Android, we've got you covered! We
 have 
 [quick start guides](https://github.com/strap/strap_sdk_pebble/tree/master/companion) 
-for those platforms on our developer portal.
+for those platforms on our developer dashboard.
 
 Before you get started, signup for an account at
 https://www.straphq.com/register - it's free without limits during our public

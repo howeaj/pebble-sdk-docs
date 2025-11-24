@@ -34,6 +34,6 @@ From the high school students who used our SDK to learn C and wrote an app in un
 
 Pebblers in Los Angeles or the College Park, Maryland area - we’re coming to you very soon! We’ll be at LA Hacks from April 3rd-5th and Bitcamp from April 10th-12th, and we’d love to see you. Stop by our table and come hang out! Check out our [events page](/community/events/) for more information about where we’ll be in the upcoming months.
 
- **Have you created an app at a hackathon but haven't submitted it to the appstore yet? We would love for you to show your app to the world! Head over to the [Developer Portal](https://dev-portal.getpebble.com/developer) to get started.**
+ **Have you created an app at a hackathon but haven't submitted it to the appstore yet? We would love for you to show your app to the world! Head over to the [Developer Dashboard](https://dev-portal.getpebble.com/developer) to get started.**
 
 Much love from our team and we'll see you at the [next event](/community/events/)!

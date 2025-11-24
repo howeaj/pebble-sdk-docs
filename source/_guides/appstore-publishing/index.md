@@ -25,7 +25,7 @@ hide_comments: true
 
 When a developer is happy that their app is feature-complete and stable, they
 can upload the compiled `.pbw` file to the
-[Developer Portal]({{ site.links.devportal }}) to make it available on the
+[Developer Dashboard]({{ site.links.devportal }}) to make it available on the
 Pebble appstore for all users with compatible watches to share and enjoy.
 
 In order to be successfully listed in the Pebble appstore the developer must:

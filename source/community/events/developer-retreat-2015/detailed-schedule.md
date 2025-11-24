@@ -172,7 +172,7 @@ A group discussion about the Pebble community. Forums, feedback, surveys, code s
 
 #### 17:30 - Data Analytics and Pebble 
 
-Jack Chai (Data Scientist) takes us through the new Developer Portal analytics and delves into battery performance. He also reveals some interesting insights into levels of user interaction and how your projects could benefit from integration with timeline.
+Jack Chai (Data Scientist) takes us through the new Developer Dashboard analytics and delves into battery performance. He also reveals some interesting insights into levels of user interaction and how your projects could benefit from integration with timeline.
 
 #### 18:00 - Dinner
 

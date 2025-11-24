@@ -89,8 +89,8 @@ text to the dialog with `NSBluetoothPeripheralUsageDescription` to your
 }
 ```
 
-### Specify that your app is built with PebbleKit 3.0 in the Developer Portal
-Go to edit the companion app listing in your [developer portal]({{ site.links.devportal }}) page and check the box for "Was this iOS app compiled with PebbleKit iOS 3.0 or newer?" This way, users on Pebble Time Round will be able to see your app in the appstore.
+### Specify that your app is built with PebbleKit 3.0 in the Developer Dashboard
+Go to edit the companion app listing in your [developer dashboard]({{ site.links.devportal }}) page and check the box for "Was this iOS app compiled with PebbleKit iOS 3.0 or newer?" This way, users on Pebble Time Round will be able to see your app in the appstore.
 
 ![](/images/blog/checkbox.png)
 

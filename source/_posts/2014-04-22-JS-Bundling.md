@@ -15,7 +15,7 @@ tags:
 
 We get a lot of questions about apps that use JavaScript and their availability
 in the store. We are improving the Pebble appstore documentation and the
-Developer Portal to address these questions, but until those changes are live,
+Developer Dashboard to address these questions, but until those changes are live,
 we thought we would summarize the key points in a blog post.
 
 
@@ -84,7 +84,7 @@ developers publishing JavaScript applications:
 to announce when we are going to grab JavaScript from the appstore to submit a 
 new build to Apple, and then when this version is available to iOS users;
 * We are updating the appstore documentation to explain how the process works;
-* We will be showing you in the developer portal what the current status of your
+* We will be showing you in the developer dashboard what the current status of your
   app is and in what version of the iOS application it is or will be in.
 
 We are continuously looking to improve the tools and services we provide to the

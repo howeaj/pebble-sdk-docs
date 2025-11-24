@@ -20,7 +20,7 @@ Appstore launches do not happen often and we all know this is a big opportunity;
 
 ## Submitting an application to the Pebble appstore
 
-Submitting an application is a free and very easy process that only takes a few minutes. Just head to our [developer portal](https://dev-portal.getpebble.com) and upload your application and a few images.
+Submitting an application is a free and very easy process that only takes a few minutes. Just head to our [developer dashboard](https://dev-portal.getpebble.com) and upload your application and a few images.
 
 We have prepared some resources to help you:
 

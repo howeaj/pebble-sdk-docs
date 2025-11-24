@@ -31,7 +31,7 @@ Have you already submitted your app? Or are you about to submit? Here is a quick
 
  * Is your application in the 'Published' state? Publishing a release is not enough. You need to click the 'Publish' button in the top right corner to make sure your app is visible. Please double-check this!
 
- * If you had a 1.x version of your app, and did you provide the name and UUID of your 1.x app in the developer portal? This will allow us to automatically migrate your users to the 2.0 version of your app.
+ * If you had a 1.x version of your app, and did you provide the name and UUID of your 1.x app in the developer dashboard? This will allow us to automatically migrate your users to the 2.0 version of your app.
 
  * Did you upload a header image for your app (not required for watchfaces)? If not, we provide the [Pebble appstore marketing materials](/guides/appstore-publishing/appstore-assets/) to help you.
 

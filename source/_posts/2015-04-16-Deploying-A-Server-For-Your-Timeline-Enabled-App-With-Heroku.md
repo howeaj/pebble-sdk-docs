@@ -72,7 +72,7 @@ $ npm install express pebble-api --save
 ```
 
 In order to talk to the timeline web API, you need to obtain an API key from the
-[Developer Portal](https://dev-portal.getpebble.com/). Once you've obtained the
+[Developer Dashboard](https://dev-portal.getpebble.com/). Once you've obtained the
 API key you need to set it as an environment variable, so the `pebble-api` npm
 module can use it.
 

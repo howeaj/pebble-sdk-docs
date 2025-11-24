@@ -23,7 +23,7 @@ Here are some answers to the most pressing questions:
 
  * Can I see how many people have downloaded my application?
 
-   Not yet, but we are collecting analytics and we'll make them available in the [developer portal](http://dev-portal.getpebble.com) very soon.
+   Not yet, but we are collecting analytics and we'll make them available in the [developer dashboard](http://dev-portal.getpebble.com) very soon.
 
  * When is the next update of JavaScript apps coming?
 
