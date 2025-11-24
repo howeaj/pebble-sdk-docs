@@ -15,6 +15,10 @@
 - name: Pebble SDK
   slug: pebble-sdk
   projects:
+    - name: libpebble3
+      github: coredevices/libpebble3
+      summary: "**New for 2025!** Kotlin multiplatform library for interacting with Pebble devices. This is the modern replacement for libpebble2."
+      license: GPL-3.0 / Commercial
     - name: libpebble2
       github: pebble/libpebble2
       summary: Library for communication with Pebble devices and emulators
