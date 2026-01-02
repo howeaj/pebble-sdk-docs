@@ -38,6 +38,9 @@ shown below:
 | Aplite | 2 (black and white) |
 | Basalt | 64 colors |
 | Chalk | 64 colors |
+| Diorite | 2 (black and white) |
+| Emery | 64 colors |
+| Flint | 2 (black and white) |
 
 
 ## Color Palettes
