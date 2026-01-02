@@ -50,6 +50,9 @@ are available below. Use these when creating color image resources:
 
 * [Photoshop `.act`](/assets/other/pebble_colors_64.act)
 
+* [Aseprite (raw colors, for watch displays) `.aseprite`](/assets/other/pebble_colors_uncorrected.aseprite)
+* [Aseprite (Sunlight, color-corrected for HD displays) `.aseprite`](/assets/other/pebble_colors_uncorrected.aseprite)
+
 * [Illustrator `.ai`](/assets/other/pebble_colors_64.ai)
 
 * [GIMP `.pal`](/assets/other/pebble_colors_64.pal)
