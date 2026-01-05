@@ -58,8 +58,8 @@ links:
   site_repo: https://github.com/coredevices/sdk-docs
   community_resources_repo: https://github.com/pebble/community-resources/
   github: https://github.com/coredevices/
-  forums: https://discordapp.com/invite/aRUAYFN
-  forums_developer: https://discordapp.com/invite/aRUAYFN 
+  forums: https://forum.repebble.com
+  forums_developer: https://forum.repebble.com
   pebblekit_android: https://github.com/pebble/pebble-android-sdk/
   pebblekit_ios: https://github.com/pebble/pebble-ios-sdk/
   examples_org: https://github.com/pebble-examples
@@ -137,4 +137,3 @@ defaults:
     values:
       layout: sdk/changelog
       generate_toc: true
-

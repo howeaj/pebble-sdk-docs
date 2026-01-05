@@ -97,7 +97,7 @@ timeline' to obtain API keys used for pushing pins. See the
 
 Once published, the key to growth in an app is through promotion. Aside from
 users recommending the app to each other, posting on websites such as the
-[Pebble Forums](https://forums.getpebble.com/categories/watchapp-directory),
+[Pebble Forums](https://forum.repebble.com/c/pebble-watchface-discussion),
 [Reddit](https://www.reddit.com/r/pebble), and [Twitter](https://twitter.com)
 can help increase exposure.
 
