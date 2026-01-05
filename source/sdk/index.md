@@ -37,8 +37,6 @@ You will need to install Node.js. The easiest way is with [Homebrew](https://bre
 brew install node
 ```
 
-When you install the Pebble CLI below using `uv`, it will automatically download and use the correct Python version for you - no need to install it manually!
-
 #### Ubuntu
 
 You will need to install a few dependencies to make the SDK run:
@@ -47,12 +45,16 @@ You will need to install a few dependencies to make the SDK run:
 sudo apt install nodejs npm libsdl1.2debian libfdt1
 ```
 
-When you install the Pebble CLI below using `uv`, it will automatically download and use the correct Python version for you - no need to install Python manually!
-
 > Note: if you already have `node` installed, you can install only:
 
 ```bash
 sudo apt install libsdl1.2debian libfdt1
+```
+
+#### Fedora
+
+```bash
+sudo dnf install nodejs SDL-devel dtc
 ```
 
 #### Windows
