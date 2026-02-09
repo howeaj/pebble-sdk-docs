@@ -14,12 +14,12 @@
 # limitations under the License.
 
 layout: tutorials/tutorial
-tutorial: js-watchface
+tutorial: rocky-watchface
 tutorial_part: 2
 
-title: Adding Web Content to a Rocky.js JavaScript Watchface
-description: A guide to adding web content to a JavaScript watchface
-permalink: /tutorials/js-watchface-tutorial/part2/
+title: Adding Web Content to a Rocky.js JavaScript Watchface (Archived)
+description: A guide to adding web content to a JavaScript watchface (archived - see Alloy tutorial for current approach)
+permalink: /tutorials/rocky-watchface-tutorial/part2/
 menu_section: tutorials
 generate_toc: true
 ---
@@ -47,7 +47,7 @@ the Pebble.
 ## First Steps
 
 The first thing we'll need to do is edit a file from the project we
-created in [Part 1](/tutorials/js-watchface-tutorial/part1). The file is
+created in [Part 1](/tutorials/rocky-watchface-tutorial/part1). The file is
 called `/src/pkjs/index.js` and it is the entry point for the `pkjs` portion
 of the application.
 

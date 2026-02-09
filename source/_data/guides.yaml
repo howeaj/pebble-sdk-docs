@@ -15,6 +15,12 @@
 # This is the listing of the various areas of the Guides.
 # It is used to build the primary navigation and the Guides.
 
+alloy:
+  title: Alloy
+  description: Information on creating apps with JavaScript using the Alloy framework, based on Moddable.
+  category: interactive-apps
+  sort_by: order
+
 app-resources:
   title: App Resources
   description: Information on the many kinds of files that can be used inside Pebble apps.

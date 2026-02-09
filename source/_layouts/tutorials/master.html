@@ -24,6 +24,13 @@ menu_section_icon: /images/menu/getting-started.png
     <h3><a href="/tutorials/">Tutorials</a></h3>
   </div>
   <ul>
+    <li class="section-menu__item{% if page.tutorial == 'alloy-watchface' %} open{% endif %}"><a href="/tutorials/alloy-watchface-tutorial/part1/">Build a Watchface in JS (Alloy)</a>
+      <ul>
+        <li class="section-menu__subitem{% if page.tutorial_part == 1 %} active{% endif %}"><a href="/tutorials/alloy-watchface-tutorial/part1/"><span>Part 1 - Displaying the Time</span></a></li>
+        <li class="section-menu__subitem{% if page.tutorial_part == 2 %} active{% endif %}"><a href="/tutorials/alloy-watchface-tutorial/part2/"><span>Part 2 - Adding Weather</span></a></li>
+      </ul>
+    </li>
+
     <li class="section-menu__item{% if page.tutorial == 'watchface' %} open{% endif %}"><a href="/tutorials/watchface-tutorial/part1/">Build a Watchface in C</a>
       <ul>
         <li class="section-menu__subitem{% if page.tutorial_part == 1 %} active{% endif %}"><a href="/tutorials/watchface-tutorial/part1/"><span>Part 1 - Your First Watchface</span></a></li>
@@ -35,10 +42,10 @@ menu_section_icon: /images/menu/getting-started.png
       </ul>
     </li>
 
-    <li class="section-menu__item{% if page.tutorial == 'js-watchface' %} open{% endif %}"><a href="/tutorials/js-watchface-tutorial/part1/">Build a Watchface in JS</a>
+    <li class="section-menu__item{% if page.tutorial == 'rocky-watchface' %} open{% endif %}"><a href="/tutorials/rocky-watchface-tutorial/part1/">Build a Watchface in JS (Rocky.js - Archived)</a>
       <ul>
-        <li class="section-menu__subitem{% if page.tutorial_part == 1 %} active{% endif %}"><a href="/tutorials/js-watchface-tutorial/part1/"><span>Part 1 - Displaying the Time</span></a></li>
-        <li class="section-menu__subitem{% if page.tutorial_part == 2 %} active{% endif %}"><a href="/tutorials/js-watchface-tutorial/part2/"><span>Part 2 - Adding Web Content</span></a></li>
+        <li class="section-menu__subitem{% if page.tutorial_part == 1 %} active{% endif %}"><a href="/tutorials/rocky-watchface-tutorial/part1/"><span>Part 1 - Displaying the Time</span></a></li>
+        <li class="section-menu__subitem{% if page.tutorial_part == 2 %} active{% endif %}"><a href="/tutorials/rocky-watchface-tutorial/part2/"><span>Part 2 - Adding Web Content</span></a></li>
       </ul>
     </li>
 

@@ -14,12 +14,12 @@
 # limitations under the License.
 
 layout: tutorials/tutorial
-tutorial: js-watchface
+tutorial: rocky-watchface
 tutorial_part: 1
 
-title: Build a Watchface in JavaScript using Rocky.js
-description: A guide to making a new Pebble watchface with Rocky.js
-permalink: /tutorials/js-watchface-tutorial/part1/
+title: Build a Watchface in JavaScript using Rocky.js (Archived)
+description: A guide to making a new Pebble watchface with Rocky.js (archived - see Alloy tutorial for current approach)
+permalink: /tutorials/rocky-watchface-tutorial/part1/
 menu_section: tutorials
 generate_toc: true
 ---
@@ -453,4 +453,4 @@ basic watchface that closely mimics the built-in TicToc. In the next tutorial,
 we'll use `postMessage` to pass information to the mobile device, and
 request weather data from the web.
 
-[Go to Part 2 &rarr; >{wide,bg-dark-red,fg-white}](/tutorials/js-watchface-tutorial/part2/)
+[Go to Part 2 &rarr; >{wide,bg-dark-red,fg-white}](/tutorials/rocky-watchface-tutorial/part2/)
