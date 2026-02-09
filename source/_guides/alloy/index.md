@@ -64,7 +64,7 @@ my-app/
     pkjs/
       index.js          # Phone code (for networking, location)
     c/
-      mdbl.c             # C code as entry point for embeddedjs (usually no need to modify)
+      mdbl.c            # C code as entry point for embeddedjs (usually no need to modify)
   resources/            # App resources (images, fonts)
   package.json          # App manifest
 ```
