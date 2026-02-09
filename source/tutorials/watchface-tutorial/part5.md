@@ -1,5 +1,5 @@
 ---
-# Copyright 2025 Google LLC
+# Copyright 2026 Core Devices LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,129 +17,244 @@ layout: tutorials/tutorial
 tutorial: watchface
 tutorial_part: 5
 
-title: Vibrate on Disconnect
+title: Timeline Peek
 description: |
-  How to add bluetooth connection alerts to your watchface.
+  How to adapt your watchface layout when the screen is partially
+  obstructed by Timeline Quick View.
 permalink: /tutorials/watchface-tutorial/part5/
 generate_toc: true
 ---
 
-The final popular watchface addition explored in this tutorial series
-is the concept of using the Bluetooth connection service to alert the user
-when their watch connects or disconnects. This can be useful to know when the
-watch is out of range and notifications will not be received, or to let the user
-know that they might have walked off somewhere without their phone.
+Pebble's Timeline Quick View can appear at the bottom of the screen to show
+upcoming events. When it does, it covers part of your watchface. In this part
+we will use the ``UnobstructedArea`` API to gracefully adapt our layout -
+repositioning the time, date, and weather to fit in the remaining space.
+
+Here is what the transition looks like:
+
+{% screenshot_viewer %}
+{
+  "image": "/images/tutorials/watchface-tutorial/part5.gif",
+  "platforms": [
+    {"hw": "basalt", "wrapper": "time-red"},
+    {"hw": "diorite", "wrapper": "pebble2-black"},
+    {"hw": "emery", "wrapper": ""}
+  ]
+}
+{% endscreenshot_viewer %}
 
 This section continues from
-[*Part 4*](/tutorials/watchface-tutorial/part4), so be sure to
-re-use your code or start with that finished project.
+[*Part 4*](/tutorials/watchface-tutorial/part4/), so be sure to re-use your
+code or start with that finished project.
 
-In a similar manner to both the ``TickTimerService`` and
-``BatteryStateService``, the events associated with the Bluetooth connection are
-given to developers via subscriptions, which requires an additional callback -
-the ``ConnectionHandler``. Create one of these in the format given below:
+
+## How Timeline Quick View Works
+
+Timeline Quick View is a system overlay that obstructs the bottom ~51 pixels of
+the screen (including a 2px border). Your watchface is not required to handle
+this, but with the ``UnobstructedArea`` API you can detect the change and
+rearrange your layers for a better experience.
+
+> **Note**: Timeline Quick View is not currently planned for the Chalk (round)
+> platform, but writing compatible code ensures your watchface handles it
+> gracefully on all platforms.
+
+
+## Getting Unobstructed Bounds
+
+Prior to SDK 4.0, you would use ``layer_get_bounds()`` to get the full screen
+size. The ``UnobstructedArea`` API adds
+``layer_get_unobstructed_bounds()``, which returns only the area not covered by
+a system overlay:
 
 ```c
-static void bluetooth_callback(bool connected) {
+GRect full_bounds = layer_get_bounds(s_window_layer);
+GRect unobstructed_bounds = layer_get_unobstructed_bounds(s_window_layer);
+```
 
+If there is no overlay, both return the same rectangle.
+
+
+## Keeping a Reference to the Window Layer
+
+We need access to the root layer in our handler function, so store it in a
+file-level variable:
+
+```c
+static Layer *s_window_layer;
+```
+
+Set it at the start of `main_window_load()`:
+
+```c
+s_window_layer = window_get_root_layer(window);
+GRect bounds = layer_get_bounds(s_window_layer);
+```
+
+
+## Subscribing to Unobstructed Area Events
+
+The API provides three event handlers:
+
+- `.will_change` - fires before the obstruction appears or disappears
+- `.change` - fires repeatedly during the animation
+- `.did_change` - fires after the animation completes
+
+We will use all three to demonstrate the full lifecycle. Subscribe at the end
+of `main_window_load()`:
+
+```c
+UnobstructedAreaHandlers handlers = {
+  .will_change = prv_unobstructed_will_change,
+  .change = prv_unobstructed_change,
+  .did_change = prv_unobstructed_did_change
+};
+unobstructed_area_service_subscribe(handlers, NULL);
+```
+
+> **Important**: Construct the ``UnobstructedAreaHandlers`` struct before
+> passing it to ``unobstructed_area_service_subscribe()``.
+
+
+## Implementing the Handlers
+
+We use three handlers to split responsibilities cleanly:
+
+### Before the animation - `.will_change`
+
+This fires once before the overlay starts moving. We hide the Bluetooth
+disconnect icon during the transition so it does not overlap with repositioning
+layers:
+
+```c
+static void prv_unobstructed_will_change(GRect final_unobstructed_screen_area,
+                                         void *context) {
+  // Hide BT icon during the transition to reduce clutter
+  layer_set_hidden(bitmap_layer_get_layer(s_bt_icon_layer), true);
 }
 ```
 
-The subscription to Bluetooth-related events is added in `init()`:
+Note the different signature - `.will_change` receives the *final* unobstructed
+area as a ``GRect``, so you could use it to prepare for the target layout.
+
+### During the animation - `.change`
+
+This fires repeatedly as the overlay slides in or out. We recalculate all
+positions from the current unobstructed bounds so the layers animate smoothly:
 
 ```c
-// Register for Bluetooth connection updates
-connection_service_subscribe((ConnectionHandlers) {
-  .pebble_app_connection_handler = bluetooth_callback
-});
+static void prv_unobstructed_change(AnimationProgress progress, void *context) {
+  GRect bounds = layer_get_unobstructed_bounds(s_window_layer);
+
+  // Reposition time, date, and weather to fit in the available space
+  int date_height = 30;
+  int block_height = 56 + date_height;
+  int time_y = (bounds.size.h / 2) - (block_height / 2) - 10;
+  int date_y = time_y + 56;
+  int weather_y = bounds.size.h - PBL_IF_ROUND_ELSE(40, 30);
+
+  GRect time_frame = layer_get_frame(text_layer_get_layer(s_time_layer));
+  time_frame.origin.y = time_y;
+  layer_set_frame(text_layer_get_layer(s_time_layer), time_frame);
+
+  GRect date_frame = layer_get_frame(text_layer_get_layer(s_date_layer));
+  date_frame.origin.y = date_y;
+  layer_set_frame(text_layer_get_layer(s_date_layer), date_frame);
+
+  GRect weather_frame = layer_get_frame(text_layer_get_layer(s_weather_layer));
+  weather_frame.origin.y = weather_y;
+  layer_set_frame(text_layer_get_layer(s_weather_layer), weather_frame);
+}
 ```
 
-The indicator itself will take the form of the following 'Bluetooth
-disconnected' icon that will be displayed when the watch is disconnected, and
-hidden when reconnected. Save the image below for use in this project:
+Since we use the same ``(bounds.size.h / 2) - (block_height / 2) - 10`` formula
+as in `main_window_load()`, the time+date block stays centered in the available
+space - as the unobstructed bounds shrink, so does the offset, and all layers
+naturally slide together.
 
-<img style="background-color: #CCCCCC;" src="/assets/images/tutorials/intermediate/bt-icon.png"</img>
+### After the animation - `.did_change`
 
-Add this icon to your project by copying the above icon image to the `resources`
-project directory, and adding a new JSON object to the `media` array in
-`package.json` such as the following:
-
-```js
-{
-  "type": "bitmap",
-  "name": "IMAGE_BT_ICON",
-  "file": "bt-icon.png"
-},
-```
-
-This icon will be loaded into the app as a ``GBitmap`` for display in a
-``BitmapLayer`` above the time display. Declare both of these as pointers at the
-top of the file, in addition to the existing variables of these types:
+This fires once after the overlay finishes moving. If the screen is still
+obstructed we keep the Bluetooth icon hidden - there is not enough room for it.
+If the screen is back to full size we restore the icon based on the actual
+connection state:
 
 ```c
-static BitmapLayer *s_background_layer, *s_bt_icon_layer;
-static GBitmap *s_background_bitmap, *s_bt_icon_bitmap;
-```
+static void prv_unobstructed_did_change(void *context) {
+  GRect full_bounds = layer_get_bounds(s_window_layer);
+  GRect bounds = layer_get_unobstructed_bounds(s_window_layer);
+  bool obstructed = !grect_equal(&full_bounds, &bounds);
 
-Allocate both of the new objects in `main_window_load()`, then set the
-``BitmapLayer``'s bitmap as the new icon ``GBitmap``:
-
-```c
-// Create the Bluetooth icon GBitmap
-s_bt_icon_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BT_ICON);
-
-// Create the BitmapLayer to display the GBitmap
-s_bt_icon_layer = bitmap_layer_create(GRect(59, 12, 30, 30));
-bitmap_layer_set_bitmap(s_bt_icon_layer, s_bt_icon_bitmap);
-layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(s_bt_icon_layer));
-```
-
-As usual, ensure that the memory allocated to create these objects is also freed
-in `main_window_unload()`:
-
-```c
-gbitmap_destroy(s_bt_icon_bitmap);
-bitmap_layer_destroy(s_bt_icon_layer);
-```
-
-With the UI in place, the implementation of the ``BluetoothConnectionHandler``
-can be finished. Depending on the state of the connection when an event takes
-place, the indicator icon is hidden or unhidden as required. A distinct
-vibration is also triggered if the watch becomes disconnected, to differentiate
-the feedback from that of a notification or phone call:
-
-```c
-static void bluetooth_callback(bool connected) {
-  // Show icon if disconnected
-  layer_set_hidden(bitmap_layer_get_layer(s_bt_icon_layer), connected);
-
-  if(!connected) {
-    // Issue a vibrating alert
-    vibes_double_pulse();
+  // Keep BT icon hidden when obstructed, otherwise restore based on connection
+  if (obstructed) {
+    layer_set_hidden(bitmap_layer_get_layer(s_bt_icon_layer), true);
+  } else {
+    layer_set_hidden(bitmap_layer_get_layer(s_bt_icon_layer),
+      connection_service_peek_pebble_app_connection());
   }
 }
 ```
 
-Upon initialization, the app will display the icon unless a re-connection event
-occurs, and the current state is evaluated. Manually call the handler in
-`main_window_load()` to display the correct initial state:
+Notice that each handler has a different signature - this is a common pattern
+in the Pebble SDK.
+
+### Handling Quick View on startup
+
+Timeline Quick View may already be active when the watchface starts. Since the
+handlers only fire during transitions, we need to apply the correct layout
+immediately. Call the `.change` and `.did_change` handlers manually before
+subscribing, replacing the old `bluetooth_callback` call:
 
 ```c
-// Show the correct state of the BT connection from the start
-bluetooth_callback(connection_service_peek_pebble_app_connection());
+// Apply correct layout in case Quick View is already active
+prv_unobstructed_change(0, NULL);
+prv_unobstructed_did_change(NULL);
 ```
 
-With this last feature in place, running the app and disconnecting the Bluetooth
-connection will cause the new indicator to appear, and the watch to vibrate
-twice.
+This repositions the layers and sets the BT icon visibility based on the
+current obstruction state, so the watchface looks correct from the first frame.
 
-![bt >{pebble-screenshot,pebble-screenshot--steel-black}](/images/tutorials/intermediate/bt.png)
+### How it all fits together
 
-You can see the finished project source code in
-[this GitHub Gist](https://gist.github.com/pebble-gists/ddd15cbe8b0986fda407).
+As the overlay slides in, the unobstructed bounds shrink, and all three text
+layers slide up together. The Bluetooth icon hides during the transition and
+stays hidden while the screen is obstructed. When the overlay goes away,
+the icon reappears if the phone is disconnected. Everything stays on screen -
+nothing is hidden, just repositioned.
+
+
+## Testing Timeline Quick View
+
+You can toggle Timeline Quick View in the emulator:
+
+```nc|text
+$ pebble emu-set-timeline-quick-view on
+$ pebble emu-set-timeline-quick-view off
+```
+
+When enabled, you should see the time, date, and weather squeeze together into
+the remaining space. The Bluetooth icon hides during the transition and
+reappears based on connection state once it finishes. When disabled, everything
+returns to its original position.
+
+
+## Conclusion
+
+In this part we learned how to:
+
+1. Use ``layer_get_unobstructed_bounds()`` to find available screen space.
+2. Subscribe to all three ``UnobstructedAreaHandlers`` callbacks.
+3. Use `.will_change` to prepare, `.change` to animate, and `.did_change` to
+   finalize.
+4. Reposition layers dynamically to fit in the unobstructed area.
+
+Your watchface now adapts gracefully to Timeline Quick View. Check your code
+against the source in this part's project folder.
 
 
 ## What's Next?
 
-Now that you've successfully built a feature rich watchface, it's time to
-[publish it](/guides/appstore-publishing/publishing-an-app/)!
+In the next part we will add user customization with Clay - letting users pick
+colors, toggle the date, and choose temperature units.
+
+[Go to Part 6 &rarr; >{wide,bg-dark-red,fg-white}](/tutorials/watchface-tutorial/part6/)
