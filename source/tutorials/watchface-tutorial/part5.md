@@ -35,10 +35,11 @@ Here is what the transition looks like:
 {% screenshot_viewer %}
 {
   "image": "/images/tutorials/watchface-tutorial/part5.gif",
+  "default": "emery",
   "platforms": [
     {"hw": "basalt", "wrapper": "time-red"},
     {"hw": "diorite", "wrapper": "pebble2-black"},
-    {"hw": "emery", "wrapper": ""}
+    {"hw": "emery", "wrapper": "core-time2-red"}
   ]
 }
 {% endscreenshot_viewer %}
@@ -55,8 +56,8 @@ the screen (including a 2px border). Your watchface is not required to handle
 this, but with the ``UnobstructedArea`` API you can detect the change and
 rearrange your layers for a better experience.
 
-> **Note**: Timeline Quick View is not currently planned for the Chalk (round)
-> platform, but writing compatible code ensures your watchface handles it
+> **Note**: Timeline Quick View is not currently supported for the Round platforms
+> (chalk and gabbro), but writing compatible code ensures your watchface handles it
 > gracefully on all platforms.
 
 
@@ -249,12 +250,13 @@ In this part we learned how to:
 4. Reposition layers dynamically to fit in the unobstructed area.
 
 Your watchface now adapts gracefully to Timeline Quick View. Check your code
-against the source in this part's project folder.
+against
+[the source for this part](https://github.com/coredevices/c-watchface-tutorial/tree/main/part5).
 
 
 ## What's Next?
 
-In the next part we will add user customization with Clay - letting users pick
+In the next part we will add a settings page with Clay - letting users pick
 colors, toggle the date, and choose temperature units.
 
 [Go to Part 6 &rarr; >{wide,bg-dark-red,fg-white}](/tutorials/watchface-tutorial/part6/)

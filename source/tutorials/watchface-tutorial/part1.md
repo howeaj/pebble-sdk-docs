@@ -25,6 +25,9 @@ permalink: /tutorials/watchface-tutorial/part1/
 generate_toc: true
 ---
 
+> The complete source code for this tutorial is
+> [available on GitHub](https://github.com/coredevices/c-watchface-tutorial).
+
 In this tutorial series we will build a fully-featured digital watchface from
 scratch using Pebble's C API. By the end you will have a watchface with weather
 support, user configuration, and more. But first, we need to start with the
@@ -36,12 +39,14 @@ looks something like this:
 {% screenshot_viewer %}
 {
   "image": "/images/tutorials/watchface-tutorial/part1.png",
+  "default": "emery",
   "platforms": [
     {"hw": "aplite", "wrapper": "steel-black"},
     {"hw": "basalt", "wrapper": "time-red"},
     {"hw": "chalk", "wrapper": "time-round-rosegold-14"},
     {"hw": "diorite", "wrapper": "pebble2-black"},
-    {"hw": "emery", "wrapper": ""}
+    {"hw": "emery", "wrapper": "core-time2-red"},
+    {"hw": "gabbro", "wrapper": "core-time-round2-black-20"}
   ]
 }
 {% endscreenshot_viewer %}
@@ -55,7 +60,7 @@ done this yet, head over to the [download page](/sdk) to get set up.
 Once you are ready, navigate to a directory of your choosing and create a new
 project:
 
-```nc|text
+```text
 $ pebble new-project --simple watchface
 ```
 
@@ -318,8 +323,8 @@ That is the basic process for creating a Pebble watchface! To recap, we:
 5. Subscribed to the ``TickTimerService`` to keep the time updated.
 6. Added a second ``TextLayer`` for the date.
 
-If you have problems with your code, check it against the source code provided
-in this part's project folder.
+If you have problems with your code, check it against
+[the source code for this part](https://github.com/coredevices/c-watchface-tutorial/tree/main/part1).
 
 
 ## What's Next?

@@ -33,12 +33,14 @@ By the end of this part, your watchface will look something like this:
 {% screenshot_viewer %}
 {
   "image": "/images/tutorials/watchface-tutorial/part2.png",
+  "default": "emery",
   "platforms": [
     {"hw": "aplite", "wrapper": "steel-black"},
     {"hw": "basalt", "wrapper": "time-red"},
     {"hw": "chalk", "wrapper": "time-round-rosegold-14"},
     {"hw": "diorite", "wrapper": "pebble2-black"},
-    {"hw": "emery", "wrapper": ""}
+    {"hw": "emery", "wrapper": "core-time2-red"},
+    {"hw": "gabbro", "wrapper": "core-time-round2-black-20"}
   ]
 }
 {% endscreenshot_viewer %}
@@ -190,8 +192,9 @@ In this part we learned how to:
 3. Apply fonts to ``TextLayer``s.
 4. Clean up font resources properly.
 
-Your watchface now has a unique visual identity. Check your code against the
-source provided in this part's project folder if you run into any issues.
+Your watchface now has a unique visual identity. Check your code against
+[the source for this part](https://github.com/coredevices/c-watchface-tutorial/tree/main/part2)
+if you run into any issues.
 
 
 ## What's Next?

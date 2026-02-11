@@ -43,12 +43,14 @@ conditions:
 {% screenshot_viewer %}
 {
   "image": "/images/tutorials/watchface-tutorial/part4.png",
+  "default": "emery",
   "platforms": [
     {"hw": "aplite", "wrapper": "steel-black"},
     {"hw": "basalt", "wrapper": "time-red"},
     {"hw": "chalk", "wrapper": "time-round-rosegold-14"},
     {"hw": "diorite", "wrapper": "pebble2-black"},
-    {"hw": "emery", "wrapper": ""}
+    {"hw": "emery", "wrapper": "core-time2-red"},
+    {"hw": "gabbro", "wrapper": "core-time-round2-black-20"}
   ]
 }
 {% endscreenshot_viewer %}
@@ -321,8 +323,8 @@ In this part we learned how to:
 6. Display received data in a ``TextLayer``.
 7. Set up automatic refresh via the tick handler.
 
-Your watchface now shows live weather data! Check your code against the source
-in this part's project folder.
+Your watchface now shows live weather data! Check your code against
+[the source for this part](https://github.com/coredevices/c-watchface-tutorial/tree/main/part4).
 
 
 ## What's Next?

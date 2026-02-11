@@ -34,12 +34,14 @@ By the end of this part, your watchface will look something like this:
 {% screenshot_viewer %}
 {
   "image": "/images/tutorials/watchface-tutorial/part3.png",
+  "default": "emery",
   "platforms": [
     {"hw": "aplite", "wrapper": "steel-black"},
     {"hw": "basalt", "wrapper": "time-red"},
     {"hw": "chalk", "wrapper": "time-round-rosegold-14"},
     {"hw": "diorite", "wrapper": "pebble2-black"},
-    {"hw": "emery", "wrapper": ""}
+    {"hw": "emery", "wrapper": "core-time2-red"},
+    {"hw": "gabbro", "wrapper": "core-time-round2-black-20"}
   ]
 }
 {% endscreenshot_viewer %}
@@ -252,7 +254,7 @@ bitmap_layer_destroy(s_bt_icon_layer);
 Build and install your watchface as usual:
 
 ```text
-pebble build && pebble install --emulator basalt
+pebble build && pebble install --emulator emery
 ```
 
 Once the watchface is running, you can use these commands to test the battery
@@ -301,7 +303,8 @@ In this part we learned how to:
 6. Test battery and Bluetooth features using the emulator.
 
 Your watchface now shows the battery level and alerts you when the phone
-disconnects. Check your code against the source in this part's project folder.
+disconnects. Check your code against
+[the source for this part](https://github.com/coredevices/c-watchface-tutorial/tree/main/part3).
 
 
 ## What's Next?

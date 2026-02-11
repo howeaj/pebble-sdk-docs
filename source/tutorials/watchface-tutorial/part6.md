@@ -17,7 +17,7 @@ layout: tutorials/tutorial
 tutorial: watchface
 tutorial_part: 6
 
-title: Customization with Clay
+title: Adding a settings page
 description: |
   How to add a configuration page using Clay so users can customize
   your watchface's colors and preferences.
@@ -36,12 +36,13 @@ Here is an example of a customized watchface:
 {% screenshot_viewer %}
 {
   "image": "/images/tutorials/watchface-tutorial/part6.png",
+  "default": "emery",
   "platforms": [
     {"hw": "aplite", "wrapper": "steel-black"},
     {"hw": "basalt", "wrapper": "time-red"},
     {"hw": "chalk", "wrapper": "time-round-rosegold-14"},
     {"hw": "diorite", "wrapper": "pebble2-black"},
-    {"hw": "emery", "wrapper": ""}
+    {"hw": "emery", "wrapper": "core-time2-red"}
   ]
 }
 {% endscreenshot_viewer %}
@@ -54,7 +55,7 @@ This section continues from
 
 Clay is available as a Pebble Package. Install it from your project directory:
 
-```nc|text
+```text
 $ pebble package install @rebble/clay
 ```
 
@@ -398,6 +399,8 @@ In this final part we learned how to:
 - Handle mixed message types (weather + config) in a single inbox callback.
 - Apply settings dynamically to all UI elements.
 
+Check your code against
+[the source for this part](https://github.com/coredevices/c-watchface-tutorial/tree/main/part6).
 Now it is time to
 [publish your watchface](/guides/appstore-publishing/publishing-an-app/)
 and share it with the world!
