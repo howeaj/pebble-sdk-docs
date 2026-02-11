@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+require 'cgi'
 require 'redcarpet'
 require 'pygments'
 require 'slugize'
@@ -80,7 +81,9 @@ module Jekyll
             language = language[3..-1]
           end
           if language == 'text'
-            "<div class=\"#{classes.join(' ')}\"><pre>#{code}</pre></div>"
+            escaped = CGI.escapeHTML(code)
+            escaped.gsub!(/^\$ /m, '<span class="prompt">$ </span>')
+            "<div class=\"#{classes.join(' ')}\"><pre>#{escaped}</pre></div>"
           else
             set_classes(Pygments.highlight(code, lexer: language), classes)
           end

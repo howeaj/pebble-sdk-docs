@@ -37,6 +37,11 @@
     overflow-x: auto;
   }
 
+  .prompt {
+    user-select: none;
+    opacity: 0.6;
+  }
+
   .code-copy-link {
     background-color: $turquoise;
     border-radius: $base-border-radius;

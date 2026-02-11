@@ -116,7 +116,7 @@
   $('body').on('click', '.code-copy-link', function (e) {
     e.preventDefault();
     var $block = $(this).closest('.highlight');
-    var code = $block.find('pre').text();
+    var code = $block.find('pre').text().replace(/^\$ /gm, '');
     var $link = $(this);
     navigator.clipboard.writeText(code).then(function () {
       $link.find('i').removeClass('fa-clipboard').addClass('fa-check');
