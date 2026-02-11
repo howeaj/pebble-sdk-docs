@@ -195,7 +195,12 @@
       });
       if (width > $viewer.width()) {
         $viewer.addClass('screenshot-viewer--tabbed');
-        $('.js-screenshot-tabs h4:last-child').click();
+        var defaultPlatform = $viewer.data('default-platform');
+        if (defaultPlatform) {
+          $viewer.find('.js-screenshot-tabs h4[data-platform="' + defaultPlatform + '"]').click();
+        } else {
+          $viewer.find('.js-screenshot-tabs h4:last-child').click();
+        }
       }
     });
   }
