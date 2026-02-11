@@ -108,12 +108,22 @@
   //   useFitVids: true
   // });
 
-  $('body').on('mouseover', '.code-copy-link', function () {
-    $(this).prepend('<span>COPY</span>');
+  // Add copy buttons to all code blocks (except no-copy ones)
+  $('.highlight').not('.no-copy').each(function () {
+    $(this).append('<a class="code-copy-link" title="Copy to clipboard"><i class="fa fa-clipboard"></i></a>');
   });
 
-  $('body').on('mouseout', '.code-copy-link', function () {
-    $('span', this).remove();
+  $('body').on('click', '.code-copy-link', function (e) {
+    e.preventDefault();
+    var $block = $(this).closest('.highlight');
+    var code = $block.find('pre').text();
+    var $link = $(this);
+    navigator.clipboard.writeText(code).then(function () {
+      $link.find('i').removeClass('fa-clipboard').addClass('fa-check');
+      setTimeout(function () {
+        $link.find('i').removeClass('fa-check').addClass('fa-clipboard');
+      }, 2000);
+    });
   });
 
   $('.js-doc-menu-toggle').click(function (e) {
