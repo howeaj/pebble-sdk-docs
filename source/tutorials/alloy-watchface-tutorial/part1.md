@@ -17,427 +17,207 @@ layout: tutorials/tutorial
 tutorial: alloy-watchface
 tutorial_part: 1
 
-title: Build a Watchface in JavaScript using Alloy
-description: A guide to making a new Pebble watchface with Alloy
+title: Your First Watchface
+description: |
+  Learn the basics of creating a Pebble watchface with Alloy, including
+  displaying the time and date.
 permalink: /tutorials/alloy-watchface-tutorial/part1/
-menu_section: tutorials
 generate_toc: true
 ---
 
-In this tutorial we'll cover the basics of writing a watchface with Alloy,
-Pebble's modern JavaScript framework based on [Moddable](https://www.moddable.com/).
-Alloy enables developers to create beautiful and feature-rich watchfaces using
-modern JavaScript (ES6+).
+> The complete source code for this tutorial is
+> [available on GitHub](https://github.com/coredevices/alloy-watchface-tutorial).
 
-We're going to start with some basics, then create a colorful digital watchface
-and finally create an analog clock.
+In this tutorial series we will build a fully-featured digital watchface from
+scratch using Alloy, Pebble's modern JavaScript framework. By the end you will
+have a watchface with weather support, user settings, and more. But first, we
+need to start with the basics.
 
 > **Platform Support**: Alloy currently supports Emery (Pebble Time 2) and
 > Gabbro (Pebble Round 2).
 
-![digital](/images/tutorials/alloy-watchface-tutorial/digital-watchface.png)
+When we are done with this first part, you should have a working watchface that
+displays the time and date on a black background.
 
-## First Steps
 
-If you haven't already, head over to the [SDK Page](/sdk/install/) to learn how
-to download and install the latest version of the Pebble Tool and SDK.
+## Creating a New Project
 
-Once you have the Pebble Tool installed, create a new Alloy watchface project
-with the following command:
+Before we begin, make sure you have the Pebble SDK installed. If you haven't
+done this yet, head over to the [download page](/sdk) to get set up.
+
+Once you are ready, navigate to a directory of your choosing and create a new
+Alloy project:
 
 ```nc|text
-$ pebble new-project --alloy mywatchface
+$ pebble new-project --alloy watchface
 ```
 
-This will create a new folder called `mywatchface` with the basic structure
-required for an Alloy watchface application. The most important file is
-`src/embeddedjs/main.js` — this is where you'll write your watchface code.
-(See the [Appendix](#appendix-project-structure) for the full project
-structure.)
+This creates a new folder with the basic structure for an Alloy app. The most
+important file is `src/embeddedjs/main.js` — this is where your watchface code
+runs on the watch. (See the
+[Getting Started guide](/guides/alloy/getting-started/) for more details on
+project structure.)
 
-## Understanding the Default Watchface
+Open `package.json` and make sure the `watchapp` object indicates this is a
+watchface:
 
-Open `src/embeddedjs/main.js` and you'll see the default watchface code:
-
-```js
-import Poco from "commodetto/Poco";
-
-console.log("Hello, Watchface.");
-
-let render = new Poco(screen);
-
-const font = new render.Font("Bitham-Black", 30);
-const black = render.makeColor(0, 0, 0);
-const white = render.makeColor(255, 255, 255);
-
-function draw(event) {
-    const now = event.date;
-
-    render.begin();
-    render.fillRectangle(white, 0, 0, render.width, render.height);
-
-    const msg = now.toTimeString().slice(0, 8);
-    const width = render.getTextWidth(msg, font);
-
-    render.drawText(msg, font, black,
-        (render.width - width) / 2, (render.height - font.height) / 2);
-
-    render.end();
+```json
+"watchapp": {
+  "watchface": true
 }
-
-Pebble.addEventListener('secondchange', draw);
 ```
 
-Let's break down what's happening:
+The key difference between a watchface and a watchapp is that watchfaces serve
+as the default display on the watch. The Up and Down buttons are reserved for
+the Pebble timeline, so they are not available for custom behavior.
 
-1. **Import Poco**: We import the Poco graphics library for drawing
-2. **Create a renderer**: `new Poco(screen)` creates a renderer for the display
-3. **Set up colors and fonts**: We define our colors and load a font
-4. **Draw function**: The `draw` function receives an `event` parameter with an
-   `event.date` property containing the current time — no need to call
-   `new Date()`
-5. **Event listener**: We register for `secondchange` events. Time events fire
-   immediately when registered, so the watchface draws right away without
-   needing an explicit startup call
 
-## Watchface Basics
+## Understanding Alloy Watchfaces
 
-Watchfaces are long-running applications that update the display at regular
-intervals. By minimizing how often the screen is updated, we conserve battery
-life.
+Every Alloy watchface follows the same basic pattern:
 
-### Time Events
+1. **Import Poco** for graphics rendering
+2. **Create a renderer** from the `screen` global
+3. **Set up fonts and colors** once at startup
+4. **Register a time event** that redraws the display
 
-Alloy provides several time-related events through the `Pebble` global:
-
-| Event | Description |
-|-------|-------------|
-| `secondchange` | Fires every second |
-| `minutechange` | Fires every minute |
-| `hourchange` | Fires every hour |
-| `daychange` | Fires every day |
-
-For most watchfaces, use `minutechange` to save battery:
-
-```js
-Pebble.addEventListener('minutechange', draw);
-```
-
-Only use `secondchange` if you need to display seconds.
-
-### The Poco Renderer
-
-Poco is a low-level graphics library that gives you precise control over
-drawing. All drawing happens between `begin()` and `end()` calls:
-
-```js
-render.begin();
-    // Drawing commands go here
-render.end();
-```
-
-## Using Regular JavaScript
-
-Alloy runs standard JavaScript (ES6+) on the XS engine. You can use modern
-features like `const`/`let`, arrow functions, template literals, destructuring,
-`async`/`await`, classes, and ES modules.
-
-A few things to keep in mind:
-
-- **No `eval()` or `new Function()`** — dynamic code generation is not
-  supported
-- **Frozen primordials** — built-in prototypes (like `Array.prototype`) are
-  frozen and cannot be modified
-- **No arbitrary npm packages** — the XS engine is not Node.js. Stick to
-  plain JavaScript and Alloy/Moddable modules
-- **Strict mode by default** — all code runs in strict mode
-
-For more details, see the
-[Getting Started guide](/guides/alloy/getting-started/).
-
-## Creating a Digital Watchface
-
-Let's create a colorful digital watchface. Replace the contents of `main.js`
-with:
+Open `src/embeddedjs/main.js` and replace its contents with:
 
 ```js
 import Poco from "commodetto/Poco";
 
 const render = new Poco(screen);
+```
 
-// Colors - let's make it vibrant!
-const darkBlue = render.makeColor(25, 25, 112);
-const white = render.makeColor(255, 255, 255);
-const cyan = render.makeColor(0, 255, 255);
-const orange = render.makeColor(255, 165, 0);
+`Poco` is a low-level graphics library for drawing on the screen. The `screen`
+global provides access to the Pebble display.
 
-// Fonts - Leco-Regular 42 is perfect for big watchface digits
-const timeFont = new render.Font("Leco-Regular", 42);
+
+## Setting Up Fonts and Colors
+
+Before we can draw anything, we need a font and some colors. Add these below
+the renderer:
+
+```js
+// Fonts
+const timeFont = new render.Font("Bitham-Bold", 42);
 const dateFont = new render.Font("Gothic-Bold", 24);
 
-// Day and month names
-const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday",
-              "Thursday", "Friday", "Saturday"];
-const MONTHS = ["January", "February", "March", "April", "May", "June",
-                "July", "August", "September", "October", "November", "December"];
+// Colors
+const black = render.makeColor(0, 0, 0);
+const white = render.makeColor(255, 255, 255);
+```
 
+Alloy comes with several built-in Pebble fonts. `Bitham-Bold` at 42px is a
+good size for a time display — bold and easy to read at a glance.
+
+`makeColor()` takes RGB values (0–255) and returns a color value optimized for
+the display.
+
+
+## Displaying the Time
+
+Now let's write a draw function. All Poco drawing happens between `begin()` and
+`end()` calls:
+
+```js
 function draw(event) {
     const now = event.date;
 
     render.begin();
-
-    // Dark blue background
-    render.fillRectangle(darkBlue, 0, 0, render.width, render.height);
+    render.fillRectangle(black, 0, 0, render.width, render.height);
 
     // Format time as HH:MM
-    const hours = now.getHours().toString().padStart(2, "0");
-    const minutes = now.getMinutes().toString().padStart(2, "0");
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
     const timeStr = `${hours}:${minutes}`;
 
-    // Draw time in cyan - centered
+    // Center the time on screen
     let width = render.getTextWidth(timeStr, timeFont);
-    render.drawText(timeStr, timeFont, cyan,
+    render.drawText(timeStr, timeFont, white,
         (render.width - width) / 2,
-        (render.height - timeFont.height) / 2 - 30);
-
-    // Draw day of week in white
-    const dayName = DAYS[now.getDay()];
-    width = render.getTextWidth(dayName, dateFont);
-    render.drawText(dayName, dateFont, white,
-        (render.width - width) / 2,
-        (render.height - timeFont.height) / 2 + 30);
-
-    // Draw date in orange
-    const dateStr = `${MONTHS[now.getMonth()]} ${now.getDate()}`;
-    width = render.getTextWidth(dateStr, dateFont);
-    render.drawText(dateStr, dateFont, orange,
-        (render.width - width) / 2,
-        (render.height - timeFont.height) / 2 + 60);
+        (render.height / 2) - timeFont.height + 5);
 
     render.end();
 }
-
-// Update every minute (saves battery compared to every second)
-// Time events fire immediately when registered, so no explicit startup draw is needed
-Pebble.addEventListener('minutechange', draw);
 ```
 
-## First Compilation and Installation
+The `event` parameter contains a `date` property with the current `Date`
+object — no need to call `new Date()` yourself. We use `padStart()` to ensure
+single-digit hours and minutes are zero-padded (e.g., "09:05" instead of
+"9:5").
 
-To compile the watchface, save your file and run:
+`getTextWidth()` measures how many pixels wide the rendered text will be, which
+lets us center it horizontally.
+
+Now register the draw function for time updates:
+
+```js
+watch.addEventListener("minutechange", draw);
+```
+
+`minutechange` fires once every minute. The callback is also invoked
+immediately when the event listener is registered, so the watchface draws right
+away without needing a separate startup call. You could use `secondchange` for
+a seconds display, but that costs extra battery.
+
+Build and install — you should now see the current time!
 
 ```nc|text
 $ pebble build
+$ pebble install --emulator emery
 ```
 
-After a successful build, you'll see `'build' finished successfully`.
 
-Install and run in the emulator:
+## Adding the Date
 
-```nc|text
-$ pebble install --emulator emery --logs
-```
-
-You should see your colorful digital watchface running!
-
-## Creating an Analog Watchface
-
-Now let's create an analog watchface with hour and minute hands.
-
-![analog](/images/tutorials/alloy-watchface-tutorial/analog-watchface.png)
-
-Replace `main.js` with:
+Let's add a date display below the time. We need day and month name arrays
+since JavaScript's `Date` only provides numeric values:
 
 ```js
-import Poco from "commodetto/Poco";
-
-const render = new Poco(screen);
-
-// Colors
-const darkGray = render.makeColor(40, 40, 40);
-const white = render.makeColor(255, 255, 255);
-const red = render.makeColor(255, 60, 60);
-const gold = render.makeColor(255, 215, 0);
-const lightBlue = render.makeColor(100, 149, 237);
-
-// Helper: Convert time fraction to radians
-function fractionToRadians(fraction) {
-    return fraction * 2 * Math.PI;
-}
-
-// Draw a clock hand from center outward
-function drawHand(cx, cy, angle, length, color, thickness) {
-    const x2 = cx + Math.sin(angle) * length;
-    const y2 = cy - Math.cos(angle) * length;
-    render.drawLine(cx, cy, x2, y2, color, thickness);
-}
-
-function draw(event) {
-    const now = event.date;
-    const hours = now.getHours() % 12;
-    const minutes = now.getMinutes();
-
-    // Calculate center and hand length
-    const cx = render.width / 2;
-    const cy = render.height / 2;
-    const maxLength = (Math.min(render.width, render.height) - 30) / 2;
-
-    render.begin();
-
-    // Dark background
-    render.fillRectangle(darkGray, 0, 0, render.width, render.height);
-
-    // Draw hour markers
-    for (let i = 0; i < 12; i++) {
-        const angle = fractionToRadians(i / 12);
-        const isMainHour = (i % 3 === 0);
-        const innerRadius = isMainHour ? maxLength - 15 : maxLength - 8;
-        const outerRadius = maxLength;
-        const color = isMainHour ? gold : white;
-        const thickness = isMainHour ? 3 : 2;
-
-        // Cache trig values to avoid redundant computation
-        const sinAngle = Math.sin(angle);
-        const cosAngle = Math.cos(angle);
-
-        const x1 = cx + sinAngle * innerRadius;
-        const y1 = cy - cosAngle * innerRadius;
-        const x2 = cx + sinAngle * outerRadius;
-        const y2 = cy - cosAngle * outerRadius;
-
-        render.drawLine(x1, y1, x2, y2, color, thickness);
-    }
-
-    // Calculate hand angles
-    const minuteFraction = minutes / 60;
-    const hourFraction = (hours + minuteFraction) / 12;
-    const minuteAngle = fractionToRadians(minuteFraction);
-    const hourAngle = fractionToRadians(hourFraction);
-
-    // Draw hands - gold hour, light blue minute
-    drawHand(cx, cy, hourAngle, maxLength * 0.5, gold, 6);
-    drawHand(cx, cy, minuteAngle, maxLength * 0.75, lightBlue, 4);
-
-    // Center dot
-    render.drawCircle(red, cx, cy, 6, 0, 360);
-    render.drawCircle(white, cx, cy, 3, 0, 360);
-
-    render.end();
-}
-
-// Update every minute
-// Time events fire immediately when registered, so no explicit startup draw is needed
-Pebble.addEventListener('minutechange', draw);
+const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 ```
 
-Build and run to see your analog watchface!
-
-> **Performance Tips**: On an embedded device, every bit of efficiency helps
-> battery life. A few techniques to keep in mind:
->
-> - **Cache trig results**: `Math.sin()` and `Math.cos()` are expensive. If
->   you use the same angle multiple times, store the result in a local
->   variable (as we did in the hour markers loop above).
-> - **Integer division**: JavaScript division returns floating-point values,
->   which forces all subsequent math to floating-point. To stay in the integer
->   domain, use `Math.idiv(a, b)` (a Moddable extension), `(a / b) | 0`, or
->   `a >> 1` for dividing by 2.
-> - **Minimize redraws**: Use `minutechange` instead of `secondchange` unless
->   you truly need per-second updates.
-
-## Adding a Second Hand
-
-If you want a second hand, add this to the `draw()` function and change the
-event listener:
+Now update the `draw()` function to include the date. Add this after the time
+drawing, before `render.end()`:
 
 ```js
-// In draw(), after minute hand:
-const seconds = now.getSeconds();
-const secondFraction = seconds / 60;
-const secondAngle = fractionToRadians(secondFraction);
-drawHand(cx, cy, secondAngle, maxLength * 0.85, red, 2);
+    // Format date as "Mon Jan 01"
+    const dayName = DAYS[now.getDay()];
+    const monthName = MONTHS[now.getMonth()];
+    const dateStr = `${dayName} ${monthName} ${String(now.getDate()).padStart(2, "0")}`;
 
-// Change event listener to secondchange:
-Pebble.addEventListener('secondchange', draw);
+    // Draw date below the time
+    width = render.getTextWidth(dateStr, dateFont);
+    render.drawText(dateStr, dateFont, white,
+        (render.width - width) / 2,
+        (render.height / 2) + 10);
 ```
 
-> **Note**: Using `secondchange` will increase battery consumption since the
-> screen updates 60 times more frequently.
+Build and install. You should now see both the time and date.
 
-## Troubleshooting
-
-### Build Errors
-
-If your build fails, check the error output for line numbers and descriptions.
-Common issues:
-
-- **Syntax errors**: Missing semicolons, brackets, or typos
-- **Import errors**: Make sure module names are correct
-- **Undefined variables**: Check spelling and scope
-
-### Debugging with Logs
-
-Add `console.log()` statements to trace execution:
-
-```js
-function draw() {
-    console.log("Drawing at " + new Date().toTimeString());
-    // ...
-}
-```
-
-View logs with:
-
-```nc|text
-$ pebble logs --emulator emery
-```
-
-### Getting Help
-
-If you're stuck, check out these resources:
-
-- [Pebble Forums](https://forum.repebble.com/c/developers-ask-questions-and-get-help)
-- [Discord Server]({{ site.links.discord_invite }})
 
 ## Conclusion
 
-You've learned how to:
+That is the basic process for creating a Pebble watchface with Alloy! To recap,
+we:
 
-1. Create a new Alloy watchface project with `pebble new-project --alloy`
-2. Use the Poco renderer for drawing graphics
-3. Subscribe to time events like `minutechange` and `secondchange`
-4. Create both digital and analog watchface displays
-5. Build and install your watchface
+1. Created a new Alloy project configured as a watchface.
+2. Imported Poco and created a renderer.
+3. Set up fonts and colors.
+4. Drew the time centered on screen.
+5. Registered a `minutechange` event listener to keep the display updated.
+6. Added a date display.
 
-## Resources
+If you have problems with your code, check it against
+[the source code for this part](https://github.com/coredevices/alloy-watchface-tutorial/tree/main/part1).
 
-- [Complete source code for this tutorial](https://github.com/coredevices/alloy-watchface-part1)
-- [Poco Graphics Guide](/guides/alloy/poco-guide/) — full reference for the
-  Poco drawing API
-- [Available Fonts](/guides/alloy/poco-guide/#using-pebble-built-in-fonts) —
-  fonts bundled with the Pebble SDK
 
-## What's Next
+## What's Next?
 
-In the next part of this tutorial, we'll add weather information to the
-watchface by fetching data from the internet using the `fetch()` API.
+The design is functional but plain. In the next part we will switch to a more
+distinctive font and properly center the layout.
 
 [Go to Part 2 &rarr; >{wide,bg-dark-red,fg-white}](/tutorials/alloy-watchface-tutorial/part2/)
-
----
-
-## Appendix: Project Structure
-
-Here are the files created by `pebble new-project --alloy`:
-
-```nc|text
-mywatchface/
-  src/
-    embeddedjs/
-      main.js           # Your watchface code
-      manifest.json     # Module configuration
-    c/
-      mdbl.c            # C bootstrap code (don't modify)
-  package.json          # App metadata and configuration
-  wscript               # Build script
-```

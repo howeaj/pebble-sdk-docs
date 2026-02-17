@@ -39,17 +39,9 @@ and PKJS:
 import Message from "pebble/message";
 
 const message = new Message({
-    input: 256,
-    output: 256,
-    keys: new Map([
-        ["COMMAND", 0],
-        ["DATA", 1],
-        ["RESULT", 2]
-    ]),
+    keys: ["COMMAND", "DATA", "RESULT"],
     onReadable() {
         const msg = this.read();
-        if (!msg) return;
-
         msg.forEach((value, key) => {
             console.log(key + ": " + value);
         });
@@ -59,6 +51,9 @@ const message = new Message({
     }
 });
 ```
+
+The `keys` array lists the message key names used for communication. These must
+match the keys defined in `package.json`.
 
 ## Sending Messages from Watch
 
@@ -73,16 +68,16 @@ message.write(new Map([
 
 ## Message Keys in package.json
 
-Message keys must be defined in `package.json`:
+Message keys must be defined in `package.json` as an array:
 
 ```json
 {
   "pebble": {
-    "messageKeys": {
-      "COMMAND": 0,
-      "DATA": 1,
-      "RESULT": 2
-    }
+    "messageKeys": [
+      "COMMAND",
+      "DATA",
+      "RESULT"
+    ]
   }
 }
 ```
@@ -92,12 +87,7 @@ Message keys must be defined in `package.json`:
 **📱 PKJS** (src/pkjs/index.js):
 
 ```js
-const moddableProxy = require("@moddable/pebbleproxy");
-
 Pebble.addEventListener('appmessage', function(e) {
-    if (moddableProxy.eventReceived(e))
-        return;
-
     console.log("Received from watch: " + JSON.stringify(e.payload));
 
     // Send a response back to watch
@@ -107,90 +97,38 @@ Pebble.addEventListener('appmessage', function(e) {
 });
 ```
 
-## Getting GPS Location
+## Combining with the Network Proxy
 
-Location comes from the phone, so it requires messaging between watch and PKJS.
-
-### PKJS Location Handler
+If your app uses both app messages and the network proxy, set up the PKJS to
+handle both:
 
 **📱 PKJS** (src/pkjs/index.js):
 
 ```js
 const moddableProxy = require("@moddable/pebbleproxy");
 
+Pebble.addEventListener('ready', moddableProxy.readyReceived);
+
 Pebble.addEventListener('appmessage', function(e) {
-    if (moddableProxy.eventReceived(e))
+    if (moddableProxy.appMessageReceived(e))
         return;
 
-    // Handle location request
-    if (e.payload['REQUEST_LOCATION'] !== undefined) {
-        console.log("Location requested");
-
-        navigator.geolocation.getCurrentPosition(
-            function(pos) {
-                console.log("Location: " + pos.coords.latitude + ", " + pos.coords.longitude);
-                Pebble.sendAppMessage({
-                    'LATITUDE': Math.round(pos.coords.latitude * 10000),
-                    'LONGITUDE': Math.round(pos.coords.longitude * 10000)
-                });
-            },
-            function(err) {
-                console.log("Location error: " + err.message);
-            },
-            { timeout: 15000, maximumAge: 60000 }
-        );
-    }
+    // Handle your own app messages here
+    console.log("Received from watch: " + JSON.stringify(e.payload));
 });
 ```
 
-### Watch Code to Request Location
+The proxy's `appMessageReceived()` returns `true` if the message was for the
+proxy (e.g., a `fetch()` request). If it returns `false`, the message is one of
+your own and you can handle it.
 
-**⌚ Watch** (src/embeddedjs/main.js):
+## Getting GPS Location
 
-```js
-import Message from "pebble/message";
-
-let latitude = null;
-let longitude = null;
-
-const message = new Message({
-    input: 256,
-    output: 256,
-    keys: new Map([
-        ["LATITUDE", 0],
-        ["LONGITUDE", 1],
-        ["REQUEST_LOCATION", 2]
-    ]),
-    onReadable() {
-        const msg = this.read();
-        if (!msg) return;
-
-        if (msg.has("LATITUDE") && msg.has("LONGITUDE")) {
-            latitude = msg.get("LATITUDE") / 10000;
-            longitude = msg.get("LONGITUDE") / 10000;
-            console.log("Location: " + latitude + ", " + longitude);
-        }
-    },
-    onWritable() {
-        // Request location when connection is ready
-        this.write(new Map([["REQUEST_LOCATION", true]]));
-    }
-});
-```
-
-### package.json for Location
-
-```json
-{
-  "pebble": {
-    "messageKeys": {
-      "LATITUDE": 0,
-      "LONGITUDE": 1,
-      "REQUEST_LOCATION": 2
-    }
-  }
-}
-```
+For GPS location, use the `Location` sensor instead of app messages. See the
+[Sensors and Input](/guides/alloy/sensors-and-input/) guide for details on the
+Location sensor, or the
+[watchface tutorial Part 4](/tutorials/alloy-watchface-tutorial/part4/) for a
+complete weather example.
 
 ## Examples
 

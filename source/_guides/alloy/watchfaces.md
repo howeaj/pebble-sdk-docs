@@ -42,17 +42,17 @@ To create a watchface, set `watchface` to `true` in your `package.json`:
 
 ## Time Events
 
-Subscribe to time change events using the `Pebble` global. The event callback
+Subscribe to time change events using the `watch` global. The event callback
 receives a `Date` instance for the current time:
 
 ```javascript
 // Called every second
-Pebble.addEventListener("secondchange", e => {
+watch.addEventListener("secondchange", e => {
     updateDisplay(e.date);
 });
 
 // Called every minute
-Pebble.addEventListener("minutechange", e => {
+watch.addEventListener("minutechange", e => {
     updateDisplay(e.date);
 });
 ```
@@ -90,7 +90,7 @@ function draw(e) {
     render.end();
 }
 
-Pebble.addEventListener("secondchange", draw);
+watch.addEventListener("secondchange", draw);
 ```
 
 ## Getting Time Components
@@ -172,7 +172,7 @@ function draw(e) {
     render.end();
 }
 
-Pebble.addEventListener("minutechange", draw);
+watch.addEventListener("minutechange", draw);
 ```
 
 ## Analog Watchface Concepts
@@ -264,7 +264,7 @@ const WatchfaceApp = Application.template($ => ({
     Behavior: class extends Behavior {
         onCreate(app, data) {
             this.data = data;
-            Pebble.addEventListener("minutechange", e => {
+            watch.addEventListener("minutechange", e => {
                 this.data.TIME.delegate("updateTime", e.date);
             });
         }
@@ -295,11 +295,11 @@ batteryPercent = battery.sample().percent;
 
 // Connection monitoring
 function checkConnection() {
-    isConnected = Pebble.connected.app;
+    isConnected = watch.connected.app;
     console.log("Connected: " + isConnected);
     updateDisplay();
 }
-Pebble.addEventListener('connected', checkConnection);
+watch.addEventListener('connected', checkConnection);
 checkConnection();
 
 function drawStatusBar() {
@@ -389,7 +389,7 @@ function draw(e) {
     render.end();
 }
 
-Pebble.addEventListener("minutechange", draw);
+watch.addEventListener("minutechange", draw);
 ```
 
 ## Examples

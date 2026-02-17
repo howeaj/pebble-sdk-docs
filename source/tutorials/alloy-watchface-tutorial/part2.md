@@ -17,670 +17,228 @@ layout: tutorials/tutorial
 tutorial: alloy-watchface
 tutorial_part: 2
 
-title: Adding Weather to an Alloy Watchface
-description: A guide to adding web content to an Alloy JavaScript watchface
+title: Customizing Your Watchface
+description: |
+  How to use a custom font and properly center the layout to give your
+  watchface a unique look.
 permalink: /tutorials/alloy-watchface-tutorial/part2/
-menu_section: tutorials
 generate_toc: true
 ---
 
-In the [previous tutorial](/tutorials/alloy-watchface-tutorial/part1), we
-created a basic digital and analog watchface using Alloy. In this tutorial,
-we'll extend our watchface to display weather information fetched from the
-internet.
+In the previous part we created a basic watchface that displays the time and
+date using `Bitham-Bold`. It works, but it looks like every other watchface out
+there. Let's fix that by switching to a custom font — the same Jersey font used
+in the C watchface tutorial — and improving the layout.
 
-## How Network Requests Work in Alloy
+This section continues from
+[*Part 1*](/tutorials/alloy-watchface-tutorial/part1/), so be sure to re-use
+your code or start with that finished project.
 
-Alloy apps can make HTTP requests using the standard `fetch()` API. HTTP
-requests are proxied through the connected phone by PebbleKit JS (PKJS). This
-means you need:
 
-1. A phone connected to your Pebble
-2. The phone to have internet access
-3. **The `@moddable/pebbleproxy` package installed in your project**
+## Adding a Custom Font
 
-Here's how the pieces fit together:
+Alloy supports custom TrueType fonts through the Moddable SDK's font pipeline.
+The build system converts `.ttf` files into optimized bitmap resources that Poco
+can render efficiently.
+
+### Getting the Font File
+
+Download
+[Jersey10-Regular.ttf](https://fonts.google.com/specimen/Jersey+10) (it's a
+free Google Font) and place it in your project:
 
 ```text
-┌─────────────┐          ┌──────────────────┐          ┌──────────────┐
-│   Watch     │          │  Phone (PKJS)    │          │   Internet   │
-│             │          │                  │          │              │
-│  fetch()  ──┼── msg ──>│  pebbleproxy   ──┼── HTTP ─>│  API server  │
-│             │          │                  │          │              │
-│  <── msg ───┼──────────┤  <── response ───┼──────────┤              │
-│             │          │                  │          │              │
-│  Message  ──┼── msg ──>│  appmessage      │          │              │
-│  (location) │          │  → GPS lookup  ──┼──────────┤              │
-│  <── msg ───┼──────────┤  → sendAppMsg    │          │              │
-└─────────────┘          └──────────────────┘          └──────────────┘
+src/
+  embeddedjs/
+    assets/
+      Jersey10-Regular.ttf
+    main.js
+    manifest.json
 ```
 
-## Setting Up the HTTP Proxy
+### Declaring Font Resources
 
-Install the `@moddable/pebbleproxy` package in your project directory:
-
-```nc|text
-$ pebble package install @moddable/pebbleproxy
-```
-
-Then add the proxy to your `src/pkjs/index.js`:
-
-```js
-const moddableProxy = require("@moddable/pebbleproxy");
-Pebble.addEventListener("ready", moddableProxy.readyReceived);
-Pebble.addEventListener('appmessage', moddableProxy.appMessageReceived);
-```
-
-That's it! The proxy package hooks into `appmessage` events to forward
-`fetch()` requests from your watch code through the phone's internet
-connection.
-
-## Using the fetch() API
-
-Alloy supports the `fetch()` API for making HTTP requests. Use the `URL` and
-`URLSearchParams` objects to build your request:
-
-```js
-async function getData() {
-    const url = new URL("http://api.example.com/data");
-    url.search = new URLSearchParams({
-        param1: "value1",
-        param2: "value2"
-    });
-
-    const response = await fetch(url);
-    const json = await response.json();
-    console.log("Got data: " + JSON.stringify(json));
-}
-```
-
-> **Note**: The phone connection must be established before network requests
-> can succeed. You can listen for connection state changes with
-> `Pebble.addEventListener("connected", ...)`.
-
-## Building a Weather Watchface
-
-Let's create a watchface that displays the current time and weather conditions.
-We'll use the [Open-Meteo API](https://open-meteo.com/) which provides free
-weather data with no API key required!
-
-![weather](/images/tutorials/alloy-watchface-tutorial/weather-watchface.png)
-
-### Step 1: Add Weather to the Digital Watchface
-
-Start from the digital watchface we built in
-[Part 1](/tutorials/alloy-watchface-tutorial/part1/). We need to add three
-things: a `weather` variable, a `drawWeather()` function, and a weather
-conditional in `draw()`.
-
-Add the weather variable near the top of `main.js`, after the font
-declarations:
-
-```js
-// Weather data (will be populated by fetch)
-let weather = null;
-```
-
-Add a `drawWeather()` function:
-
-```js
-function drawWeather() {
-    // Temperature in yellow at top
-    const tempStr = `${weather.temp}°C`;
-    let width = render.getTextWidth(tempStr, weatherFont);
-    render.drawText(tempStr, weatherFont, yellow,
-        (render.width - width) / 2, 20);
-
-    // Conditions in orange at bottom
-    width = render.getTextWidth(weather.conditions, conditionsFont);
-    render.drawText(weather.conditions, conditionsFont, orange,
-        (render.width - width) / 2, render.height - conditionsFont.height - 20);
-}
-```
-
-Then update `draw()` to show weather when available. Since `draw()` may also
-be called manually (e.g., after fetching weather), we use `event?.date` with a
-fallback:
-
-```js
-function draw(event) {
-    const now = event?.date ?? new Date();
-
-    render.begin();
-    render.fillRectangle(teal, 0, 0, render.width, render.height);
-
-    // Draw time in white
-    const hours = now.getHours().toString().padStart(2, "0");
-    const minutes = now.getMinutes().toString().padStart(2, "0");
-    const timeStr = `${hours}:${minutes}`;
-
-    let width = render.getTextWidth(timeStr, timeFont);
-    render.drawText(timeStr, timeFont, white,
-        (render.width - width) / 2,
-        (render.height - timeFont.height) / 2);
-
-    // Draw weather if available
-    if (weather) {
-        drawWeather();
-    } else {
-        // Show loading message
-        const msg = "Loading...";
-        width = render.getTextWidth(msg, conditionsFont);
-        render.drawText(msg, conditionsFont, white,
-            (render.width - width) / 2, 20);
-    }
-
-    render.end();
-}
-```
-
-You'll also need two additional fonts — add these with your other font
-declarations:
-
-```js
-const weatherFont = new render.Font("Gothic-Bold", 28);
-const conditionsFont = new render.Font("Gothic-Regular", 24);
-```
-
-### Step 2: Understanding the Open-Meteo API
-
-Open-Meteo provides weather data through a simple URL structure:
-
-```
-http://api.open-meteo.com/v1/forecast?latitude=LAT&longitude=LON&current=temperature_2m,weather_code
-```
-
-> **Note**: Use `http://` for API requests — the PebbleKit JS proxy handles
-> the connection.
-
-The response looks like:
+Create `src/embeddedjs/manifest.json` (or update it if it already exists). This
+tells the build system to convert the font into bitmap resources at the sizes
+we need:
 
 ```json
 {
-  "current": {
-    "temperature_2m": 18.5,
-    "weather_code": 1
-  }
-}
-```
-
-Weather codes indicate conditions (0 = Clear, 1-3 = Cloudy, 61-67 = Rain, etc.).
-
-### Step 3: Get Real Location
-
-To use the phone's GPS, we need to set up messaging between the watch and phone.
-First, add message keys to your `package.json` in the `pebble` section:
-
-```json
-"messageKeys": {
-    "LATITUDE": 0,
-    "LONGITUDE": 1,
-    "REQUEST_LOCATION": 2
-}
-```
-
-Then update `src/pkjs/index.js` to handle location requests. Since we now have
-our own app messages alongside the proxy, we use `appMessageReceived()` to let the
-proxy handle its messages first:
-
-```js
-const moddableProxy = require("@moddable/pebbleproxy");
-
-Pebble.addEventListener("ready", moddableProxy.readyReceived);
-
-Pebble.addEventListener('appmessage', function(e) {
-    if (moddableProxy.appMessageReceived(e))
-        return;
-
-    // Check if this is a location request
-    if (e.payload['REQUEST_LOCATION'] !== undefined) {
-        console.log("Location requested");
-
-        navigator.geolocation.getCurrentPosition(
-            function(pos) {
-                console.log("Got location: " + pos.coords.latitude + ", " + pos.coords.longitude);
-                Pebble.sendAppMessage({
-                    'LATITUDE': Math.round(pos.coords.latitude * 10000),
-                    'LONGITUDE': Math.round(pos.coords.longitude * 10000)
-                });
-            },
-            function(err) {
-                console.log("Location error: " + err.message);
-            },
-            { timeout: 15000, maximumAge: 60000 }
-        );
-    }
-});
-```
-
-### Step 4: Fetch Weather with Location
-
-Now update `main.js` to request location and fetch weather:
-
-```js
-import Message from "pebble/message";
-
-// Store location when received
-let latitude = null;
-let longitude = null;
-
-// Set up messaging to receive location
-const message = new Message({
-    input: 256,
-    output: 256,
-    keys: new Map([
-        ["LATITUDE", 0],
-        ["LONGITUDE", 1],
-        ["REQUEST_LOCATION", 2]
-    ]),
-    onReadable() {
-        const msg = this.read();
-        if (!msg) return;
-
-        if (msg.has("LATITUDE") && msg.has("LONGITUDE")) {
-            // Coordinates are multiplied by 10000 to preserve precision
-            latitude = msg.get("LATITUDE") / 10000;
-            longitude = msg.get("LONGITUDE") / 10000;
-            console.log("Got location: " + latitude + ", " + longitude);
-            fetchWeather();
-        }
+    "include": [
+        "$(MODDABLE)/examples/manifest_mod.json"
+    ],
+    "modules": {
+        "*": "./main.js"
     },
-    onWritable() {
-        // Request location when connection is ready
-        if (!this.requested) {
-            this.requested = true;
-            console.log("Requesting location...");
-            this.write(new Map([["REQUEST_LOCATION", true]]));
-        }
-    }
-});
-
-// Map Open-Meteo weather codes to descriptions
-function getWeatherDescription(code) {
-    if (code === 0) return "Clear";
-    if (code <= 3) return "Cloudy";
-    if (code <= 49) return "Fog";
-    if (code <= 59) return "Drizzle";
-    if (code <= 69) return "Rain";
-    if (code <= 79) return "Snow";
-    if (code <= 99) return "Thunderstorm";
-    return "Unknown";
-}
-
-async function fetchWeather() {
-    if (latitude === null || longitude === null) {
-        console.log("No location yet");
-        return;
-    }
-
-    try {
-        const url = new URL("http://api.open-meteo.com/v1/forecast");
-        url.search = new URLSearchParams({
-            latitude,
-            longitude,
-            current: "temperature_2m,weather_code"
-        });
-
-        console.log("Fetching weather for " + latitude + ", " + longitude);
-        const response = await fetch(url);
-        const data = await response.json();
-
-        weather = {
-            temp: Math.round(data.current.temperature_2m),
-            conditions: getWeatherDescription(data.current.weather_code)
-        };
-
-        console.log("Weather: " + weather.temp + "C, " + weather.conditions);
-        draw();
-
-    } catch (e) {
-        console.log("Weather fetch error: " + e);
+    "resources": {
+        "*-alpha": [
+            {
+                "source": "./assets/Jersey10-Regular",
+                "size": 56,
+                "monochrome": true,
+                "blocks": ["Basic Latin"]
+            },
+            {
+                "source": "./assets/Jersey10-Regular",
+                "size": 24,
+                "monochrome": true,
+                "blocks": ["Basic Latin"]
+            }
+        ]
     }
 }
 ```
 
-### Step 5: Schedule Weather Updates
+Key properties:
 
-Add code to refresh weather periodically:
+- **`source`** — path to the `.ttf` file (without the extension), relative to
+  the manifest
+- **`size`** — font size in pixels to render at
+- **`monochrome`** — `true` for crisp 1-bit rendering (ideal for Pebble)
+- **`blocks`** — which Unicode character blocks to include. `"Basic Latin"`
+  covers the digits, letters, and punctuation we need. Including only the
+  characters you need saves memory.
+
+We declare the font at two sizes: 56 for the time display (same as the C
+tutorial's `FONT_JERSEY_56`) and 24 for the date.
+
+
+### Loading Custom Fonts in Code
+
+In the C SDK, you load a custom font with `fonts_load_custom_font()`. In Alloy,
+you load the two generated resource files (`.fnt` for metrics, `-alpha.bm4` for
+pixel data) and combine them:
 
 ```js
-// Refresh weather every hour
-Pebble.addEventListener('hourchange', fetchWeather);
+import parseBMF from "commodetto/parseBMF";
+import parseRLE from "commodetto/parseRLE";
+
+function getFont(name, size) {
+    const font = parseBMF(new Resource(`${name}-${size}.fnt`));
+    font.bitmap = parseRLE(new Resource(`${name}-${size}-alpha.bm4`));
+    return font;
+}
 ```
 
-### Complete Code
-
-Here's the complete `main.js` with real location support:
+Now replace the built-in font declarations with custom font loading:
 
 ```js
-import Poco from "commodetto/Poco";
-import Message from "pebble/message";
+// Was: const timeFont = new render.Font("Bitham-Bold", 42);
+// Was: const dateFont = new render.Font("Gothic-Bold", 24);
+const timeFont = getFont("Jersey10-Regular", 56);
+const dateFont = getFont("Jersey10-Regular", 24);
+```
 
-const render = new Poco(screen);
+The returned font object works exactly like a built-in font — you can pass it
+to `render.drawText()`, `render.getTextWidth()`, and read its `.height`
+property.
 
-// Colors - teal and orange theme
-const teal = render.makeColor(0, 128, 128);
-const white = render.makeColor(255, 255, 255);
-const yellow = render.makeColor(255, 215, 0);
-const orange = render.makeColor(255, 140, 0);
 
-// Fonts - Leco for big digits, Gothic-Bold for weather
-const timeFont = new render.Font("Leco-Regular", 42);
-const weatherFont = new render.Font("Gothic-Bold", 28);
-const conditionsFont = new render.Font("Gothic-Regular", 24);
+## Centering the Layout
 
-// Weather and location data
-let weather = null;
-let latitude = null;
-let longitude = null;
+In Part 1 we positioned the time and date using hardcoded offsets. Let's
+properly center the time+date block vertically by calculating positions based on
+the font metrics.
 
-// Set up messaging to receive location from phone
-const message = new Message({
-    input: 256,
-    output: 256,
-    keys: new Map([
-        ["LATITUDE", 0],
-        ["LONGITUDE", 1],
-        ["REQUEST_LOCATION", 2]
-    ]),
-    onReadable() {
-        const msg = this.read();
-        if (!msg) return;
+Add these calculations at the top level, after the font declarations:
 
-        if (msg.has("LATITUDE") && msg.has("LONGITUDE")) {
-            latitude = msg.get("LATITUDE") / 10000;
-            longitude = msg.get("LONGITUDE") / 10000;
-            console.log("Got location: " + latitude + ", " + longitude);
-            fetchWeather();
-        }
-    },
-    onWritable() {
-        if (!this.requested) {
-            this.requested = true;
-            console.log("Requesting location...");
-            this.write(new Map([["REQUEST_LOCATION", true]]));
-        }
-    }
-});
+```js
+// Precompute layout positions
+const blockHeight = timeFont.height + dateFont.height + 10;
+const timeY = (render.height - blockHeight) / 2;
+const dateY = timeY + timeFont.height + 10;
+```
 
-// Map Open-Meteo weather codes to descriptions
-function getWeatherDescription(code) {
-    if (code === 0) return "Clear";
-    if (code <= 3) return "Cloudy";
-    if (code <= 49) return "Fog";
-    if (code <= 59) return "Drizzle";
-    if (code <= 69) return "Rain";
-    if (code <= 79) return "Snow";
-    if (code <= 99) return "Thunderstorm";
-    return "Unknown";
-}
+The `height` property on a font gives the line height in pixels. We add 10
+pixels of spacing between the time and date, then center the combined block on
+screen.
 
-function drawWeather() {
-    const tempStr = `${weather.temp}°C`;
-    let width = render.getTextWidth(tempStr, weatherFont);
-    render.drawText(tempStr, weatherFont, yellow,
-        (render.width - width) / 2, 20);
+Since these values only depend on the font sizes and screen dimensions, we
+compute them once at startup rather than every frame. This is a good habit for
+embedded development — precompute what you can.
 
-    width = render.getTextWidth(weather.conditions, conditionsFont);
-    render.drawText(weather.conditions, conditionsFont, orange,
-        (render.width - width) / 2, render.height - conditionsFont.height - 20);
-}
+Now update the `draw()` function to use `timeY` and `dateY`:
 
+```js
 function draw(event) {
-    const now = event?.date ?? new Date();
+    const now = event.date;
 
     render.begin();
-    render.fillRectangle(teal, 0, 0, render.width, render.height);
+    render.fillRectangle(black, 0, 0, render.width, render.height);
 
-    // Draw time in white
-    const hours = now.getHours().toString().padStart(2, "0");
-    const minutes = now.getMinutes().toString().padStart(2, "0");
+    // Format time as HH:MM
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
     const timeStr = `${hours}:${minutes}`;
 
+    // Draw time centered
     let width = render.getTextWidth(timeStr, timeFont);
     render.drawText(timeStr, timeFont, white,
-        (render.width - width) / 2,
-        (render.height - timeFont.height) / 2);
+        (render.width - width) / 2, timeY);
 
-    // Draw weather if available
-    if (weather) {
-        drawWeather();
-    } else {
-        const msg = "Loading...";
-        width = render.getTextWidth(msg, conditionsFont);
-        render.drawText(msg, conditionsFont, white,
-            (render.width - width) / 2, 20);
-    }
+    // Format date as "Mon Jan 01"
+    const dayName = DAYS[now.getDay()];
+    const monthName = MONTHS[now.getMonth()];
+    const dateStr = `${dayName} ${monthName} ${String(now.getDate()).padStart(2, "0")}`;
+
+    // Draw date centered below time
+    width = render.getTextWidth(dateStr, dateFont);
+    render.drawText(dateStr, dateFont, white,
+        (render.width - width) / 2, dateY);
 
     render.end();
 }
-
-async function fetchWeather() {
-    if (latitude === null || longitude === null) {
-        console.log("No location yet");
-        return;
-    }
-
-    try {
-        const url = new URL("http://api.open-meteo.com/v1/forecast");
-        url.search = new URLSearchParams({
-            latitude,
-            longitude,
-            current: "temperature_2m,weather_code"
-        });
-
-        console.log("Fetching weather...");
-        const response = await fetch(url);
-        const data = await response.json();
-
-        weather = {
-            temp: Math.round(data.current.temperature_2m),
-            conditions: getWeatherDescription(data.current.weather_code)
-        };
-
-        console.log("Weather: " + weather.temp + "C, " + weather.conditions);
-        draw();
-
-    } catch (e) {
-        console.log("Weather fetch error: " + e);
-    }
-}
-
-// Time updates (fires immediately when registered — no startup draw needed)
-Pebble.addEventListener('minutechange', draw);
-
-// Refresh weather every hour
-Pebble.addEventListener('hourchange', fetchWeather);
 ```
 
-And the complete `src/pkjs/index.js`:
+Compile and install with `pebble build && pebble install`. You should see the
+watchface now uses Jersey — the same distinctive font from the C tutorial — with
+the time and date properly centered as a block.
 
-```js
-const moddableProxy = require("@moddable/pebbleproxy");
 
-Pebble.addEventListener("ready", moddableProxy.readyReceived);
+## C vs. Alloy Custom Fonts
 
-Pebble.addEventListener('appmessage', function(e) {
-    if (moddableProxy.appMessageReceived(e))
-        return;
+| | C SDK | Alloy |
+|---|---|---|
+| **Font file** | `.ttf` in `resources/fonts/` | `.ttf` in `src/embeddedjs/assets/` |
+| **Declaration** | `package.json` resources array | `manifest.json` `*-alpha` resources |
+| **Loading** | `fonts_load_custom_font()` | `parseBMF()` + `parseRLE()` |
+| **Character subsetting** | All glyphs included | Specify `blocks` or `characters` |
+| **Cleanup** | `fonts_unload_custom_font()` | Automatic (garbage collected) |
 
-    if (e.payload.REQUEST_LOCATION !== undefined) {
-        console.log("Location requested");
 
-        navigator.geolocation.getCurrentPosition(
-            function(pos) {
-                console.log("Got location: " + pos.coords.latitude + ", " + pos.coords.longitude);
-                Pebble.sendAppMessage({
-                    'LATITUDE': Math.round(pos.coords.latitude * 10000),
-                    'LONGITUDE': Math.round(pos.coords.longitude * 10000)
-                });
-            },
-            function(err) {
-                console.log("Location error: " + err.message);
-            },
-            { timeout: 15000, maximumAge: 60000 }
-        );
-    }
-});
-```
+## Experimenting
 
-## Storing Weather Data
+Here are some things you can try:
 
-You might want to persist weather data so it's available immediately when the
-watchface starts. Use `localStorage`:
+- Switch to a different TTF font — any TrueType font works.
+- Change the font sizes to see how the layout adapts.
+- Add a third font size for a different text element.
+- Try different `blocks` values like `"Latin Extended-A"` for accented
+  characters.
 
-```js
-// Save weather when fetched
-function saveWeather() {
-    if (weather) {
-        localStorage.setItem("weather", JSON.stringify(weather));
-        localStorage.setItem("weatherTime", Date.now());
-    }
-}
+> **Tip**: Use `"monochrome": true` for sharp text on Pebble's display. Omit
+> it for anti-aliased rendering on higher-color displays.
 
-// Load cached weather on startup
-function loadCachedWeather() {
-    const cached = localStorage.getItem("weather");
-    const cachedTime = localStorage.getItem("weatherTime");
-
-    if (cached && cachedTime) {
-        const age = Date.now() - Number(cachedTime);
-        // Use cache if less than 1 hour old
-        if (age < 60 * 60 * 1000) {
-            weather = JSON.parse(cached);
-            console.log("Using cached weather");
-            return true;
-        }
-    }
-    return false;
-}
-
-// Call on startup
-if (!loadCachedWeather()) {
-    fetchWeather();
-}
-```
-
-Don't forget to call `saveWeather()` after successfully fetching new data!
-
-## Error Handling Best Practices
-
-Always handle network errors gracefully:
-
-```js
-async function fetchWeather() {
-    if (latitude === null || longitude === null) {
-        console.log("No location yet");
-        return;
-    }
-
-    try {
-        const url = new URL("http://api.open-meteo.com/v1/forecast");
-        url.search = new URLSearchParams({
-            latitude,
-            longitude,
-            current: "temperature_2m,weather_code"
-        });
-
-        const response = await fetch(url);
-        const data = await response.json();
-        // Process data...
-
-    } catch (e) {
-        console.log("Error: " + e);
-
-        // Show error to user
-        weather = {
-            temp: "--",
-            conditions: "No data"
-        };
-        draw();
-    }
-}
-```
-
-## Adding Battery Status
-
-Let's also add battery status to make a more complete watchface:
-
-```js
-import Battery from "embedded:sensor/Battery";
-
-let batteryPercent = 100;
-
-const battery = new Battery({
-    onSample() {
-        batteryPercent = this.sample().percent;
-        draw();
-    }
-});
-batteryPercent = battery.sample().percent;
-
-// In draw(), add:
-function drawBattery() {
-    const batteryStr = `${batteryPercent}%`;
-    const width = render.getTextWidth(batteryStr, conditionsFont);
-    render.drawText(batteryStr, conditionsFont, white,
-        render.width - width - 10, 15);
-}
-```
-
-## Using Fahrenheit
-
-If you prefer Fahrenheit, add `temperature_unit` to the URL parameters:
-
-```js
-const url = new URL("http://api.open-meteo.com/v1/forecast");
-url.search = new URLSearchParams({
-    latitude,
-    longitude,
-    current: "temperature_2m,weather_code",
-    temperature_unit: "fahrenheit"
-});
-```
-
-Then update the display string:
-
-```js
-const tempStr = `${weather.temp}°F`;
-```
-
-## Resources
-
-- [Complete source code for this tutorial](https://github.com/coredevices/alloy-watchface-part2)
-- [Poco Graphics Guide](/guides/alloy/poco-guide/) — full reference for the
-  Poco drawing API
 
 ## Conclusion
 
-You've learned how to:
+In this part we learned how to:
 
-1. Use the `fetch()` API to make HTTP requests
-2. Parse JSON responses from the Open-Meteo API
-3. Display dynamic weather data on your watchface
-4. Cache data using `localStorage`
-5. Handle network errors gracefully
-6. Add battery status monitoring
+1. Add a custom TrueType font to an Alloy project.
+2. Declare font resources in `manifest.json` with character subsetting.
+3. Load custom fonts with `parseBMF` and `parseRLE`.
+4. Center the time+date block vertically using font metrics.
+5. Precompute layout positions for better performance.
 
-Your watchface now displays the current time and weather conditions!
+Your watchface now has the same distinctive Jersey look as the C tutorial.
+Check your code against
+[the source for this part](https://github.com/coredevices/alloy-watchface-tutorial/tree/main/part2)
+if you run into any issues.
 
-## What's Next
 
-Now that you've completed this tutorial, here are some ideas for extending your
-watchface:
+## What's Next?
 
-- Add configurable locations
-- Display weather icons
-- Show sunrise/sunset times (Open-Meteo provides these!)
-- Add step count from Pebble Health
-- Create multiple watchface themes
+In the next part we will add a battery meter and connection disconnect alerts
+to give users useful information at a glance.
 
-Check out the [Alloy Guides](/guides/alloy/) for more information on advanced
-features.
-
-## Get Help
-
-If you have questions or want to share what you've built:
-
-- [Pebble Forums](https://forum.repebble.com/c/developers-ask-questions-and-get-help)
-- [Discord Server]({{ site.links.discord_invite }})
+[Go to Part 3 &rarr; >{wide,bg-dark-red,fg-white}](/tutorials/alloy-watchface-tutorial/part3/)

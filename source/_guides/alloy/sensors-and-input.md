@@ -132,6 +132,72 @@ const compass = new Compass({
 |----------|-------------|
 | `heading` | Magnetic heading in degrees (0-360) |
 
+## Location
+
+Get the user's GPS location via the phone:
+
+```js
+import Location from "embedded:sensor/Location";
+
+const location = new Location({
+    onSample() {
+        const sample = this.sample();
+        console.log("Location: " + sample.latitude + ", " + sample.longitude);
+        this.close();
+    }
+});
+```
+
+The Location sensor follows the same ECMA-419 pattern as other sensors but has
+a few differences:
+
+- **One-shot** — call `this.close()` after receiving the sample. Location is a
+  request, not a continuous monitor.
+- **Requires the phone** — location data comes from the phone's GPS via the
+  `@moddable/pebbleproxy` package.
+- **Requires capability** — add `"location"` to the `capabilities` array in
+  `package.json`.
+
+### Location Sample Data
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `latitude` | Number | Latitude in decimal degrees |
+| `longitude` | Number | Longitude in decimal degrees |
+
+### Configuration Options
+
+You can optionally configure the location request immediately after creating the
+instance:
+
+```js
+location.configure({
+    enableHighAccuracy: false,
+    timeout: 5000,
+    maximumAge: 0
+});
+```
+
+| Option | Description |
+|--------|-------------|
+| `enableHighAccuracy` | Request high-accuracy GPS (uses more battery) |
+| `timeout` | Maximum time in ms to wait for a location |
+| `maximumAge` | Accept a cached location up to this many ms old |
+
+### PKJS Setup for Location
+
+The Location sensor requires the `@moddable/pebbleproxy` package. Set up
+`src/pkjs/index.js`:
+
+```js
+const moddableProxy = require("@moddable/pebbleproxy");
+Pebble.addEventListener('ready', moddableProxy.readyReceived);
+Pebble.addEventListener('appmessage', moddableProxy.appMessageReceived);
+```
+
+No custom location code is needed in PKJS — the proxy handles GPS lookup
+automatically.
+
 ## Battery Status
 
 Monitor battery level and charging state:
@@ -166,15 +232,15 @@ Monitor connection to the phone:
 
 ```js
 function logConnected() {
-    console.log("App connected: " + Pebble.connected.app);
-    console.log("PebbleKitJS connected: " + Pebble.connected.pebblekit);
+    console.log("App connected: " + watch.connected.app);
+    console.log("PebbleKitJS connected: " + watch.connected.pebblekit);
 }
 
-Pebble.addEventListener('connected', logConnected);
+watch.addEventListener('connected', logConnected);
 logConnected();
 ```
 
-The `Pebble.connected` object has two properties:
+The `watch.connected` object has two properties:
 
 | Property | Description |
 |----------|-------------|
@@ -251,12 +317,12 @@ When using the Pebble emulator, you can simulate sensor input:
 
 ### Battery
 ```text
-$ rebble emu-battery --percent 20 --charging --qemu localhost:12344
+$ pebble emu-battery --percent 20 --charging --qemu localhost:12344
 ```
 
 ### Accelerometer
 ```text
-$ rebble emu-accel tilt-left --qemu localhost:12344
+$ pebble emu-accel tilt-left --qemu localhost:12344
 ```
 
 ## Best Practices
@@ -278,5 +344,6 @@ repository includes sensor and input examples:
 - [`hellobutton`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellobutton) — subscribing to button press and release events
 - [`helloaccelerometer`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/helloaccelerometer) — reading accelerometer data and detecting taps
 - [`hellobattery`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellobattery) — monitoring battery level and charging state
+- [`hellolocation`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellolocation) — getting GPS location from the phone
 - [`piu/apps/gravity`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/apps/gravity) — visualizes accelerometer readings with an animated display
 - [`piu/apps/compass`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/apps/compass) — visualizes compass readings with a rotating compass rose

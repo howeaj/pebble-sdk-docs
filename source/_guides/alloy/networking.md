@@ -97,7 +97,7 @@ async function fetchData() {
 ### Important Notes
 
 - **Wait for the proxy** — network requests only work after the proxy signals
-  it is ready. Listen for `Pebble.addEventListener("connected", ...)` before
+  it is ready. Listen for `watch.addEventListener("connected", ...)` before
   calling `fetch()` or opening a `WebSocket`
 
 ### Response Methods
@@ -150,23 +150,23 @@ Check if the phone is connected from watch code:
 
 ```js
 function logConnected() {
-    console.log("App connected: " + Pebble.connected.app);
-    console.log("PebbleKitJS connected: " + Pebble.connected.pebblekit);
+    console.log("App connected: " + watch.connected.app);
+    console.log("PebbleKitJS connected: " + watch.connected.pebblekit);
 }
 
-Pebble.addEventListener('connected', logConnected);
+watch.addEventListener('connected', logConnected);
 logConnected();
 ```
 
 Network requests only work once the proxy is ready. Wait until
-`Pebble.connected.pebblekit` is `true` before calling `fetch()` or opening a
+`watch.connected.pebblekit` is `true` before calling `fetch()` or opening a
 `WebSocket`.
 
 ## Best Practices
 
 1. **Install `@moddable/pebbleproxy`** — required for `fetch()` and `WebSocket`
 2. **Wait for the proxy** — network requests only work after the proxy is ready;
-   listen for the `connected` event or check `Pebble.connected.pebblekit`
+   listen for the `connected` event or check `watch.connected.pebblekit`
 3. **Handle errors** — network requests can fail
 4. **Minimize data** — request only what you need
 5. **Cache responses** — use `localStorage` to reduce requests
