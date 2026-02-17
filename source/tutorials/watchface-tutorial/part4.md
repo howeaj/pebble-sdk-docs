@@ -56,6 +56,40 @@ conditions:
 {% endscreenshot_viewer %}
 
 
+## How PebbleKit JS Works
+
+Pebble watches cannot access the internet directly. Instead, they communicate
+with a JavaScript environment called **PebbleKit JS** (PKJS) that runs on the
+connected phone. Your JS code can make HTTP requests, access GPS, and send data
+back to the watch using ``AppMessage``.
+
+```text
+┌─────────────┐          ┌──────────────────┐          ┌──────────────┐
+│   Watch     │          │  Phone (PKJS)    │          │   Internet   │
+│             │          │                  │          │              │
+│  C code   ──┼── msg ──>│  index.js      ──┼── HTTP ─>│  API server  │
+│             │          │                  │          │              │
+│  <── msg ───┼──────────┤  <── response ───┼──────────┤              │
+│             │          │                  │          │              │
+│  AppMessage │          │  geolocation     │          │              │
+│  request  ──┼── msg ──>│  → GPS lookup    │          │              │
+│  <── msg ───┼──────────┤  → sends coords  │          │              │
+└─────────────┘          └──────────────────┘          └──────────────┘
+```
+
+The flow for weather is:
+
+1. The watch sends an ``AppMessage`` to the phone requesting weather.
+2. PKJS uses `navigator.geolocation` to get GPS coordinates.
+3. PKJS makes an HTTP request to a weather API.
+4. PKJS sends the result back to the watch via ``AppMessage``.
+5. The watch receives the message and updates the display.
+
+All communication between watch and phone uses ``AppMessage`` — a key-value
+dictionary system. You define the keys in `package.json` and they become
+constants in both C and JS.
+
+
 ## Preparing the Layout
 
 We need a new ``TextLayer`` for the weather data. Add the declaration at the top
