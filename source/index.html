@@ -22,41 +22,27 @@ menu_section: none
 regenerate: true
 ---
 <div class="row no-gutter full-height--l full-height--m">
-  <div class="col-l-5 col-m-6 push-l-7 push-m-6 full-height">
-    <div class="bigbox bigbox--half bigbox--green vcenter--wrapper" style="background-image: url('{{ site.asset_path }}/images/landing-page/first_time_bg.png');">
+  <div class="col-l-6 col-m-6 full-height">
+    <div class="bigbox bigbox--green vcenter--wrapper full-height" style="background-image: url('{{ site.asset_path }}/images/landing-page/first_time_bg.png');">
       <div class="vcenter">
-        <h2>New To Pebble?</h2>
+        <h2>Get Started</h2>
         <p>
-          Learn the basics of C, build a customized watchface, or create a web-connected watchapp.<p>
-          Great for both new and experienced developers!
+          Install the SDK locally or use CloudPebble, a browser-based IDE with no setup required.
         </p>
-        <p><a href="/tutorials/" class="btn btn--fg-green btn--bg-white">Tutorials</a></p>
-    </div>
-    </div>
-    <div class="bigbox  bigbox--half bigbox--blue vcenter--wrapper" style="background-image: url('{{ site.asset_path }}/images/landing-page/back_for_more_bg.png')">
-      <div class="vcenter">
-        <h3>Back For More?</h3>
-        <p>
-          Enhance your watchapps using our detailed Developer Guides and SDK Documentation.
-        </p>
-        <a href="/guides/" class="btn btn--fg-lightblue btn--bg-white">Guides</a>
-        <a href="/docs/" class="btn btn--fg-lightblue btn--bg-white">Documentation</a>
+        <a href="/sdk/" class="btn btn--fg-green btn--bg-white">Get the SDK</a>
+        <a href="https://cloudpebble.repebble.com" class="btn btn--fg-green btn--bg-white">Go to CloudPebble</a>
       </div>
     </div>
   </div>
-  <div class="col-l-7 col-m-6 pull-l-5 pull-m-6 full-height">
-    <div class="full-height js-slider landing-slider">
-      {% for feature in site.data.features %}
-      <div class="full-height landing-slider__slide js-slide{% if feature.video %} js-video-slide{% endif %}" style="background-image: url('{{ feature.background_image | assetify }}')" {% if feature.video %}data-video="{{ feature.video.url }}"{% endif %} data-duration="{{ feature.duration }}" data-slide-index="{{ forloop.index0 }}">
-        <div class="vcenter--wrapper half-height">
-          <div class="vcenter text-center">
-            <div class="landing-slider__strap">
-              <h1>{{ feature.title }}</h1>
-              <a href="{{ feature.url }}" class="btn btn--bg-{{ feature.button_bg }} btn--fg-{{ feature.button_fg }}">{{ feature.button_text }}</a>
-            </div>
-          </div>
-        </div>
-      </div>{% endfor %}
+  <div class="col-l-6 col-m-6 full-height">
+    <div class="bigbox bigbox--blue vcenter--wrapper full-height" style="background-image: url('{{ site.asset_path }}/images/landing-page/back_for_more_bg.png')">
+      <div class="vcenter">
+        <h2>Tutorials</h2>
+        <p>
+          Learn how to write your first Pebble app. Great for both new and experienced developers!
+        </p>
+        <a href="/tutorials/" class="btn btn--fg-lightblue btn--bg-white">Tutorials</a>
+      </div>
     </div>
   </div>
 </div>
