@@ -54,9 +54,12 @@ looks something like this:
 > The screenshots above show the watchface on each Pebble platform.
 > **Aplite** is the original Pebble and Pebble Steel, **Basalt** is the Pebble
 > Time, **Chalk** is the Pebble Time Round, **Diorite** is the Pebble 2,
-> **Emery** is the Pebble Time 2, **Flint** is Pebble 2 Duo, and **Gabbro** is the Pebble Round 2. 
+> **Emery** is the Pebble Time 2, **Flint** is Pebble 2 Duo, and **Gabbro** is the Pebble Round 2.
+>
 > Each platform has different screen dimensions and color capabilities, so it is good
 > practice to test your watchface on all of them.
+>
+> **Note**: Flint is not pictured because it is basically identical to Diorite, except for some extra features that we won't be using in this tutorial.
 
 
 ## Creating a New Project

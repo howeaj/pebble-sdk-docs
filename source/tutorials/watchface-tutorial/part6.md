@@ -42,7 +42,8 @@ Here is an example of a customized watchface:
     {"hw": "basalt", "wrapper": "time-red"},
     {"hw": "chalk", "wrapper": "time-round-rosegold-14"},
     {"hw": "diorite", "wrapper": "pebble2-black"},
-    {"hw": "emery", "wrapper": "core-time2-red"}
+    {"hw": "emery", "wrapper": "core-time2-red"},
+    {"hw": "gabbro", "wrapper": "core-time-round2-black-20"}
   ]
 }
 {% endscreenshot_viewer %}
