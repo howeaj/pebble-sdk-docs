@@ -23,6 +23,7 @@ description: |
   display it on your watchface.
 permalink: /tutorials/watchface-tutorial/part4/
 generate_toc: true
+platform_choice: true
 ---
 
 Up until now, everything in our watchface has been running entirely on the
@@ -130,9 +131,15 @@ text_layer_destroy(s_weather_layer);
 ``AppMessage`` is the communication channel between the watch and phone.
 Messages are key-value dictionaries.
 
-First, define the message keys in `package.json`. Add these to the `pebble`
+^CP^ In CloudPebble, go to **Settings** on the left sidebar. Check **Uses
+Location** to allow the phone to access GPS. Then scroll down to **PebbleKit JS
+Message Keys** and add the following keys: `TEMPERATURE`, `CONDITIONS`, and
+`REQUEST_WEATHER`.
+
+^LC^ First, define the message keys in `package.json`. Add these to the `pebble`
 section:
 
+{% platform local %}
 ```json
 "capabilities": [
   "location"
@@ -143,8 +150,11 @@ section:
   "REQUEST_WEATHER"
 ]
 ```
+{% endplatform %}
 
-The `location` capability allows the phone to access GPS. The message keys
+^LC^ The `location` capability allows the phone to access GPS.
+
+The message keys
 become `MESSAGE_KEY_TEMPERATURE`, `MESSAGE_KEY_CONDITIONS`, and
 `MESSAGE_KEY_REQUEST_WEATHER` constants in C.
 
@@ -187,7 +197,11 @@ app_message_open(inbox_size, outbox_size);
 
 ## Writing the JavaScript
 
-Create a new file at `src/pkjs/index.js`. This code runs on the phone whenever
+^CP^ Click **Add New** next to **Source Files** in the left sidebar, select
+**JavaScript file**, and name it (e.g., `weather.js`). This code runs on the
+phone whenever the watchface is open.
+
+^LC^ Create a new file at `src/pkjs/index.js`. This code runs on the phone whenever
 the watchface is open.
 
 Start with a helper function for making HTTP requests:

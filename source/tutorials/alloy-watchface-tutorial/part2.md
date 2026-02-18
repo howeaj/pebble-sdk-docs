@@ -23,6 +23,7 @@ description: |
   watchface a unique look.
 permalink: /tutorials/alloy-watchface-tutorial/part2/
 generate_toc: true
+platform_choice: true
 ---
 
 In the previous part we created a basic watchface that displays the time and
@@ -58,8 +59,14 @@ can render efficiently.
 
 Download
 [Jersey10-Regular.ttf](https://fonts.google.com/specimen/Jersey+10) (it's a
-free Google Font) and place it in your project:
+free Google Font).
 
+^CP^ In CloudPebble, click **Add New** next to **Resources** in the left sidebar
+and upload the font file.
+
+^LC^ Place the font file in your project:
+
+{% platform local %}
 ```text
 src/
   embeddedjs/
@@ -68,13 +75,18 @@ src/
     main.js
     manifest.json
 ```
+{% endplatform %}
 
 ### Declaring Font Resources
 
-Create `src/embeddedjs/manifest.json` (or update it if it already exists). This
+^CP^ CloudPebble manages the manifest automatically based on your uploaded
+resources. The font will be available in your code once uploaded.
+
+^LC^ Create `src/embeddedjs/manifest.json` (or update it if it already exists). This
 tells the build system to convert the font into bitmap resources at the sizes
 we need:
 
+{% platform local %}
 ```json
 {
     "include": [
@@ -101,6 +113,7 @@ we need:
     }
 }
 ```
+{% endplatform %}
 
 Key properties:
 
@@ -202,7 +215,11 @@ function draw(event) {
 }
 ```
 
-Compile and install with `pebble build && pebble install`. You should see the
+^CP^ Click the **play** button to compile and install. You should see the
+watchface now uses Jersey - the same distinctive font from the C tutorial - with
+the time and date properly centered as a block.
+
+^LC^ Compile and install with `pebble build && pebble install`. You should see the
 watchface now uses Jersey - the same distinctive font from the C tutorial - with
 the time and date properly centered as a block.
 

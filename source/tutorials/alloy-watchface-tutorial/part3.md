@@ -23,6 +23,7 @@ description: |
   to your watchface.
 permalink: /tutorials/alloy-watchface-tutorial/part3/
 generate_toc: true
+platform_choice: true
 ---
 
 Our watchface tells the time with style, but a great watchface also gives
@@ -202,32 +203,46 @@ watch.addEventListener("minutechange", drawScreen);
 
 ## Testing in the Emulator
 
-Build and install your watchface:
+^CP^ Click the **play** button to compile and install your watchface in the
+CloudPebble emulator.
 
+^LC^ Build and install your watchface:
+
+{% platform local %}
 ```text
 $ pebble build && pebble install --emulator emery
 ```
+{% endplatform %}
 
 ### Setting the Battery Level
 
-Use `pebble emu-set-battery` to change the simulated battery level:
+^CP^ In the CloudPebble emulator, use the gear menu to adjust the battery level.
 
+^LC^ Use `pebble emu-set-battery` to change the simulated battery level:
+
+{% platform local %}
 ```nc|text
 $ pebble emu-set-battery --percent 80
 $ pebble emu-set-battery --percent 30
 $ pebble emu-set-battery --percent 10
 ```
+{% endplatform %}
 
 You should see the bar go from green to yellow to red as the level decreases.
 
 ### Toggling the Connection
 
-Use `pebble emu-bt-connection` to simulate a disconnect:
+^CP^ In the CloudPebble emulator, use the gear menu to toggle the connection on
+and off.
 
+^LC^ Use `pebble emu-bt-connection` to simulate a disconnect:
+
+{% platform local %}
 ```nc|text
 $ pebble emu-bt-connection --connected no
 $ pebble emu-bt-connection --connected yes
 ```
+{% endplatform %}
 
 When disconnected, the red "X" should appear below the battery bar.
 

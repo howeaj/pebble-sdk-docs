@@ -23,6 +23,7 @@ description: |
   displaying the time and date.
 permalink: /tutorials/watchface-tutorial/part1/
 generate_toc: true
+platform_choice: true
 ---
 
 > The complete source code for this tutorial is
@@ -64,37 +65,50 @@ looks something like this:
 
 ## Creating a New Project
 
-Before we begin, make sure you have the Pebble SDK installed. If you haven't
+^CP^ Go to [CloudPebble]({{ site.links.cloudpebble }}) and click **Create** to
+start a new project. Choose **C** as the project type, name it "watchface", and
+select the **Empty project** template. Then go to **Settings** on the left and
+set **App Kind** to **Watchface**.
+
+^LC^ Before we begin, make sure you have the Pebble SDK installed. If you haven't
 done this yet, head over to the [download page](/sdk) to get set up.
 
-Once you are ready, navigate to a directory of your choosing and create a new
+^LC^ Once you are ready, navigate to a directory of your choosing and create a new
 project:
 
+{% platform local %}
 ```text
 $ pebble new-project --simple watchface
 ```
+{% endplatform %}
 
-The `--simple` flag gives us a clean starting point without any sample code.
+^LC^ The `--simple` flag gives us a clean starting point without any sample code.
 
-Open `package.json` in the project root and set the `watchapp` object to
+^LC^ Open `package.json` in the project root and set the `watchapp` object to
 indicate this is a watchface:
 
+{% platform local %}
 ```json
 "watchapp": {
   "watchface": true
 }
 ```
+{% endplatform %}
 
 The key difference between a watchface and a watchapp is that watchfaces serve
 as the default display on the watch. The Up and Down buttons are reserved for
 the Pebble timeline, so they are not available for custom behavior.
 
-Set an `author` of your choosing, and we are ready to write some code!
+^LC^ Set an `author` of your choosing, and we are ready to write some code!
 
 
 ## The App Structure
 
-Every Pebble C app follows the same basic structure. Open `src/c/main.c` and
+^CP^ Every Pebble C app follows the same basic structure. Click **Add New** next
+to **Source Files** in the left sidebar to create a new C file, or open the
+existing `main.c`. Start with the required include and three core functions:
+
+^LC^ Every Pebble C app follows the same basic structure. Open `src/c/main.c` and
 start with the required include and three core functions:
 
 ```c
@@ -177,7 +191,11 @@ static void deinit() {
 }
 ```
 
-If you run `pebble build && pebble install` now, you will see a black screen.
+^CP^ If you click the **play** button on the right side of the toolbar now, your
+project will compile and install on the emulator. You will see a black screen.
+Not very exciting yet, but it confirms everything is working!
+
+^LC^ If you run `pebble build && pebble install` now, you will see a black screen.
 Not very exciting yet, but it confirms everything is working!
 
 
@@ -274,7 +292,10 @@ tick_timer_service_subscribe(MINUTE_UNIT, tick_handler);
 `MINUTE_UNIT` means we get a callback every minute. You could use `SECOND_UNIT`
 for a seconds display, but that costs extra battery.
 
-Build and install - you should now see the current time!
+^CP^ Click the **play** button to compile and install - you should now see the
+current time!
+
+^LC^ Build and install - you should now see the current time!
 
 
 ## Adding the Date

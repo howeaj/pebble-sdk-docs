@@ -23,6 +23,7 @@ description: |
   displaying the time and date.
 permalink: /tutorials/alloy-watchface-tutorial/part1/
 generate_toc: true
+platform_choice: true
 ---
 
 > The complete source code for this tutorial is
@@ -53,30 +54,42 @@ displays the time and date on a black background:
 
 ## Creating a New Project
 
-Before we begin, make sure you have the Pebble SDK installed. If you haven't
+^CP^ Go to [CloudPebble]({{ site.links.cloudpebble }}) and click **Create** to
+start a new project. Choose **Alloy** as the project type and name it
+"watchface". Then go to **Settings** on the left and set **App Kind** to
+**Watchface**.
+
+^LC^ Before we begin, make sure you have the Pebble SDK installed. If you haven't
 done this yet, head over to the [download page](/sdk) to get set up.
 
-Once you are ready, navigate to a directory of your choosing and create a new
+^LC^ Once you are ready, navigate to a directory of your choosing and create a new
 Alloy project:
 
+{% platform local %}
 ```text
 $ pebble new-project --alloy watchface
 ```
+{% endplatform %}
 
-This creates a new folder with the basic structure for an Alloy app. The most
+^CP^ The most important file is `main.js` - this is where your watchface code
+runs on the watch.
+
+^LC^ This creates a new folder with the basic structure for an Alloy app. The most
 important file is `src/embeddedjs/main.js` - this is where your watchface code
 runs on the watch. (See the
 [Getting Started guide](/guides/alloy/getting-started/) for more details on
 project structure.)
 
-Open `package.json` and make sure the `watchapp` object indicates this is a
+^LC^ Open `package.json` and make sure the `watchapp` object indicates this is a
 watchface:
 
+{% platform local %}
 ```json
 "watchapp": {
   "watchface": true
 }
 ```
+{% endplatform %}
 
 The key difference between a watchface and a watchapp is that watchfaces serve
 as the default display on the watch. The Up and Down buttons are reserved for
@@ -92,7 +105,9 @@ Every Alloy watchface follows the same basic pattern:
 3. **Set up fonts and colors** once at startup
 4. **Register a time event** that redraws the display
 
-Open `src/embeddedjs/main.js` and replace its contents with:
+^CP^ Open `main.js` in the CloudPebble editor and replace its contents with:
+
+^LC^ Open `src/embeddedjs/main.js` and replace its contents with:
 
 ```js
 import Poco from "commodetto/Poco";
@@ -172,12 +187,17 @@ immediately when the event listener is registered, so the watchface draws right
 away without needing a separate startup call. You could use `secondchange` for
 a seconds display, but that costs extra battery.
 
-Build and install - you should now see the current time!
+^CP^ Click the **play** button to compile and install - you should now see the
+current time!
 
+^LC^ Build and install - you should now see the current time!
+
+{% platform local %}
 ```nc|text
 $ pebble build
 $ pebble install --emulator emery
 ```
+{% endplatform %}
 
 
 ## Adding the Date

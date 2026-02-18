@@ -23,6 +23,7 @@ description: |
   to your watchface using event services.
 permalink: /tutorials/watchface-tutorial/part3/
 generate_toc: true
+platform_choice: true
 ---
 
 Our watchface tells the time with style, but a great watchface also gives
@@ -199,10 +200,15 @@ will use:
 
 <img style="background-color: #CCCCCC;" src="/assets/images/tutorials/intermediate/bt-icon.png"</img>
 
-Save this image to `resources/images/bt-icon.png` in your project.
+^CP^ In CloudPebble, click **Add New** next to **Resources**, upload the image,
+set the **Resource Type** to **Bitmap**, and set the **Identifier** to
+`IMAGE_BT_ICON`.
 
-Add it to the `media` array in `package.json`:
+^LC^ Save this image to `resources/images/bt-icon.png` in your project.
 
+^LC^ Add it to the `media` array in `package.json`:
+
+{% platform local %}
 ```json
 {
   "type": "bitmap",
@@ -210,6 +216,7 @@ Add it to the `media` array in `package.json`:
   "file": "images/bt-icon.png"
 }
 ```
+{% endplatform %}
 
 Declare the ``GBitmap`` and ``BitmapLayer`` at the top of your file:
 
@@ -251,37 +258,52 @@ bitmap_layer_destroy(s_bt_icon_layer);
 
 ## Testing in the Emulator
 
-Build and install your watchface as usual:
+^CP^ Click the **play** button to compile and install your watchface in the
+CloudPebble emulator.
 
+^LC^ Build and install your watchface as usual:
+
+{% platform local %}
 ```text
 pebble build && pebble install --emulator emery
 ```
+{% endplatform %}
 
-Once the watchface is running, you can use these commands to test the battery
-and Bluetooth features without needing a real watch:
+Once the watchface is running, you can test the battery and Bluetooth features
+without needing a real watch:
 
 ### Setting the Battery Level
 
-Use `pebble emu-set-battery` to change the simulated battery level. Try a few
+^CP^ In the CloudPebble emulator, use the gear menu to adjust the battery level.
+Try a few different values to see the bar color change.
+
+^LC^ Use `pebble emu-set-battery` to change the simulated battery level. Try a few
 different values to see the bar color change:
 
+{% platform local %}
 ```text
 pebble emu-set-battery --percent 80
 pebble emu-set-battery --percent 30
 pebble emu-set-battery --percent 10
 ```
+{% endplatform %}
 
 You should see the bar go from green to yellow to red as the level decreases.
 
 ### Toggling Bluetooth
 
-Use `pebble emu-bt-connection` to simulate a Bluetooth disconnect and
+^CP^ In the CloudPebble emulator, use the gear menu to toggle the Bluetooth
+connection on and off.
+
+^LC^ Use `pebble emu-bt-connection` to simulate a Bluetooth disconnect and
 reconnect:
 
+{% platform local %}
 ```text
 pebble emu-bt-connection --connected no
 pebble emu-bt-connection --connected yes
 ```
+{% endplatform %}
 
 When you disconnect, the Bluetooth icon should appear and the watch
 should vibrate. When you reconnect, the icon should disappear.

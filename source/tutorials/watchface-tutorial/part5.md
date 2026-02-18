@@ -23,6 +23,7 @@ description: |
   obstructed by Timeline Quick View.
 permalink: /tutorials/watchface-tutorial/part5/
 generate_toc: true
+platform_choice: true
 ---
 
 Pebble's Timeline Quick View can appear at the bottom of the screen to show
@@ -226,12 +227,17 @@ nothing is hidden, just repositioned.
 
 ## Testing Timeline Quick View
 
-You can toggle Timeline Quick View in the emulator:
+^CP^ You can toggle Timeline Quick View using the emulator controls in
+CloudPebble.
 
+^LC^ You can toggle Timeline Quick View in the emulator:
+
+{% platform local %}
 ```nc|text
 $ pebble emu-set-timeline-quick-view on
 $ pebble emu-set-timeline-quick-view off
 ```
+{% endplatform %}
 
 When enabled, you should see the time, date, and weather squeeze together into
 the remaining space. The Bluetooth icon hides during the transition and

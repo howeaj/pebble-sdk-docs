@@ -23,6 +23,7 @@ description: |
   phone-side settings page with Clay so users can customize their watchface.
 permalink: /tutorials/alloy-watchface-tutorial/part5/
 generate_toc: true
+platform_choice: true
 ---
 
 The finishing touch for any great watchface is letting users make it their own.
@@ -283,11 +284,16 @@ the watch via AppMessage - the same mechanism used by the C tutorial.
 
 ## Installing Clay
 
-Clay is available as a Pebble Package. Install it from your project directory:
+^CP^ In CloudPebble, go to the **Packages** section in the left sidebar and add
+`@rebble/clay`.
 
+^LC^ Clay is available as a Pebble Package. Install it from your project directory:
+
+{% platform local %}
 ```text
 $ pebble package install @rebble/clay
 ```
+{% endplatform %}
 
 This adds `@rebble/clay` to the `dependencies` in `package.json`.
 
@@ -298,22 +304,33 @@ This adds `@rebble/clay` to the `dependencies` in `package.json`.
 
 ## Enabling Configuration
 
-For the gear icon to appear next to your watchface in the phone app, add
+^CP^ In CloudPebble, go to **Settings** and add `configurable` to the
+**Capabilities** list so the gear icon appears next to your watchface in the
+phone app.
+
+^LC^ For the gear icon to appear next to your watchface in the phone app, add
 `configurable` to the `capabilities` array in `package.json`:
 
+{% platform local %}
 ```json
 "capabilities": [
   "location",
   "configurable"
 ]
 ```
+{% endplatform %}
 
 
 ## Defining Message Keys
 
-Clay sends settings to the watch as AppMessage key-value pairs. Add message
+^CP^ In CloudPebble, go to **Settings** and add the following message keys in the
+**PebbleKit JS Message Keys** section: `BackgroundColor`, `TextColor`,
+`TemperatureUnit`, and `ShowDate`.
+
+^LC^ Clay sends settings to the watch as AppMessage key-value pairs. Add message
 keys for each setting to `package.json`:
 
+{% platform local %}
 ```json
 "messageKeys": [
   "BackgroundColor",
@@ -322,6 +339,7 @@ keys for each setting to `package.json`:
   "ShowDate"
 ]
 ```
+{% endplatform %}
 
 These keys are used by Clay in the PKJS layer and by the `Message` class on the
 watch to identify which setting is being sent.
@@ -329,7 +347,10 @@ watch to identify which setting is being sent.
 
 ## Creating the Clay Configuration
 
-Create `src/pkjs/config.js` with the configuration definition. Clay uses a
+^CP^ Click **Add New** next to **Source Files**, select **JavaScript file**, and
+name it `config.js`. Clay uses a simple JSON array of sections and fields:
+
+^LC^ Create `src/pkjs/config.js` with the configuration definition. Clay uses a
 simple JSON array of sections and fields:
 
 ```js
@@ -398,7 +419,10 @@ matches a key in `package.json`. The `color` type provides a color picker and
 
 ## Initializing Clay in PKJS
 
-Update `src/pkjs/index.js` to initialize Clay before the proxy:
+^CP^ Open your JavaScript file in the CloudPebble editor and initialize Clay
+before the proxy:
+
+^LC^ Update `src/pkjs/index.js` to initialize Clay before the proxy:
 
 ```js
 var Clay = require('@rebble/clay');
@@ -479,6 +503,27 @@ After updating the settings object, we save to `localStorage`, recreate the
 Poco color values with `updateColors()`, and redraw the screen. If the
 temperature unit changed, we also re-fetch weather so the API returns values
 in the correct unit.
+
+
+## Trying It Out
+
+^CP^ Click the **play** button to compile and install, then tap the gear icon in
+the emulator to open the settings page.
+
+^LC^ Build and install your watchface, then use `pebble emu-app-config` to open
+the settings page in your browser:
+
+{% platform local %}
+```text
+$ pebble build && pebble install --emulator emery
+$ pebble emu-app-config
+```
+{% endplatform %}
+
+Try changing the background color, text color, and toggling the date and
+temperature unit - you should see the watchface update immediately.
+
+![Settings page on phone](/images/tutorials/watchface-tutorial/part6-settings.gif)
 
 
 ## Alloy vs. C Settings

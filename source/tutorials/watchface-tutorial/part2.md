@@ -22,6 +22,7 @@ description: |
   How to add custom fonts to give your watchface a unique look.
 permalink: /tutorials/watchface-tutorial/part2/
 generate_toc: true
+platform_choice: true
 ---
 
 In the previous part we created a basic watchface that displays the time and
@@ -48,11 +49,15 @@ By the end of this part, your watchface will look something like this:
 
 ## How Resources Work
 
-App resources - fonts, images, and other data files - are managed through the
+^CP^ App resources - fonts, images, and other data files - are managed through
+the **Resources** section in the left sidebar. Click **Add New** next to
+Resources to upload files and configure their type and identifier.
+
+^LC^ App resources - fonts, images, and other data files - are managed through the
 `media` array in `package.json`. Each entry specifies the resource type, a name
 to reference it in code, and the path to the file.
 
-All resource files must be placed inside the `resources/` directory of your
+^LC^ All resource files must be placed inside the `resources/` directory of your
 project.
 
 
@@ -63,10 +68,17 @@ in the `.ttf` file format. For this tutorial we will use
 [Jersey 10](https://fonts.google.com/specimen/Jersey+10) from Google Fonts, but
 you can use any `.ttf` font you like.
 
-Place your font file in `resources/fonts/` and add entries to the `media` array
+^CP^ In CloudPebble, click **Add New** next to **Resources** in the left sidebar.
+Upload your `.ttf` font file, set the **Resource Type** to **TrueType Font**,
+and set the **Identifier** to `FONT_JERSEY_56`. Then add the same font file
+again with the identifier `FONT_JERSEY_24`. We register the same font twice at
+different sizes - one large size for the time, and a smaller one for the date.
+
+^LC^ Place your font file in `resources/fonts/` and add entries to the `media` array
 in `package.json`. We will register the same font twice at different sizes -
 one large size for the time, and a smaller one for the date:
 
+{% platform local %}
 ```json
 "resources": {
   "media": [
@@ -85,6 +97,7 @@ one large size for the time, and a smaller one for the date:
   ]
 }
 ```
+{% endplatform %}
 
 The `name` field becomes a constant you can reference in C code, prefixed with
 `RESOURCE_ID_`. The number at the end of the name (56, 24) is just part of the
@@ -164,7 +177,10 @@ fonts_unload_custom_font(s_date_font);
 > Always destroy layers before unloading the fonts they use. The layer may try
 > to access the font during destruction.
 
-Compile and install with `pebble build && pebble install`. You should see your
+^CP^ Click the **play** button to compile and install. You should see your
+watchface now uses the custom font, giving it a much more distinctive look.
+
+^LC^ Compile and install with `pebble build && pebble install`. You should see your
 watchface now uses the custom font, giving it a much more distinctive look.
 
 

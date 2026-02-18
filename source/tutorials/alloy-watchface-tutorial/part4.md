@@ -23,6 +23,7 @@ description: |
   it on your watchface.
 permalink: /tutorials/alloy-watchface-tutorial/part4/
 generate_toc: true
+platform_choice: true
 ---
 
 Up until now, everything in our watchface has been running entirely on the
@@ -76,13 +77,21 @@ through PebbleKit JS (PKJS) running on the phone. This means you need:
 
 ## Setting Up the Network Proxy
 
-Install the `@moddable/pebbleproxy` package:
+^CP^ In CloudPebble, go to the **Packages** section in the left sidebar and add
+`@moddable/pebbleproxy`.
 
+^LC^ Install the `@moddable/pebbleproxy` package:
+
+{% platform local %}
 ```text
 $ pebble package install @moddable/pebbleproxy
 ```
+{% endplatform %}
 
-Create (or update) `src/pkjs/index.js` to set up the proxy:
+^CP^ Click **Add New** next to **Source Files**, select **JavaScript file**, and
+name it `index.js`. Set up the proxy:
+
+^LC^ Create (or update) `src/pkjs/index.js` to set up the proxy:
 
 ```js
 const moddableProxy = require("@moddable/pebbleproxy");
@@ -96,14 +105,19 @@ data between the watch and phone. No custom location code is needed in PKJS.
 
 ## Adding the Location Capability
 
-Add the `location` capability to `package.json` so the phone is allowed to
+^CP^ In CloudPebble, go to **Settings** and check **Uses Location** so the phone
+is allowed to access GPS.
+
+^LC^ Add the `location` capability to `package.json` so the phone is allowed to
 access GPS:
 
+{% platform local %}
 ```json
 "capabilities": [
   "location"
 ]
 ```
+{% endplatform %}
 
 
 ## Preparing the Layout
