@@ -89,6 +89,6 @@ console.log("Hello, Pebble!");
 Alloy is built on the Moddable SDK. For more detailed documentation on the
 underlying APIs:
 
-- [Moddable SDK Documentation](https://github.com/Moddable-OpenSource/moddable/tree/public/documentation) -
+- [Moddable SDK Documentation](https://www.moddable.com/documentation/readme) -
   Comprehensive documentation for Piu, Poco, and other modules
 - Moddable's [Pebble Examples](https://github.com/Moddable-OpenSource/pebble-examples) repository - Example apps that developers may find valuable in getting the most out of Alloy.
