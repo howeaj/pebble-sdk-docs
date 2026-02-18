@@ -27,8 +27,21 @@ generate_toc: true
 
 In the previous part we created a basic watchface that displays the time and
 date using `Bitham-Bold`. It works, but it looks like every other watchface out
-there. Let's fix that by switching to a custom font — the same Jersey font used
-in the C watchface tutorial — and improving the layout.
+there. Let's fix that by switching to a custom font - the same Jersey font used
+in the C watchface tutorial - and improving the layout.
+
+By the end of this part, your watchface will look something like this:
+
+{% screenshot_viewer %}
+{
+  "image": "/images/tutorials/alloy-watchface-tutorial/part2.png",
+  "default": "emery",
+  "platforms": [
+    {"hw": "emery", "wrapper": "core-time2-red"},
+    {"hw": "gabbro", "wrapper": "core-time-round2-black-20"}
+  ]
+}
+{% endscreenshot_viewer %}
 
 This section continues from
 [*Part 1*](/tutorials/alloy-watchface-tutorial/part1/), so be sure to re-use
@@ -91,11 +104,11 @@ we need:
 
 Key properties:
 
-- **`source`** — path to the `.ttf` file (without the extension), relative to
+- **`source`** - path to the `.ttf` file (without the extension), relative to
   the manifest
-- **`size`** — font size in pixels to render at
-- **`monochrome`** — `true` for crisp 1-bit rendering (ideal for Pebble)
-- **`blocks`** — which Unicode character blocks to include. `"Basic Latin"`
+- **`size`** - font size in pixels to render at
+- **`monochrome`** - `true` for crisp 1-bit rendering (ideal for Pebble)
+- **`blocks`** - which Unicode character blocks to include. `"Basic Latin"`
   covers the digits, letters, and punctuation we need. Including only the
   characters you need saves memory.
 
@@ -129,7 +142,7 @@ const timeFont = getFont("Jersey10-Regular", 56);
 const dateFont = getFont("Jersey10-Regular", 24);
 ```
 
-The returned font object works exactly like a built-in font — you can pass it
+The returned font object works exactly like a built-in font - you can pass it
 to `render.drawText()`, `render.getTextWidth()`, and read its `.height`
 property.
 
@@ -144,18 +157,17 @@ Add these calculations at the top level, after the font declarations:
 
 ```js
 // Precompute layout positions
-const blockHeight = timeFont.height + dateFont.height + 10;
+const blockHeight = timeFont.height + dateFont.height;
 const timeY = (render.height - blockHeight) / 2;
-const dateY = timeY + timeFont.height + 10;
+const dateY = timeY + timeFont.height;
 ```
 
-The `height` property on a font gives the line height in pixels. We add 10
-pixels of spacing between the time and date, then center the combined block on
-screen.
+The `height` property on a font gives the line height in pixels. We center the
+combined block on screen by computing half the total height.
 
 Since these values only depend on the font sizes and screen dimensions, we
 compute them once at startup rather than every frame. This is a good habit for
-embedded development — precompute what you can.
+embedded development - precompute what you can.
 
 Now update the `draw()` function to use `timeY` and `dateY`:
 
@@ -191,7 +203,7 @@ function draw(event) {
 ```
 
 Compile and install with `pebble build && pebble install`. You should see the
-watchface now uses Jersey — the same distinctive font from the C tutorial — with
+watchface now uses Jersey - the same distinctive font from the C tutorial - with
 the time and date properly centered as a block.
 
 
@@ -210,7 +222,7 @@ the time and date properly centered as a block.
 
 Here are some things you can try:
 
-- Switch to a different TTF font — any TrueType font works.
+- Switch to a different TTF font - any TrueType font works.
 - Change the font sizes to see how the layout adapts.
 - Add a third font size for a different text element.
 - Try different `blocks` values like `"Latin Extended-A"` for accented

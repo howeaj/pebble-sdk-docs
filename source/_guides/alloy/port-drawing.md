@@ -329,4 +329,4 @@ class GaugeBehavior extends Behavior {
 The [Pebble Examples](https://github.com/Moddable-OpenSource/pebble-examples)
 repository includes a Port example:
 
-- [`hellopiu-port`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-port) — animated bar graph using a Piu Port with custom drawing
+- [`hellopiu-port`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-port) - animated bar graph using a Piu Port with custom drawing

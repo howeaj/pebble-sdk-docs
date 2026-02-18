@@ -329,6 +329,6 @@ showHighScores();
 The [Pebble Examples](https://github.com/Moddable-OpenSource/pebble-examples)
 repository includes storage examples:
 
-- [`hellolocalstorage`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellolocalstorage) — persisting strings with the `localStorage` API
-- [`hellokeyvalue`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellokeyvalue) — key-value storage with string and binary data
-- [`hellofiles`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellofiles) — reading and writing JSON data using `device.files`
+- [`hellolocalstorage`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellolocalstorage) - persisting strings with the `localStorage` API
+- [`hellokeyvalue`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellokeyvalue) - key-value storage with string and binary data
+- [`hellofiles`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellofiles) - reading and writing JSON data using `device.files`

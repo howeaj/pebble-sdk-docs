@@ -201,5 +201,5 @@ const ws = new WebSocketClient({
 The [Pebble Examples](https://github.com/Moddable-OpenSource/pebble-examples)
 repository includes advanced networking examples:
 
-- [`hellohttpclient`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellohttpclient) — HTTP requests using the ECMA-419 `HTTPClient`
-- [`hellowebsocketclient`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellowebsocketclient) — WebSocket connections using the ECMA-419 `WebSocketClient`
+- [`hellohttpclient`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellohttpclient) - HTTP requests using the ECMA-419 `HTTPClient`
+- [`hellowebsocketclient`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellowebsocketclient) - WebSocket connections using the ECMA-419 `WebSocketClient`

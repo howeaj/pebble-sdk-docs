@@ -33,6 +33,20 @@ We will use the `Location` sensor to get the user's GPS coordinates, then the
 standard `fetch()` API to get weather data from the free
 [Open-Meteo](https://open-meteo.com) API (no API key needed!).
 
+By the end, our watchface will show the current temperature and weather
+conditions:
+
+{% screenshot_viewer %}
+{
+  "image": "/images/tutorials/alloy-watchface-tutorial/part4.png",
+  "default": "emery",
+  "platforms": [
+    {"hw": "emery", "wrapper": "core-time2-red"},
+    {"hw": "gabbro", "wrapper": "core-time-round2-black-20"}
+  ]
+}
+{% endscreenshot_viewer %}
+
 This section continues from
 [*Part 3*](/tutorials/alloy-watchface-tutorial/part3/).
 
@@ -131,29 +145,34 @@ the Battery sensor we used in Part 3. Import it at the top of `main.js`:
 import Location from "embedded:sensor/Location";
 ```
 
-Create a `Location` instance. The `onSample` callback fires once the phone
-has obtained the GPS coordinates:
+Create a `requestLocation()` function that opens a `Location` sensor. The
+`onSample` callback fires once the phone has obtained the GPS coordinates:
 
 ```js
-const location = new Location({
-    onSample() {
-        const sample = this.sample();
-        console.log("Got location: " + sample.latitude + ", " + sample.longitude);
-        this.close();
-        fetchWeather(sample.latitude, sample.longitude);
-    }
-});
+let location = null;
+
+function requestLocation() {
+    location = new Location({
+        onSample() {
+            const sample = this.sample();
+            console.log("Got location: " + sample.latitude + ", " + sample.longitude);
+            this.close();
+            fetchWeather(sample.latitude, sample.longitude);
+        }
+    });
+}
 ```
 
 A few important things to note:
 
-- **`this.close()`** — unlike Battery, we close the Location sensor after
+- **`this.close()`** - unlike Battery, we close the Location sensor after
   getting the first reading. Location is a one-shot request, not a continuous
-  monitor.
-- **Coordinates come as floats** — `sample.latitude` and `sample.longitude`
+  monitor. We wrap it in a function so we can request a fresh location each
+  time we want to refresh the weather.
+- **Coordinates come as floats** - `sample.latitude` and `sample.longitude`
   are standard decimal degree values (e.g., `37.7749`, `-122.4194`). No need
   to multiply or divide by 10000 like in the C tutorial.
-- **The proxy handles everything** — the `@moddable/pebbleproxy` package
+- **The proxy handles everything** - the `@moddable/pebbleproxy` package
   handles the phone-side GPS lookup automatically. You don't need any custom
   PKJS code for location.
 
@@ -187,7 +206,7 @@ function getWeatherDescription(code) {
 ```
 
 Now the fetch function itself. Notice it takes `latitude` and `longitude` as
-parameters — the Location sensor passes them directly:
+parameters - the Location sensor passes them directly:
 
 ```js
 async function fetchWeather(latitude, longitude) {
@@ -227,23 +246,17 @@ the code straightforward.
 
 ## Automatic Refresh
 
-To keep the weather current, trigger a refresh every 30 minutes. We create a
-new `Location` instance each time, which requests fresh GPS coordinates and
-chains into a weather fetch:
+To keep the weather current, trigger a refresh every hour using the
+`hourchange` event. This calls `requestLocation()`, which creates a new
+`Location` instance, gets fresh GPS coordinates, and chains into a weather
+fetch:
 
 ```js
-watch.addEventListener("minutechange", e => {
-    if (e.date.getMinutes() % 30 === 0) {
-        new Location({
-            onSample() {
-                const sample = this.sample();
-                this.close();
-                fetchWeather(sample.latitude, sample.longitude);
-            }
-        });
-    }
-});
+watch.addEventListener("hourchange", requestLocation);
 ```
+
+Like `minutechange`, the `hourchange` event fires immediately when
+registered, so this also triggers the initial weather fetch at startup.
 
 
 ## Conclusion
@@ -263,8 +276,8 @@ Your watchface now shows live weather data! Check your code against
 
 ## What's Next?
 
-In the next part we will add user settings — letting users choose colors, toggle
-the date display, and pick temperature units — all persisted with
+In the next part we will add user settings - letting users choose colors, toggle
+the date display, and pick temperature units - all persisted with
 `localStorage`.
 
 [Go to Part 5 &rarr; >{wide,bg-dark-red,fg-white}](/tutorials/alloy-watchface-tutorial/part5/)

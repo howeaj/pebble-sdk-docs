@@ -42,7 +42,7 @@ new Button({
 ```
 
 > **Note**: If your app includes `"back"` in the `types` array, the back button
-> no longer exits the app automatically — press and hold back to exit instead.
+> no longer exits the app automatically - press and hold back to exit instead.
 > If you don't include `"back"`, pressing back exits as usual.
 
 ### Button Types
@@ -151,11 +151,11 @@ const location = new Location({
 The Location sensor follows the same ECMA-419 pattern as other sensors but has
 a few differences:
 
-- **One-shot** — call `this.close()` after receiving the sample. Location is a
+- **One-shot** - call `this.close()` after receiving the sample. Location is a
   request, not a continuous monitor.
-- **Requires the phone** — location data comes from the phone's GPS via the
+- **Requires the phone** - location data comes from the phone's GPS via the
   `@moddable/pebbleproxy` package.
-- **Requires capability** — add `"location"` to the `capabilities` array in
+- **Requires capability** - add `"location"` to the `capabilities` array in
   `package.json`.
 
 ### Location Sample Data
@@ -195,7 +195,7 @@ Pebble.addEventListener('ready', moddableProxy.readyReceived);
 Pebble.addEventListener('appmessage', moddableProxy.appMessageReceived);
 ```
 
-No custom location code is needed in PKJS — the proxy handles GPS lookup
+No custom location code is needed in PKJS - the proxy handles GPS lookup
 automatically.
 
 ## Battery Status
@@ -341,9 +341,9 @@ $ pebble emu-accel tilt-left --qemu localhost:12344
 The [Pebble Examples](https://github.com/Moddable-OpenSource/pebble-examples)
 repository includes sensor and input examples:
 
-- [`hellobutton`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellobutton) — subscribing to button press and release events
-- [`helloaccelerometer`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/helloaccelerometer) — reading accelerometer data and detecting taps
-- [`hellobattery`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellobattery) — monitoring battery level and charging state
-- [`hellolocation`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellolocation) — getting GPS location from the phone
-- [`piu/apps/gravity`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/apps/gravity) — visualizes accelerometer readings with an animated display
-- [`piu/apps/compass`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/apps/compass) — visualizes compass readings with a rotating compass rose
+- [`hellobutton`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellobutton) - subscribing to button press and release events
+- [`helloaccelerometer`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/helloaccelerometer) - reading accelerometer data and detecting taps
+- [`hellobattery`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellobattery) - monitoring battery level and charging state
+- [`hellolocation`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellolocation) - getting GPS location from the phone
+- [`piu/apps/gravity`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/apps/gravity) - visualizes accelerometer readings with an animated display
+- [`piu/apps/compass`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/apps/compass) - visualizes compass readings with a rotating compass rose

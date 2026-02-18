@@ -450,11 +450,11 @@ want automatic layout and a component-based architecture.
 The [Pebble Examples](https://github.com/Moddable-OpenSource/pebble-examples)
 repository includes several Poco examples:
 
-- [`hellopoco-gbitmap`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-gbitmap) — rendering Pebble GBitmap bitmaps
-- [`hellopoco-text`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-text) — text rendering with Moddable SDK fonts
-- [`hellopoco-pebbletext`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-pebbletext) — text rendering with Pebble's built-in fonts
-- [`hellopoco-pebblegraphics`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-pebblegraphics) — lines, rounded rectangles, and circles
-- [`hellopoco-pdc`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-pdc) — rendering PDC (Draw Command) SVG images
-- [`hellopoco-pdc-rotate`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-pdc-rotate) — rotating a PDC image
-- [`hellopoco-pdc-scale`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-pdc-scale) — scaling a PDC image with easing
-- [`hellopoco-pdc-sequence`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-pdc-sequence) — animated PDC image sequences
+- [`hellopoco-gbitmap`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-gbitmap) - rendering Pebble GBitmap bitmaps
+- [`hellopoco-text`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-text) - text rendering with Moddable SDK fonts
+- [`hellopoco-pebbletext`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-pebbletext) - text rendering with Pebble's built-in fonts
+- [`hellopoco-pebblegraphics`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-pebblegraphics) - lines, rounded rectangles, and circles
+- [`hellopoco-pdc`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-pdc) - rendering PDC (Draw Command) SVG images
+- [`hellopoco-pdc-rotate`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-pdc-rotate) - rotating a PDC image
+- [`hellopoco-pdc-scale`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-pdc-scale) - scaling a PDC image with easing
+- [`hellopoco-pdc-sequence`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-pdc-sequence) - animated PDC image sequences

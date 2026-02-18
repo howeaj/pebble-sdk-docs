@@ -85,7 +85,7 @@ The flow for weather is:
 4. PKJS sends the result back to the watch via ``AppMessage``.
 5. The watch receives the message and updates the display.
 
-All communication between watch and phone uses ``AppMessage`` — a key-value
+All communication between watch and phone uses ``AppMessage`` - a key-value
 dictionary system. You define the keys in `package.json` and they become
 constants in both C and JS.
 

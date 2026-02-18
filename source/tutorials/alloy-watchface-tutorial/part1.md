@@ -37,7 +37,18 @@ need to start with the basics.
 > Gabbro (Pebble Round 2).
 
 When we are done with this first part, you should have a working watchface that
-displays the time and date on a black background.
+displays the time and date on a black background:
+
+{% screenshot_viewer %}
+{
+  "image": "/images/tutorials/alloy-watchface-tutorial/part1.png",
+  "default": "emery",
+  "platforms": [
+    {"hw": "emery", "wrapper": "core-time2-red"},
+    {"hw": "gabbro", "wrapper": "core-time-round2-black-20"}
+  ]
+}
+{% endscreenshot_viewer %}
 
 
 ## Creating a New Project
@@ -48,12 +59,12 @@ done this yet, head over to the [download page](/sdk) to get set up.
 Once you are ready, navigate to a directory of your choosing and create a new
 Alloy project:
 
-```nc|text
+```text
 $ pebble new-project --alloy watchface
 ```
 
 This creates a new folder with the basic structure for an Alloy app. The most
-important file is `src/embeddedjs/main.js` — this is where your watchface code
+important file is `src/embeddedjs/main.js` - this is where your watchface code
 runs on the watch. (See the
 [Getting Started guide](/guides/alloy/getting-started/) for more details on
 project structure.)
@@ -109,7 +120,7 @@ const white = render.makeColor(255, 255, 255);
 ```
 
 Alloy comes with several built-in Pebble fonts. `Bitham-Bold` at 42px is a
-good size for a time display — bold and easy to read at a glance.
+good size for a time display - bold and easy to read at a glance.
 
 `makeColor()` takes RGB values (0–255) and returns a color value optimized for
 the display.
@@ -143,7 +154,7 @@ function draw(event) {
 ```
 
 The `event` parameter contains a `date` property with the current `Date`
-object — no need to call `new Date()` yourself. We use `padStart()` to ensure
+object - no need to call `new Date()` yourself. We use `padStart()` to ensure
 single-digit hours and minutes are zero-padded (e.g., "09:05" instead of
 "9:5").
 
@@ -161,7 +172,7 @@ immediately when the event listener is registered, so the watchface draws right
 away without needing a separate startup call. You could use `secondchange` for
 a seconds display, but that costs extra battery.
 
-Build and install — you should now see the current time!
+Build and install - you should now see the current time!
 
 ```nc|text
 $ pebble build

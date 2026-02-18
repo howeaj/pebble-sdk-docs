@@ -397,9 +397,9 @@ watch.addEventListener("minutechange", draw);
 The [Pebble Examples](https://github.com/Moddable-OpenSource/pebble-examples)
 repository includes watchface examples:
 
-- [`hellowatchface`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellowatchface) — simple digital watchface using Poco
-- [`piu/watchfaces/cupertino`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/watchfaces/cupertino) — classic macOS cursor clock
-- [`piu/watchfaces/london`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/watchfaces/london) — Big Ben-inspired analog watchface
-- [`piu/watchfaces/helsinki`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/watchfaces/helsinki) — Nokia style digital watchface
-- [`piu/watchfaces/redmond`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/watchfaces/redmond) — classic Windows clock
-- [`piu/watchfaces/zurich`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/watchfaces/zurich) — Swiss train station clock
+- [`hellowatchface`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellowatchface) - simple digital watchface using Poco
+- [`piu/watchfaces/cupertino`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/watchfaces/cupertino) - classic macOS cursor clock
+- [`piu/watchfaces/london`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/watchfaces/london) - Big Ben-inspired analog watchface
+- [`piu/watchfaces/helsinki`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/watchfaces/helsinki) - Nokia style digital watchface
+- [`piu/watchfaces/redmond`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/watchfaces/redmond) - classic Windows clock
+- [`piu/watchfaces/zurich`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/watchfaces/zurich) - Swiss train station clock

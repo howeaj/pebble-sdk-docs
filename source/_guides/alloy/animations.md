@@ -345,4 +345,4 @@ class LoopingBehavior extends Behavior {
 The [Pebble Examples](https://github.com/Moddable-OpenSource/pebble-examples)
 repository includes an animation example:
 
-- [`hellopiu-timeline`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-timeline) — demonstrates various easing equations with Timeline animation
+- [`hellopiu-timeline`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-timeline) - demonstrates various easing equations with Timeline animation

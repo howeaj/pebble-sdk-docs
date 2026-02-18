@@ -17,18 +17,33 @@ layout: tutorials/tutorial
 tutorial: alloy-watchface
 tutorial_part: 5
 
-title: User Settings with localStorage
+title: User Settings with localStorage and Clay
 description: |
-  How to persist user preferences using localStorage so users can
-  customize their watchface.
+  How to persist user preferences using localStorage and add a
+  phone-side settings page with Clay so users can customize their watchface.
 permalink: /tutorials/alloy-watchface-tutorial/part5/
 generate_toc: true
 ---
 
 The finishing touch for any great watchface is letting users make it their own.
-In this final part we will add user settings using `localStorage` — a simple
-key-value store built right into Alloy. Users will be able to choose background
+In this final part we will add user settings using `localStorage` - a simple
+key-value store built right into Alloy - and then add a phone-side configuration
+page using [Clay for Pebble](https://github.com/pebble-dev/clay) so users can
+change settings from their phone. Users will be able to choose background
 and text colors, toggle the date display, and pick temperature units.
+
+Here is an example of a customized watchface:
+
+{% screenshot_viewer %}
+{
+  "image": "/images/tutorials/alloy-watchface-tutorial/part5.png",
+  "default": "emery",
+  "platforms": [
+    {"hw": "emery", "wrapper": "core-time2-red"},
+    {"hw": "gabbro", "wrapper": "core-time-round2-black-20"}
+  ]
+}
+{% endscreenshot_viewer %}
 
 This section continues from
 [*Part 4*](/tutorials/alloy-watchface-tutorial/part4/).
@@ -39,9 +54,9 @@ This section continues from
 Alloy provides the standard Web `localStorage` API for persistent storage.
 Data is saved to flash and survives app restarts. The API is straightforward:
 
-- `localStorage.setItem(key, value)` — store a string value
-- `localStorage.getItem(key)` — retrieve a value (or `null` if missing)
-- `localStorage.removeItem(key)` — delete a value
+- `localStorage.setItem(key, value)` - store a string value
+- `localStorage.getItem(key)` - retrieve a value (or `null` if missing)
+- `localStorage.removeItem(key)` - delete a value
 
 Since `localStorage` only stores strings, we use `JSON.stringify()` and
 `JSON.parse()` to store structured data like our settings object.
@@ -184,7 +199,7 @@ In `fetchWeather()`, pass the unit preference to Open-Meteo so the API returns
 the temperature in the correct unit directly:
 
 ```js
-async function fetchWeather() {
+async function fetchWeather(latitude, longitude) {
     // ...
     const params = {
         latitude,
@@ -196,14 +211,14 @@ async function fetchWeather() {
         params.temperature_unit = "fahrenheit";
     }
 
-    const url = new URL("http://api.open-meteo.com/v1/forecast");
+    const url = new URL("https://api.open-meteo.com/v1/forecast");
     url.search = new URLSearchParams(params);
     // ...
 }
 ```
 
 Open-Meteo supports a `temperature_unit` parameter natively, so we do not need
-to convert on the watch — the API handles it for us.
+to convert on the watch - the API handles it for us.
 
 
 ## Caching Weather Data
@@ -257,25 +272,226 @@ This gives users instant weather display on app launch instead of "Loading..."
 while waiting for the phone connection and API response.
 
 
+## Adding a Settings Page with Clay
+
+So far our settings only have default values and no way for the user to change
+them. Let's add a phone-side configuration page using
+[Clay for Pebble](https://github.com/pebble-dev/clay). Clay generates a
+settings UI on the phone from a simple JSON definition and sends the values to
+the watch via AppMessage - the same mechanism used by the C tutorial.
+
+
+## Installing Clay
+
+Clay is available as a Pebble Package. Install it from your project directory:
+
+```text
+$ pebble package install @rebble/clay
+```
+
+This adds `@rebble/clay` to the `dependencies` in `package.json`.
+
+
+## Enabling Configuration
+
+For the gear icon to appear next to your watchface in the phone app, add
+`configurable` to the `capabilities` array in `package.json`:
+
+```json
+"capabilities": [
+  "location",
+  "configurable"
+]
+```
+
+
+## Defining Message Keys
+
+Clay sends settings to the watch as AppMessage key-value pairs. Add message
+keys for each setting to `package.json`:
+
+```json
+"messageKeys": [
+  "BackgroundColor",
+  "TextColor",
+  "TemperatureUnit",
+  "ShowDate"
+]
+```
+
+These keys are used by Clay in the PKJS layer and by the `Message` class on the
+watch to identify which setting is being sent.
+
+
+## Creating the Clay Configuration
+
+Create `src/pkjs/config.js` with the configuration definition. Clay uses a
+simple JSON array of sections and fields:
+
+```js
+module.exports = [
+  {
+    "type": "heading",
+    "defaultValue": "Watchface Settings"
+  },
+  {
+    "type": "text",
+    "defaultValue": "Customize your watchface appearance and preferences."
+  },
+  {
+    "type": "section",
+    "items": [
+      {
+        "type": "heading",
+        "defaultValue": "Colors"
+      },
+      {
+        "type": "color",
+        "messageKey": "BackgroundColor",
+        "defaultValue": "0x000000",
+        "label": "Background Color"
+      },
+      {
+        "type": "color",
+        "messageKey": "TextColor",
+        "defaultValue": "0xFFFFFF",
+        "label": "Text Color"
+      }
+    ]
+  },
+  {
+    "type": "section",
+    "items": [
+      {
+        "type": "heading",
+        "defaultValue": "Preferences"
+      },
+      {
+        "type": "toggle",
+        "messageKey": "TemperatureUnit",
+        "label": "Use Fahrenheit",
+        "defaultValue": false
+      },
+      {
+        "type": "toggle",
+        "messageKey": "ShowDate",
+        "label": "Show Date",
+        "defaultValue": true
+      }
+    ]
+  },
+  {
+    "type": "submit",
+    "defaultValue": "Save Settings"
+  }
+];
+```
+
+This is the same configuration used in the C tutorial. Each `messageKey`
+matches a key in `package.json`. The `color` type provides a color picker and
+`toggle` gives a switch.
+
+
+## Initializing Clay in PKJS
+
+Update `src/pkjs/index.js` to initialize Clay before the proxy:
+
+```js
+var Clay = require('@rebble/clay');
+var clayConfig = require('./config');
+var clay = new Clay(clayConfig);
+
+const moddableProxy = require("@moddable/pebbleproxy");
+Pebble.addEventListener('ready', moddableProxy.readyReceived);
+Pebble.addEventListener('appmessage', moddableProxy.appMessageReceived);
+```
+
+Clay automatically handles the `showConfiguration` and `webviewClosed` events
+(opening the settings page and sending results back). The proxy continues to
+handle `ready` and `appmessage` for fetch and location requests from the watch.
+There is no conflict since they use different event types.
+
+
+## Receiving Settings on the Watch
+
+When the user saves settings on the phone, Clay sends them as an AppMessage.
+On the watch side, we use the `Message` class from `pebble/message` to receive
+them. Add the import at the top of `main.js`:
+
+```js
+import Message from "pebble/message";
+```
+
+Then add a `Message` instance at the end of the file:
+
+```js
+const message = new Message({
+    keys: ["BackgroundColor", "TextColor", "TemperatureUnit", "ShowDate"],
+    onReadable() {
+        const msg = this.read();
+
+        const bg = msg.get("BackgroundColor");
+        if (bg !== undefined) {
+            settings.backgroundColor = { r: (bg >> 16) & 0xFF, g: (bg >> 8) & 0xFF, b: bg & 0xFF };
+        }
+        const tc = msg.get("TextColor");
+        if (tc !== undefined) {
+            settings.textColor = { r: (tc >> 16) & 0xFF, g: (tc >> 8) & 0xFF, b: tc & 0xFF };
+        }
+        const tu = msg.get("TemperatureUnit");
+        if (tu !== undefined) {
+            settings.useFahrenheit = tu === 1;
+        }
+        const sd = msg.get("ShowDate");
+        if (sd !== undefined) {
+            settings.showDate = sd === 1;
+        }
+
+        saveSettings();
+        updateColors();
+        drawScreen();
+
+        // Re-fetch weather if temperature unit changed
+        if (tu !== undefined) {
+            requestLocation();
+        }
+    }
+});
+```
+
+The `keys` array tells `Message` which AppMessage keys to listen for - these
+must match the `messageKeys` in `package.json`.
+
+Clay sends colors as `0x00RRGGBB` int32 values. We extract the red, green, and
+blue components with bit shifts:
+
+- Red: `(value >> 16) & 0xFF`
+- Green: `(value >> 8) & 0xFF`
+- Blue: `value & 0xFF`
+
+Toggles arrive as int32 values where `1` means on and `0` means off.
+
+After updating the settings object, we save to `localStorage`, recreate the
+Poco color values with `updateColors()`, and redraw the screen. If the
+temperature unit changed, we also re-fetch weather so the API returns values
+in the correct unit.
+
+
 ## Alloy vs. C Settings
 
-In the C tutorial, settings are handled with Clay — a phone-side configuration
-page that generates a settings UI and sends values to the watch via AppMessage.
-The C watch stores them with `persist_write_data()`.
-
-In Alloy, `localStorage` gives us a simpler approach:
-
-| | C (Clay) | Alloy (localStorage) |
+| | C (Clay) | Alloy (Clay + localStorage) |
 |---|---|---|
-| **Settings UI** | Clay JSON config on phone | Not covered (can be done with a companion app) |
+| **Settings UI** | Clay JSON config on phone | Same Clay JSON config on phone |
+| **Phone-side code** | Clay init in PKJS | Clay init + proxy in PKJS |
+| **Receiving settings** | `inbox_received_callback` with `dict_find` | `Message` class with `onReadable` |
 | **Storage** | `persist_write_data()` / `persist_read_data()` | `localStorage.setItem()` / `getItem()` |
 | **Serialization** | Raw struct bytes | JSON strings |
 | **New fields** | Must call defaults before load | Spread operator merges defaults |
 
-> **Note:** Alloy does not currently have a built-in equivalent of Clay for
-> generating a settings UI on the phone. The settings in this tutorial are
-> stored and applied on the watch side. A phone-side settings page can be built
-> as a companion web app in a future step.
+The phone-side Clay setup is identical between C and Alloy - the same
+`config.js` works for both. The difference is on the watch side: C uses
+`dict_find` in an inbox callback to extract values, while Alloy uses the
+`Message` class with a readable callback.
 
 
 ## Conclusion
@@ -290,6 +506,7 @@ Alloy. Here is everything it includes:
 5. **Bluetooth disconnect** indicator.
 6. **User settings** persisted with `localStorage`.
 7. **Weather caching** for instant startup display.
+8. **Clay configuration** for colors and preferences.
 
 In this final part we learned how to:
 
@@ -298,6 +515,9 @@ In this final part we learned how to:
 - Apply color and display preferences dynamically.
 - Pass unit preferences to the Open-Meteo API.
 - Cache API responses for faster startup.
+- Install and configure Clay for a phone-side settings page.
+- Receive Clay settings on the watch with the `Message` class.
+- Parse color and toggle values from AppMessages.
 
 Check your code against
 [the source for this part](https://github.com/coredevices/alloy-watchface-tutorial/tree/main/part5).

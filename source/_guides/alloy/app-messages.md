@@ -22,7 +22,7 @@ order: 7
 
 The Message API provides direct communication between watch code and PebbleKit JS
 (PKJS) on the phone. Unlike [networking](/guides/alloy/networking/), app messages
-don't require the `@moddable/pebbleproxy` package — they use Pebble's built-in
+don't require the `@moddable/pebbleproxy` package - they use Pebble's built-in
 messaging system.
 
 Code examples in this guide are labeled with **📱 PKJS** or **⌚ Watch** to
@@ -135,5 +135,5 @@ complete weather example.
 The [Pebble Examples](https://github.com/Moddable-OpenSource/pebble-examples)
 repository includes app message examples:
 
-- [`hellomessage`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellomessage) — sending and receiving messages between watch and phone
-- [`helloconnected`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/helloconnected) — monitoring watch-phone connection status
+- [`hellomessage`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellomessage) - sending and receiving messages between watch and phone
+- [`helloconnected`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/helloconnected) - monitoring watch-phone connection status

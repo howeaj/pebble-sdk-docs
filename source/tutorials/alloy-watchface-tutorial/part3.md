@@ -29,6 +29,19 @@ Our watchface tells the time with style, but a great watchface also gives
 useful information at a glance. In this part we will add two popular features:
 a battery meter and a connection disconnect alert.
 
+By the end of this part, your watchface will look something like this:
+
+{% screenshot_viewer %}
+{
+  "image": "/images/tutorials/alloy-watchface-tutorial/part3.png",
+  "default": "emery",
+  "platforms": [
+    {"hw": "emery", "wrapper": "core-time2-red"},
+    {"hw": "gabbro", "wrapper": "core-time-round2-black-20"}
+  ]
+}
+{% endscreenshot_viewer %}
+
 This section continues from
 [*Part 2*](/tutorials/alloy-watchface-tutorial/part2/), so be sure to re-use
 your code or start with that finished project.
@@ -68,7 +81,7 @@ triggers a full redraw.
 ### Drawing the Battery Bar
 
 We will draw the battery bar near the top of the screen. It has a white border
-with a filled portion that changes color based on the charge level — green when
+with a filled portion that changes color based on the charge level - green when
 healthy, yellow when getting low, red when critical.
 
 Add a `drawBatteryBar()` function:
@@ -151,7 +164,7 @@ to your draw function after the battery bar:
     }
 ```
 
-You will need the `smallFont` for this — add it with your other font
+You will need the `smallFont` for this - add it with your other font
 declarations:
 
 ```js
@@ -191,7 +204,7 @@ watch.addEventListener("minutechange", drawScreen);
 
 Build and install your watchface:
 
-```nc|text
+```text
 $ pebble build && pebble install --emulator emery
 ```
 
@@ -237,6 +250,6 @@ disconnects. Check your code against
 ## What's Next?
 
 In the next part we will add weather information by fetching data from the
-Open-Meteo API — our first foray into network communication.
+Open-Meteo API - our first foray into network communication.
 
 [Go to Part 4 &rarr; >{wide,bg-dark-red,fg-white}](/tutorials/alloy-watchface-tutorial/part4/)

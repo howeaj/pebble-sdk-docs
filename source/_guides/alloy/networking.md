@@ -96,7 +96,7 @@ async function fetchData() {
 
 ### Important Notes
 
-- **Wait for the proxy** — network requests only work after the proxy signals
+- **Wait for the proxy** - network requests only work after the proxy signals
   it is ready. Listen for `watch.addEventListener("connected", ...)` before
   calling `fetch()` or opening a `WebSocket`
 
@@ -111,7 +111,7 @@ async function fetchData() {
 
 ## WebSockets
 
-WebSockets are also handled by the `@moddable/pebbleproxy` package — no
+WebSockets are also handled by the `@moddable/pebbleproxy` package - no
 additional proxy setup needed.
 
 **⌚ Watch** (src/embeddedjs/main.js):
@@ -164,20 +164,20 @@ Network requests only work once the proxy is ready. Wait until
 
 ## Best Practices
 
-1. **Install `@moddable/pebbleproxy`** — required for `fetch()` and `WebSocket`
-2. **Wait for the proxy** — network requests only work after the proxy is ready;
+1. **Install `@moddable/pebbleproxy`** - required for `fetch()` and `WebSocket`
+2. **Wait for the proxy** - network requests only work after the proxy is ready;
    listen for the `connected` event or check `watch.connected.pebblekit`
-3. **Handle errors** — network requests can fail
-4. **Minimize data** — request only what you need
-5. **Cache responses** — use `localStorage` to reduce requests
+3. **Handle errors** - network requests can fail
+4. **Minimize data** - request only what you need
+5. **Cache responses** - use `localStorage` to reduce requests
 
 ## Advanced Networking
 
 For more control over HTTP and WebSocket connections, Alloy also provides
 low-level ECMA-419 networking APIs:
 
-- `HTTPClient` — streaming HTTP client with fine-grained header control
-- `WebSocketClient` — low-level WebSocket with callback-based API, provides streaming support
+- `HTTPClient` - streaming HTTP client with fine-grained header control
+- `WebSocketClient` - low-level WebSocket with callback-based API, provides streaming support
 
 These are also handled by `@moddable/pebbleproxy`. See the
 [Advanced Networking](/guides/alloy/advanced-networking/) guide for details.
@@ -187,5 +187,5 @@ These are also handled by `@moddable/pebbleproxy`. See the
 The [Pebble Examples](https://github.com/Moddable-OpenSource/pebble-examples)
 repository includes networking examples:
 
-- [`hellofetch`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellofetch) — HTTP requests using the `fetch()` API
-- [`hellowebsocket`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellowebsocket) — WebSocket connections using the `WebSocket` API
+- [`hellofetch`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellofetch) - HTTP requests using the `fetch()` API
+- [`hellowebsocket`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellowebsocket) - WebSocket connections using the `WebSocket` API

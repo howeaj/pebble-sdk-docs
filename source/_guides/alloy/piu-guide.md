@@ -470,9 +470,9 @@ export default new BallApplication(null, { pixels: screen.width * 4 });
 The [Pebble Examples](https://github.com/Moddable-OpenSource/pebble-examples)
 repository includes several Piu examples:
 
-- [`hellopiu-balls`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-balls) — animated bouncing balls with Behavior and texture variants
-- [`hellopiu-coloredsquares`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-coloredsquares) — basic layout with colored skins
-- [`hellopiu-gbitmap`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-gbitmap) — displaying Pebble GBitmap PNG images
-- [`hellopiu-jsicon`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-jsicon) — displaying a Moddable SDK bitmap from a PNG resource
-- [`hellopiu-text`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-text) — dynamic text layout with different fonts and alignment
-- [`hellopiu-pebbletext`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-pebbletext) — text rendering with Pebble's built-in fonts
+- [`hellopiu-balls`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-balls) - animated bouncing balls with Behavior and texture variants
+- [`hellopiu-coloredsquares`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-coloredsquares) - basic layout with colored skins
+- [`hellopiu-gbitmap`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-gbitmap) - displaying Pebble GBitmap PNG images
+- [`hellopiu-jsicon`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-jsicon) - displaying a Moddable SDK bitmap from a PNG resource
+- [`hellopiu-text`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-text) - dynamic text layout with different fonts and alignment
+- [`hellopiu-pebbletext`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-pebbletext) - text rendering with Pebble's built-in fonts
