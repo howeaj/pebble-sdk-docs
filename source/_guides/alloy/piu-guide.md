@@ -51,12 +51,12 @@ Content objects are the basic building blocks of Piu UIs. The main types are:
 
 | Type | Description |
 |------|-------------|
-| `Content` | Basic rectangular element |
-| `Label` | Single line of text |
-| `Text` | Multi-line formatted text |
+| `Content` | Basic rectangular element (base class for most UI objects) |
 | `Container` | Holds other content objects |
 | `Column` | Vertical layout container |
 | `Row` | Horizontal layout container |
+| `Label` | Single line of text |
+| `Text` | Multi-line formatted text |
 | `Application` | Root container (one per app) |
 
 ### Skins
@@ -86,7 +86,9 @@ const ballSkin = new Skin({
 
 ### Styles
 
-Styles define text appearance:
+Styles define text appearance. Styles cascade, similar to CSS - you can create a
+base style and let child content objects inherit from it, making it easy to
+maintain a consistent look:
 
 ```javascript
 const textStyle = new Style({
@@ -122,28 +124,10 @@ Content($, { left: 0, right: 0, top: 0, bottom: 0 });
 Content($, { width: 80, height: 80 });
 ```
 
-## Templates
-
-Templates create reusable component definitions:
-
-```javascript
-// Define a template
-const Square = Content.template($ => ({
-    width: 80, height: 80,
-    skin: new Skin({ fill: $ })  // $ is the data passed to template
-}));
-
-// Use the template
-const redSquare = new Square("red", { left: 20, top: 20 });
-const blueSquare = new Square("blue", { right: 20, bottom: 20 });
-
-application.add(redSquare);
-application.add(blueSquare);
-```
-
 ## Behaviors
 
-Behaviors add interactivity and logic to content objects:
+Behaviors add interactivity and logic to content objects. They are essential
+for handling events and updating the UI:
 
 ```javascript
 class BallBehavior extends Behavior {
@@ -192,8 +176,35 @@ Content(6, {
 | `onDisplaying(content)` | Content added to display |
 | `onTimeChanged(content)` | Animation frame (after `start()`) |
 | `onFinished(content)` | Animation/duration completed |
-| `onTouchBegan(content)` | Touch/click started |
-| `onTouchEnded(content)` | Touch/click ended |
+
+Pebble button presses are handled using the `Button` class rather than touch
+events. See the [Sensors and Input](/guides/alloy/sensors-and-input/) guide for
+details on button handling. Piu also uses the `Button` class internally for
+button input.
+
+## Templates
+
+Templates create reusable component definitions. They are most useful when you
+need to create multiple instances of the same component:
+
+```javascript
+// Define a template
+const Square = Content.template($ => ({
+    width: 80, height: 80,
+    skin: new Skin({ fill: $ })  // $ is the data passed to template
+}));
+
+// Use the template
+const redSquare = new Square("red", { left: 20, top: 20 });
+const blueSquare = new Square("blue", { right: 20, bottom: 20 });
+
+application.add(redSquare);
+application.add(blueSquare);
+```
+
+> **Note**: For one-off content, create instances directly rather than defining
+> a template first. Templates use more code and RAM than direct instantiation
+> when you only need a single instance.
 
 ## Building an Application
 
@@ -210,28 +221,26 @@ class HeaderBehavior extends Behavior {
     }
 }
 
-const MyApplication = Application.template($ => ({
+const application = new Application(null, {
     skin: backgroundSkin,
     contents: [
-        Column($, {
+        new Column(null, {
             top: 0, bottom: 0, left: 0, right: 0,
             contents: [
-                Label($, {
+                new Label(null, {
                     top: 0, height: 30, left: 0, right: 0,
                     skin: headerSkin,
                     style: headerStyle,
                     Behavior: HeaderBehavior
                 }),
-                Content($, {
+                new Content(null, {
                     top: 10, bottom: 10, left: 10, right: 10,
                     skin: new Skin({ fill: "gray" })
                 })
             ]
         })
     ]
-}));
-
-const application = new MyApplication({}, {});
+});
 ```
 
 ## Anchors and References
@@ -378,6 +387,10 @@ Available Pebble fonts include:
 - `Roboto` - Condensed weight
 - `Leco` - Regular weight (great for numbers)
 - `Droid` - Serif style
+
+The available sizes are limited for each font family. See the
+[System Fonts](/guides/app-resources/system-fonts/) reference for the full table
+of all fonts, styles, and sizes.
 
 ## Loading Bitmaps from Resources
 

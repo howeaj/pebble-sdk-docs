@@ -48,12 +48,20 @@ const message = new Message({
     },
     onWritable() {
         console.log("Ready to send messages");
+    },
+    onSuspend() {
+        console.log("Messages suspended");
     }
 });
 ```
 
 The `keys` array lists the message key names used for communication. These must
 match the keys defined in `package.json`.
+
+The `onWritable` callback fires when the `Message` instance is ready to send
+messages. The `onSuspend` callback is the opposite - it fires when sending is
+temporarily unavailable (e.g., the PKJS connection is lost or another `Message`
+instance is sending). A new `Message` instance begins in the suspended state.
 
 ## Sending Messages from Watch
 

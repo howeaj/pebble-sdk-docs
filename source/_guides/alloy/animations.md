@@ -77,6 +77,9 @@ functions are available on the `Math` object:
 
 ### Available Easing Functions
 
+The [`hellopiu-timeline`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-timeline)
+example demonstrates most of these easing equations in action.
+
 | Ease In | Ease Out | Description |
 |---------|----------|-------------|
 | `Math.backEaseIn` | `Math.backEaseOut` | Overshoots then returns |
@@ -145,7 +148,7 @@ setInterval(() => {
         render.fillRectangle(gray, 0, 0, render.width, render.height);
         render.fillRectangle(blue, x, y, size, size);
     render.end();
-}, 17);  // ~60fps
+}, 50);  // ~20fps
 ```
 
 ## Scaling PDC Images
@@ -176,7 +179,7 @@ setInterval(() => {
         render.fillRectangle(gray, 0, 0, render.width, render.height);
         render.drawDCI(dci.clone().scale(scale), cx, cy);
     render.end();
-}, 17);
+}, 50);
 ```
 
 ## Complete Piu Animation Example
@@ -287,7 +290,10 @@ export default new AnimationApp({}, {});
    decorative animations.
 
 3. **Use appropriate frame rates**: 30fps (33ms interval) is usually sufficient.
-   60fps (17ms interval) for smoother animations at higher battery cost.
+   60fps (17ms interval) for smoother animations at higher battery cost. Note
+   that these are requests - if Pebble OS can't keep up, the actual frame rate
+   will be lower. Smoothest results tend to come from requesting a frame rate
+   that can be consistently achieved.
 
 4. **Clean up animations**: Stop intervals and timelines when no longer needed.
 

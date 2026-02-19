@@ -147,6 +147,10 @@ Available Pebble fonts:
 - `Leco-Regular`
 - `Droid-Serif`
 
+The available sizes are limited for each font family. See the
+[System Fonts](/guides/app-resources/system-fonts/) reference for the full table
+of all fonts, styles, and sizes.
+
 ### Centering Text
 
 Use `getTextWidth()` to measure text for centering:
@@ -193,7 +197,7 @@ built-in Pebble fonts.
 
 ## Drawing Images
 
-### PNG Bitmaps
+### Bitmaps
 
 Load bitmaps from resources using `PebbleBitmap`:
 
@@ -267,6 +271,7 @@ draw();
 ```
 
 PDC sequences have these properties:
+
 - `width`, `height` - Dimensions of the sequence
 - `duration` - Total animation duration in milliseconds
 - `frameDuration` - Duration of current frame
@@ -274,7 +279,10 @@ PDC sequences have these properties:
 
 ## Animation
 
-Use `setInterval()` for frame-based animations:
+Use `setInterval()` for frame-based animations. The interval is a request - if
+Pebble OS can't render fast enough, the actual frame rate will be lower.
+Smoothest results come from requesting a frame rate that can be consistently
+achieved:
 
 ```javascript
 import Poco from "commodetto/Poco";
@@ -294,7 +302,7 @@ setInterval(() => {
     render.end();
 
     x = (x + 2) % render.width;
-}, 30);  // ~33 fps
+}, 50);  // ~20 fps
 ```
 
 ### Rotating PDC Images
@@ -322,7 +330,7 @@ setInterval(() => {
         );
         angle += Math.PI / 30;
     render.end();
-}, 17);  // ~60fps
+}, 50);  // ~20fps
 ```
 
 The `rotate()` method takes angle in radians and pivot point coordinates.
@@ -355,7 +363,7 @@ setInterval(() => {
         render.fillRectangle(gray, 0, 0, render.width, render.height);
         render.drawDCI(dci.clone().scale(scale), cx, cy);
     render.end();
-}, 17);
+}, 50);
 ```
 
 The `scale()` method takes a scale factor (1.0 = original size).
@@ -410,7 +418,7 @@ setInterval(() => {
     render.end();
 
     angle = (angle + 10) % 360;
-}, 30);
+}, 50);
 ```
 
 ## Screen Properties

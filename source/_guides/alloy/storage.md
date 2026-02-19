@@ -168,9 +168,9 @@ saveSettings(settings);
 store.close();
 ```
 
-## Files
+## Files (ECMA-419)
 
-For storing larger or binary data, use the file system API via `device.files`:
+For storing larger data, use the file system API via `device.files`:
 
 ```javascript
 const path = "example.json";
@@ -252,7 +252,7 @@ Data is deleted when:
 
 ## Error Handling
 
-Both APIs can fail if storage is full or corrupted:
+The storage APIs can fail if storage is full or corrupted:
 
 ```javascript
 try {
