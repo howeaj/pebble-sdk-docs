@@ -61,8 +61,9 @@ Download
 [Jersey10-Regular.ttf](https://fonts.google.com/specimen/Jersey+10) (it's a
 free Google Font).
 
-^CP^ In CloudPebble, click **Add New** next to **Resources** in the left sidebar
-and upload the font file.
+^CP^ In CloudPebble, click **Add New** next to **Resources** in the left sidebar.
+In the upload dialog, leave the path prefix as `assets/`, select your
+`Jersey10-Regular.ttf` file, and click **Upload**.
 
 ^LC^ Place the font file in your project:
 
@@ -79,14 +80,17 @@ src/
 
 ### Declaring Font Resources
 
-^CP^ CloudPebble manages the manifest automatically based on your uploaded
-resources. The font will be available in your code once uploaded.
+Having the font file in your project is not enough on its own - we need to tell
+the Moddable build system how to process it. Font files must be declared in
+`manifest.json` with a size and character set so the build system can convert
+them into optimized bitmap resources.
 
-^LC^ Create `src/embeddedjs/manifest.json` (or update it if it already exists). This
-tells the build system to convert the font into bitmap resources at the sizes
-we need:
+^CP^ Open `manifest.json` in the **Embedded JS** section of the sidebar. Update
+the `resources` section to declare the font at the two sizes we need:
 
-{% platform local %}
+^LC^ Create `src/embeddedjs/manifest.json` (or update it if it already exists).
+Add the font to the `resources` section at the two sizes we need:
+
 ```json
 {
     "include": [
@@ -113,7 +117,6 @@ we need:
     }
 }
 ```
-{% endplatform %}
 
 Key properties:
 
