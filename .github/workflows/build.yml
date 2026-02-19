@@ -16,7 +16,7 @@ jobs:
       - name: Checkout pebble-firmware
         uses: actions/checkout@v6
         with:
-          repository: pebble-dev/pebble-firmware
+          repository: coredevices/pebbleos
           ref: main
           submodules: true
 
