@@ -84,11 +84,95 @@ console.log("Hello, Pebble!");
 
 {% include guides/contents-group.md group=site.data.guides.alloy %}
 
-## Additional Resources
+## Example Apps
 
-Alloy is built on the Moddable SDK. For more detailed documentation on the
-underlying APIs:
+The [Moddable Pebble Examples](https://github.com/Moddable-OpenSource/pebble-examples)
+repository contains a collection of examples covering all aspects of Alloy
+development. Here's a categorized overview:
+
+### Fundamentals
+
+| Example | Description |
+|---------|-------------|
+| [hellopebble](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopebble) | "Hello, world" - the simplest starting point |
+| [hellotimer](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellotimer) | Using `setTimeout` |
+| [hellomodule](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellomodule) | Loading multiple modules |
+| [hellotypescript](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellotypescript) | TypeScript with the Pebble `Button` class |
+
+### Storage
+
+| Example | Description |
+|---------|-------------|
+| [hellokeyvalue](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellokeyvalue) | ECMA-419 Key-Value Storage for persistent data |
+| [hellolocalstorage](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellolocalstorage) | Web standard `localStorage` for persisting strings |
+| [hellofiles](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellofiles) | File system storage |
+
+### Sensors & Input
+
+| Example | Description |
+|---------|-------------|
+| [helloaccelerometer](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/helloaccelerometer) | Subscribing to accelerometer readings |
+| [hellobattery](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellobattery) | Battery and charging status |
+| [hellolocation](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellolocation) | GPS location via phone |
+| [hellobutton](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellobutton) | Pebble button events |
+
+### Piu UI Framework
+
+| Example | Description |
+|---------|-------------|
+| [hellopiu-text](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-text) | Dynamic text layout with different fonts |
+| [hellopiu-pebbletext](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-pebbletext) | Text using Pebble built-in fonts |
+| [hellopiu-balls](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-balls) | Classic bouncing balls demo |
+| [hellopiu-coloredsquares](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-coloredsquares) | Drawing colored squares |
+| [hellopiu-gbitmap](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-gbitmap) | Pebble GBitmap PNG images as Piu textures |
+| [hellopiu-jsicon](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-jsicon) | Moddable SDK bitmaps as Piu textures |
+| [hellopiu-port](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-port) | Animated graph using Piu Port |
+| [hellopiu-timeline](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-timeline) | Easing equations with Timeline animation |
+
+### Piu Watchfaces
+
+| Example | Description |
+|---------|-------------|
+| [cupertino](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/watchfaces/cupertino) | Classic macOS watch cursor as a watchface |
+| [london](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/watchfaces/london) | Big Ben (color watches only) |
+| [helsinki](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/watchfaces/helsinki) | Minimal design with per-model assets |
+| [redmond](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/watchfaces/redmond) | Classic Windows clock |
+| [zurich](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/watchfaces/zurich) | Iconic Swiss railway clock |
+
+### Poco Renderer
+
+| Example | Description |
+|---------|-------------|
+| [hellopoco-text](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-text) | Text rendering with Moddable SDK fonts |
+| [hellopoco-pebbletext](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-pebbletext) | Text rendering with Pebble built-in fonts |
+| [hellopoco-gbitmap](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-gbitmap) | Rendering GBitmap resources |
+| [hellopoco-pebblegraphics](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-pebblegraphics) | Lines, round rectangles, and circles |
+| [hellopoco-qrcode](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-qrcode) | Dynamic QR code generation |
+| [hellopoco-pdc](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-pdc) | Rendering PDC (SVG) images |
+| [hellopoco-pdc-rotate](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-pdc-rotate) | Spinning a PDC image |
+| [hellopoco-pdc-scale](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-pdc-scale) | Animated PDC scaling with easing |
+| [hellopoco-pdc-sequence](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-pdc-sequence) | PDC image sequence animation |
+| [hellowatchface](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellowatchface) | Simple watchface app |
+
+### Communication
+
+| Example | Description |
+|---------|-------------|
+| [hellomessage](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellomessage) | Watch-phone messaging via app_message |
+| [helloconnected](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/helloconnected) | Phone connection status notifications |
+| [hellofetch](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellofetch) | HTTP requests using the `fetch()` API |
+| [hellohttpclient](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellohttpclient) | HTTP requests using ECMA-419 HTTP Client |
+| [hellowebsocket](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellowebsocket) | WebSocket using the Web standard API |
+| [hellowebsocketclient](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellowebsocketclient) | WebSocket using ECMA-419 WebSocket Client |
+
+### Sensor Visualizations (Piu)
+
+| Example | Description |
+|---------|-------------|
+| [compass](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/apps/compass) | Compass visualization (Emery only) |
+| [gravity](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/apps/gravity) | Accelerometer visualization (Emery only) |
+
+## Additional Resources
 
 - [Moddable SDK Documentation](https://www.moddable.com/documentation/readme) -
   Comprehensive documentation for Piu, Poco, and other modules
-- Moddable's [Pebble Examples](https://github.com/Moddable-OpenSource/pebble-examples) repository - Example apps that developers may find valuable in getting the most out of Alloy.

@@ -19,6 +19,7 @@ description: |
   started.
 guide_group: rocky-js
 order: 1
+published: false
 related_examples:
  - title: Tutorial Part 1
    url: https://github.com/pebble-examples/rocky-watchface-tutorial-part1

@@ -27,12 +27,6 @@ app-resources:
   category: beautiful-apps
   sort_by: title
 
-appstore-publishing:
-  title: Appstore Publishing
-  description: How to get your app ready for going live in the Pebble appstore.
-  category: publishing-apps
-  sort_by: order
-
 best-practices:
   title: Best Practices
   description: Information to help optimize apps and ensure a good user experience.
@@ -69,12 +63,6 @@ graphics-and-animations:
   category: beautiful-apps
   sort_by: title
 
-migration:
-  title: Migrating Older Apps
-  description: Information useful for updating old code from older apps to use newer SDKs.
-  category: publishing-apps
-  sort_by: title
-
 pebble-packages:
   title: Pebble Packages
   description: How to create and use Pebble Packages
@@ -84,12 +72,6 @@ pebble-packages:
 pebble-timeline:
   title: Pebble Timeline
   description: How to use Pebble timeline to bring timely information to app users outside the app itself via web services.
-  category: interactive-apps
-  sort_by: title
-
-rocky-js:
-  title: Rocky.js
-  description: Information on creating apps with JavaScript using Rocky.js
   category: interactive-apps
   sort_by: title
 

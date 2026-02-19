@@ -19,6 +19,7 @@ permalink: /guides/migration/migration-guide-3/
 generate_toc: true
 guide_group: migration
 order: 2
+published: false
 ---
 
 This guide provides a detailed list of the changes to existing APIs in Pebble

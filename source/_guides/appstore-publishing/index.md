@@ -21,6 +21,7 @@ menu: false
 permalink: /guides/appstore-publishing/
 generate_toc: false
 hide_comments: true
+published: false
 ---
 
 When a developer is happy that their app is feature-complete and stable, they

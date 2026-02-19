@@ -19,6 +19,7 @@ permalink: /guides/migration/3x-aplite-migration/
 generate_toc: true
 guide_group: migration
 order: 3
+published: false
 ---
 
 With the release of SDK 3.8, all Pebble platforms can be targeted with one SDK.

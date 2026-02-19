@@ -39,5 +39,7 @@ CloudPebble is a full-featured, browser-based IDE with the Pebble SDK built in. 
 
 ## Learn more
 
-The best way to learn is by checking out our example apps: [weather](https://github.com/pebble-examples/pebblekit-js-weather/), [simple game](https://github.com/pebble-hacks/pandas-and-bananas/), [concentricity watchface](https://github.com/pebble-examples/concentricity/), and [many more](/examples)! Or try [tutorials](/tutorials/) for a step-by-step guide on how
-to write a simple C or JavaScript Pebble application.
+- [Build a watchface with JavaScript (Alloy)](/tutorials/alloy-watchface-tutorial/) - step-by-step tutorial
+- [Build a watchface with C](/tutorials/watchface-tutorial/) - step-by-step tutorial
+- [Example apps](/examples) - browse example projects
+- [Alloy guides](/guides/alloy/) - in-depth guides for JavaScript development with Alloy, including Moddable example apps

@@ -41,14 +41,6 @@ It provides a rich set of APIs for creating complex user interfaces,
 accessing sensors, and communicating with the phone. 
 Alloy is actively developed with new features and improvements.
 
-### [RockyJS API (Deprecated)](/docs/rockyjs/)
-
-RockyJS is a embedded JavaScript API, used for creating native **watchfaces** in
-JavaScript. The embedded JavaScript API can be used in combination with
-PebbleKit JS to extend the application's functionality.
-Note that RockyJS is deprecated and will not receive any new features. For new
-watchface development, we recommend using Alloy instead.
-
 ## PebbleKit APIs
 
 The PebbleKit APIs provides developers with a means to extend their application's

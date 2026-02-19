@@ -19,6 +19,7 @@ permalink: /guides/migration/pebblekit-ios-3/
 generate_toc: true
 guide_group: migration
 order: 1
+published: false
 ---
 
 With previous Pebble firmware versions, iOS users had to manage two different

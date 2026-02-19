@@ -19,6 +19,7 @@ permalink: /guides/migration/migration-guide/
 generate_toc: true
 guide_group: migration
 order: 1
+published: false
 ---
 
 {% alert important %}

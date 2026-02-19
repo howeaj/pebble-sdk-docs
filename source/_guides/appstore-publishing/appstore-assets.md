@@ -19,6 +19,7 @@ description: |
   listings.
 guide_group: appstore-publishing
 order: 3
+published: false
 ---
 
 A number of graphical assets are required when publishing an app on the
