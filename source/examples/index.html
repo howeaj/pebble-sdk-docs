@@ -29,10 +29,16 @@ scripts:
     {% for example in examples reversed %}
       <div class="row js-example" style="margin-bottom: 1em;" data-tags="{{ example.tags | join: '|' }}"  data-languages="{{ example.languages | join: '|' }}"  data-hardware-platforms="{{ example.hardware_platforms | join: '|' }}">
         <div class="pull-left visible-l" style="margin-right: 2em;">
-          {% if example.screenshot_platform == 'chalk' %}
+          {% if example.screenshot_platform == 'emery' %}
+          <img src="{{ example.screenshot | assetify }}" class="pebble-screenshot pebble-screenshot--core-time2-red pebble-screenshot--smaller">
+          {% elsif example.screenshot_platform == 'gabbro' %}
+          <img src="{{ example.screenshot | assetify }}" class="pebble-screenshot pebble-screenshot--core-time-round2-black-20 pebble-screenshot--smaller">
+          {% elsif example.screenshot_platform == 'chalk' %}
           <img src="{{ example.screenshot | assetify }}" class="pebble-screenshot pebble-screenshot--time-round-silver-20 pebble-screenshot--smaller">
           {% elsif example.screenshot_platform == 'basalt' %}
           <img src="{{ example.screenshot | assetify }}" class="pebble-screenshot pebble-screenshot--time-white pebble-screenshot--smaller">
+          {% elsif example.screenshot_platform == 'diorite' %}
+          <img src="{{ example.screenshot | assetify }}" class="pebble-screenshot pebble-screenshot--pebble2-black pebble-screenshot--smaller">
           {% else %}
           <img src="{{ example.screenshot | assetify }}" class="pebble-screenshot pebble-screenshot--steel-stainless pebble-screenshot--smaller">
           {% endif %}
