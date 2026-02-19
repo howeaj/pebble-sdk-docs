@@ -68,10 +68,6 @@ $ pebble package install @rebble/clay
 
 This adds `@rebble/clay` to the `dependencies` in `package.json`.
 
-> **Note**: At the time of writing, Clay is not officially supported with Gabbro (Round 2).
-> We recommend not using Clay for Round 2 watchfaces until support is added.
-> This notice will be removed once that is the case.
-
 
 ## Enabling Configuration
 
