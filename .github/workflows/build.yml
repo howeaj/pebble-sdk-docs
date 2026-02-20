@@ -25,11 +25,6 @@ jobs:
           pip install -U pip
           pip install -r requirements.txt
 
-      - name: Build aplite SDK
-        run: |
-          ./waf configure --board bb2 --js-engine none
-          ./waf build --onlysdk
-
       - name: Build basalt SDK
         run: |
           ./waf configure --board snowy_bb2
@@ -44,7 +39,6 @@ jobs:
         with:
           name: docs-c
           path: |
-            build/sdk/aplite/doxygen_sdk
             build/sdk/basalt/doxygen_sdk
 
   # TODO: maybe build in pebble-dev/pebble-android-sdk, and publish releases?
