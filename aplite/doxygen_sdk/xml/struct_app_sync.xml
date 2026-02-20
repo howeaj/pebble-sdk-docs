@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="struct_app_sync" kind="struct" language="C++" prot="public">
+    <compoundname>AppSync</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_app_sync_1a8bc3bd6f16e62d12d2b06dd98442bee4" prot="public" static="no" mutable="no">
+        <type>union AppSync</type>
+        <definition>union AppSync AppSync</definition>
+        <argsstring></argsstring>
+        <name></name>
+        <qualifiedname>AppSync</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/sdk/aplite/include/pebble.h" line="2527" column="3"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_app_sync_1ab184df88bff7548e6fc2b1075879ea4c" prot="public" static="no" mutable="no">
+        <type><ref refid="group___standard_c_1gaa686eebdb9c21527b4ed32a4427c28b7" kindref="member">uint16_t</ref></type>
+        <definition>uint16_t AppSync::buffer_size</definition>
+        <argsstring></argsstring>
+        <name>buffer_size</name>
+        <qualifiedname>AppSync::buffer_size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/sdk/aplite/include/pebble.h" line="2528" column="12" bodyfile="build/sdk/aplite/include/pebble.h" bodystart="2528" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_app_sync_1a3c49ff8a5ac695ad27cfd77ee230ea5a" prot="public" static="no" mutable="no">
+        <type>struct AppSync</type>
+        <definition>struct AppSync AppSync::callback</definition>
+        <argsstring></argsstring>
+        <name>callback</name>
+        <qualifiedname>AppSync::callback</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/sdk/aplite/include/pebble.h" line="2533" column="12"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_app_sync_1a852821fc80afd3359f29807bcc3afb94" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_dictionary_iterator" kindref="compound">DictionaryIterator</ref></type>
+        <definition>DictionaryIterator AppSync::current_iter</definition>
+        <argsstring></argsstring>
+        <name>current_iter</name>
+        <qualifiedname>AppSync::current_iter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/sdk/aplite/include/pebble.h" line="2523" column="22" bodyfile="build/sdk/aplite/include/pebble.h" bodystart="2523" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>AppSync</label>
+        <childnode refid="2" relation="usage">
+          <edgelabel>current_iter</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>DictionaryIterator</label>
+        <link refid="struct_dictionary_iterator"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>cursor</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Tuple</label>
+        <link refid="struct_tuple"/>
+      </node>
+    </collaborationgraph>
+    <location file="build/sdk/aplite/include/pebble.h" line="2522" column="1" bodyfile="build/sdk/aplite/include/pebble.h" bodystart="2522" bodyend="2534"/>
+    <listofallmembers>
+      <member refid="struct_app_sync_1ab184df88bff7548e6fc2b1075879ea4c" prot="public" virt="non-virtual"><scope>AppSync</scope><name>buffer_size</name></member>
+      <member refid="struct_app_sync_1a3c49ff8a5ac695ad27cfd77ee230ea5a" prot="public" virt="non-virtual"><scope>AppSync</scope><name>callback</name></member>
+      <member refid="struct_app_sync_1a852821fc80afd3359f29807bcc3afb94" prot="public" virt="non-virtual"><scope>AppSync</scope><name>current_iter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

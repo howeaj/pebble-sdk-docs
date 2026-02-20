@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="group___p_n_g_file_format" kind="group">
+    <compoundname>PNGFileFormat</compoundname>
+    <title>PNG8 File Format</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Pebble supports both a PBIs (uncompressed bitmap images) as well as PNG8 images. PNG images are compressed allowing for storage savings up to 90%. PNG8 is a PNG that uses palette-based or grayscale images with 1, 2, 4 or 8 bits per pixel. For palette-based images the pixel data represents the index into the palette, such that each pixel only needs to be large enough to represent the palette size, so <itemizedlist>
+<listitem><para><computeroutput>1-bit</computeroutput> supports up to 2 colors, </para>
+</listitem>
+<listitem><para><computeroutput>2-bit</computeroutput> supports up to 4 colors, </para>
+</listitem>
+<listitem><para><computeroutput>4-bit</computeroutput> supports up to 16 colors, </para>
+</listitem>
+<listitem><para><computeroutput>8-bit</computeroutput> supports up to 256 colors.</para>
+</listitem>
+</itemizedlist>
+There are 2 parts to the palette: the RGB24 color-mapping palette (&quot;PLTE&quot;), and the optional 8-bit transparency palette (&quot;tRNs&quot;). A pixel&apos;s color index maps to both tables, combining to allow the pixel to have both color as well as transparency.</para>
+<para>For grayscale images, the pixel data represents the luminosity (or shade of gray). <itemizedlist>
+<listitem><para><computeroutput>1-bit</computeroutput> supports black and white </para>
+</listitem>
+<listitem><para><computeroutput>2-bit</computeroutput> supports black, dark_gray, light_gray and white </para>
+</listitem>
+<listitem><para><computeroutput>4-bit</computeroutput> supports black, white and 14 shades of gray </para>
+</listitem>
+<listitem><para><computeroutput>8-bit</computeroutput> supports black, white and 254 shades of gray</para>
+</listitem>
+</itemizedlist>
+Optionally, grayscale images allow for 1 fully transparent color, which is removed from the fully-opaque colors above (e.g. a 2 bit grayscale image can have black, white, dark_gray and a transparent color).</para>
+<para>The Basalt Platform provides for 2-bits per color channel, so images are optimized by the SDK tooling when loaded as a resource-type &quot;png&quot; to the Pebble&apos;s 64-colors with 4 levels of transparency. This optimization also handles mapping unsupported colors to the nearest supported color, and reducing the pixel depth to the number of bits required to support the optimized number of colors. PNG8 images from other sources are supported, with the colors truncated to match supported colors at runtime.</para>
+<para><simplesect kind="see"><para><ref refid="group___graphics_types_1ga339b6cfb4c7fd3d851e39e92d3baf487" kindref="member">gbitmap_create_from_png_data</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group___graphics_types_1ga80248fd5ac8a50211f0cd4110a45fa59" kindref="member">gbitmap_create_with_resource</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

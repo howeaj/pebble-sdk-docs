@@ -1,0 +1,332 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="group___standard_string" kind="group">
+    <compoundname>StandardString</compoundname>
+    <title>String</title>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="group___standard_string_1ga19546e43db31c3095991b04023b422b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char * strcat</definition>
+        <argsstring>(char *dest, const char *src)</argsstring>
+        <name>strcat</name>
+        <param>
+          <type>char *</type>
+          <declname>dest</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>src</declname>
+        </param>
+        <briefdescription>
+<para>Concatenates the string in src to the end of the string pointed by dest and null terminates dest. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>There should be no overlap of dest and src. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dest</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The destination buffer with enough space for src beyond the null character </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>src</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The source C string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The destination buffer dest </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="482" column="6" declfile="sdk/docs/common.dox" declline="482" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group___standard_string_1ga6f3dcb20ff11ff9db5904c3cfb61a38c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int strcmp</definition>
+        <argsstring>(const char *str1, const char *str2)</argsstring>
+        <name>strcmp</name>
+        <param>
+          <type>const char *</type>
+          <declname>str1</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>str2</declname>
+        </param>
+        <briefdescription>
+<para>Compares the null terminated strings str1 and str2 to each other. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>str1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first C string to compare </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>str2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second C string to compare </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The difference of the first differing pair of bytes or 0 if the strings are identical </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="478" column="5" declfile="sdk/docs/common.dox" declline="478" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group___standard_string_1gac5082c8ce4f0cddd88bf4d0d2e738308" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char * strcpy</definition>
+        <argsstring>(char *dest, const char *src)</argsstring>
+        <name>strcpy</name>
+        <param>
+          <type>char *</type>
+          <declname>dest</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>src</declname>
+        </param>
+        <briefdescription>
+<para>Copies the string in src into dest and null terminates dest. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>There should be no overlap of dest and src in memory. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dest</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The destination buffer with enough space for src </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>src</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The source C string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The destination buffer dest </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="480" column="6" declfile="sdk/docs/common.dox" declline="480" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group___standard_string_1ga008e171a518fe0e0352f31b245e03875" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group___standard_memory_1ga7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+        <definition>size_t strlen</definition>
+        <argsstring>(const char *str)</argsstring>
+        <name>strlen</name>
+        <param>
+          <type>const char *</type>
+          <declname>str</declname>
+        </param>
+        <briefdescription>
+<para>Calculates the length of a null terminated string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>str</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The C string. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The length of the C string str. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="484" column="8" declfile="sdk/docs/common.dox" declline="484" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="group___standard_string_1gaef7c0be850a2df7a4e4c5f76774a721b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char * strncat</definition>
+        <argsstring>(char *dest, const char *src, size_t n)</argsstring>
+        <name>strncat</name>
+        <param>
+          <type>char *</type>
+          <declname>dest</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>src</declname>
+        </param>
+        <param>
+          <type><ref refid="group___standard_memory_1ga7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+<para>Concatenates up to n bytes from the string in src to the end of the string pointed by dest and null terminates dest. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>There should be no overlap of dest and src in memeory. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dest</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The destination buffer with enough space for src beyond the null character </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>src</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The source string </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum number of bytes to copy </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The destination buffer dest </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="483" column="6" declfile="sdk/docs/common.dox" declline="483" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group___standard_string_1gab36f95eb212013e67f97dacede2751db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int strncmp</definition>
+        <argsstring>(const char *str1, const char *str2, size_t n)</argsstring>
+        <name>strncmp</name>
+        <param>
+          <type>const char *</type>
+          <declname>str1</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>str2</declname>
+        </param>
+        <param>
+          <type><ref refid="group___standard_memory_1ga7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+<para>Compares the null terminated strings str1 and str2 to each other for up to n bytes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Comparison ends when a null is read or when n bytes are read, whichever happens first. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>str1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first C string to compare </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>str2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second C string to compare </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum number of bytes to compare </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The difference of the first differing pair of bytes or the final pair of bytes read or 0 if the portions of the strings read are identical </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="479" column="5" declfile="sdk/docs/common.dox" declline="479" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group___standard_string_1ga9380f4a95b2c4e3d979b1634d3a8bcc9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char * strncpy</definition>
+        <argsstring>(char *dest, const char *src, size_t n)</argsstring>
+        <name>strncpy</name>
+        <param>
+          <type>char *</type>
+          <declname>dest</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>src</declname>
+        </param>
+        <param>
+          <type><ref refid="group___standard_memory_1ga7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+<para>Copies up to n bytes from the string in src into dest and null terminates dest. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If dest is null terminated before n bytes have been written, null bytes will continue to be written until n bytes total were written. There should be no overlap of dest and src in memory. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dest</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The destination buffer with enough space for n bytes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>src</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The source string </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of bytes to copy </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The destination buffer dest </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="481" column="6" declfile="sdk/docs/common.dox" declline="481" declcolumn="6"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Standard C-string manipulation. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

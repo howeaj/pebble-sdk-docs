@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="group___graphics" kind="group">
+    <compoundname>Graphics</compoundname>
+    <title>Graphics</title>
+    <innergroup refid="group___draw_command">Draw Commands</innergroup>
+    <innergroup refid="group___path_drawing">Drawing Paths</innergroup>
+    <innergroup refid="group___drawing">Drawing Primitives</innergroup>
+    <innergroup refid="group___text_drawing">Drawing Text</innergroup>
+    <innergroup refid="group___fonts">Fonts</innergroup>
+    <innergroup refid="group___graphics_context">Graphics Context</innergroup>
+    <innergroup refid="group___graphics_types">Graphics Types</innergroup>
+    <briefdescription>
+<para>Low-level drawing routines. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The Graphics framework defines a set of APIs that can be used to draw paths, primitives and text, as well as handle the loading of fonts and the setting of graphics contexts for compositing, fill color and text color. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

@@ -38,7 +38,7 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: docs-c
-          path: build/sdk/
+          path: build/sdk/basalt/doxygen_sdk
 
   # TODO: maybe build in pebble-dev/pebble-android-sdk, and publish releases?
   gendocs-android:
@@ -97,8 +97,11 @@ jobs:
       - name: Create docs archives
         working-directory: /tmp/docs
         run: |
-          cd docs-c
-          zip -r ../PebbleSDK-4.3_docs.zip basalt/doxygen_sdk
+          mkdir -p sdk-docs/basalt/doxygen_sdk sdk-docs/aplite
+          cp -r docs-c/* sdk-docs/basalt/doxygen_sdk/
+          cp -r "$GITHUB_WORKSPACE/aplite/doxygen_sdk" sdk-docs/aplite/
+          cd sdk-docs
+          zip -r ../PebbleSDK-4.3_docs.zip aplite/doxygen_sdk basalt/doxygen_sdk
           cd ..
 
           mv docs-android javadoc

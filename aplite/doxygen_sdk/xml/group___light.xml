@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="group___light" kind="group">
+    <compoundname>Light</compoundname>
+    <title>Light</title>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="group___light_1ga0131a703964d49744f2da1fac234b9b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void light_enable</definition>
+        <argsstring>(bool enable)</argsstring>
+        <name>light_enable</name>
+        <param>
+          <type>bool</type>
+          <declname>enable</declname>
+        </param>
+        <briefdescription>
+<para>Turn the watch&apos;s backlight on or put it back into automatic control. Developers should take care when calling this function, keeping Pebble&apos;s backlight on for long periods of time will rapidly deplete the battery. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>enable</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Turn the backlight on if <computeroutput>true</computeroutput>, otherwise <computeroutput>false</computeroutput> to put it back into automatic control. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/sdk/aplite/include/pebble.h" line="8282" column="6" declfile="build/sdk/aplite/include/pebble.h" declline="8282" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group___light_1ga7074135af850ea753dc5a98378bca122" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void light_enable_interaction</definition>
+        <argsstring>(void)</argsstring>
+        <name>light_enable_interaction</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Trigger the backlight and schedule a timer to automatically disable the backlight after a short delay. This is the preferred method of interacting with the backlight. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/sdk/aplite/include/pebble.h" line="8276" column="6" declfile="build/sdk/aplite/include/pebble.h" declline="8276" declcolumn="6"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Controlling Pebble&apos;s backlight </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The Light API provides you with functions to turn on Pebble’s backlight or put it back into automatic control. You can trigger the backlight and schedule a timer to automatically disable the backlight after a short delay, which is the preferred method of interacting with the backlight. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

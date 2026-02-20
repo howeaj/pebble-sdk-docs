@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="group___u_i" kind="group">
+    <compoundname>UI</compoundname>
+    <title>User Interface</title>
+    <innergroup refid="group___animation">Animation</innergroup>
+    <innergroup refid="group___clicks">Clicks</innergroup>
+    <innergroup refid="group___layer">Layers</innergroup>
+    <innergroup refid="group___light">Light</innergroup>
+    <innergroup refid="group___preferences">Preferences</innergroup>
+    <innergroup refid="group___unobstructed_area">UnobstructedArea</innergroup>
+    <innergroup refid="group___vibes">Vibes</innergroup>
+    <innergroup refid="group___window">Window</innergroup>
+    <innergroup refid="group___window_stack">Window Stack</innergroup>
+    <briefdescription>
+<para>Everything related to user interface. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The User Interface framework enables your Pebble watchface or watchapp to handle basic UI components, like clicks, layers, vibes, windows and window stacks. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

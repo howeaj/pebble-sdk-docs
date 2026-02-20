@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="group___misc" kind="group">
+    <compoundname>Misc</compoundname>
+    <title>Miscellaneous</title>
+    <briefdescription>
+<para>Miscellaneous. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Useful helper functionality for building your pebble application that doesn&apos;t fit in any other category. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>
