@@ -21,7 +21,7 @@ require_relative 'c_docs/doc_group.rb'
 module Pebble
   # Pebble C documentation processing class.
   class DocumentationC < Documentation
-    MASTER_GROUP_IDS = %w(foundation graphics u_i smartstrap worker standard_c)
+    MASTER_GROUP_IDS = %w(foundation graphics u_i worker standard_c)
 
     def initialize(site, source, root, language='c')
       super(site)
@@ -43,7 +43,6 @@ module Pebble
     def run
       cleanup
       download_and_extract(@source, @tmp_dir)
-      hack_smartstraps
       process
       add_images
     end
@@ -61,22 +60,6 @@ module Pebble
             zipfile.extract(entry, path) unless File.exist?(path)
           end
         end
-      end
-    end
-
-    # This is a hack to get around a limitation with the documentation generator.
-    # At present, it cannot handle the situation where a top level doc group exists on
-    # Basalt but not Aplite.
-    # Smartstraps is the only group that fits this pattern at the moment.
-    # This hack copies the XML doc from the Basalt folder to the Aplite folder and removes
-    # all of its contents.
-    def hack_smartstraps
-      basalt_xml = Nokogiri::XML(File.read("#{@tmp_dir}/basalt/xml/group___smartstrap.xml"))
-      basalt_xml.search('.//memberdef').remove
-      basalt_xml.search('.//innerclass').remove
-      basalt_xml.search('.//sectiondef').remove
-      File.open("#{@tmp_dir}/aplite/xml/group___smartstrap.xml", 'w') do |file|
-        file.write(basalt_xml.to_xml)
       end
     end
 

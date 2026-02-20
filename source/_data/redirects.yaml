@@ -2435,7 +2435,7 @@
   - /guides/communication/using-pebblekit-ios/
 -
   - /smartstraps/index.html
-  - /guides/hardware/
+  - /guides/
 -
   - /tools/color-picker/index.html
   - /more/color-picker/
@@ -2642,19 +2642,33 @@
  - /guides/events-and-services/compass/
 -
  - /guides/hardware/index.html
- - /guides/smartstraps/
+ - /guides/
 -
  - /guides/hardware/smartstrap-hardware/index.html
- - /guides/smartstraps/smartstrap-hardware/
+ - /guides/
 -
  - /guides/hardware/smartstrap-protocol/index.html
- - /guides/smartstraps/smartstrap-protocol/
+ - /guides/
 -
  - /guides/hardware/talking-to-pebble/index.html
- - /guides/smartstraps/takling-to-pebble/
+ - /guides/
 -
  - /guides/hardware/talking-to-smartstraps/index.html
- - /guides/smartstraps/takling-to-smartstraps/
+ - /guides/
+-
+ - /guides/smartstraps/
+ - /guides/
+-
+ - /guides/smartstraps/smartstrap-hardware/
+ - /guides/
+-
+ - /guides/smartstraps/smartstrap-protocol/
+ - /guides/
+-
+ - /guides/smartstraps/talking-to-pebble/
+ - /guides/
+-
+ - /guides/smartstraps/talking-to-smartstraps/
 -
  - /guides/timeline/index.html
  - /guides/pebble-timeline/
