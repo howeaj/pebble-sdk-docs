@@ -19,7 +19,10 @@ class TagScreenshotViewer < Liquid::Block
     site = context.registers[:site]
     data = JSON.parse(super)
 
-    viewer_html = '<div class="screenshot-viewer">'
+    default_platform = data['default']
+    viewer_html = '<div class="screenshot-viewer"'
+    viewer_html += " data-default-platform=\"#{default_platform}\"" if default_platform
+    viewer_html += '>'
 
     viewer_html += '<div class="screenshot-viewer__tabs js-screenshot-tabs">'
     data['platforms'].each do |platform|

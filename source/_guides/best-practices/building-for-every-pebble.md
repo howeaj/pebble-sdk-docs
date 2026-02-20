@@ -89,8 +89,6 @@ better used to select an entire block of code.
 | `PBL_COLOR` | `PBL_IF_COLOR_ELSE()` | Running on hardware that supports 64 colors. |
 | `PBL_MICROPHONE` | `PBL_IF_MICROPHONE_ELSE()` | Running on hardware that includes a microphone. |
 | `PBL_COMPASS` | None | Running on hardware that includes a compass. |
-| `PBL_SMARTSTRAP` | `PBL_IF_SMARTSTRAP_ELSE()` | Running on hardware that includes a smartstrap connector, but does not indicate that the connector is capable of supplying power. |
-| `PBL_SMARTSTRAP_POWER` | None | Running on hardware that includes a smartstrap connector capable of supplying power. |
 | `PBL_HEALTH` | `PBL_IF_HEALTH_ELSE()` | Running on hardware that supports Pebble Health and the `HealthService` API. |
 | `PBL_RECT` | `PBL_IF_RECT_ELSE()` | Running on hardware with a rectangular display. |
 | `PBL_ROUND` | `PBL_IF_ROUND_ELSE()` | Running on hardware with a round display. |

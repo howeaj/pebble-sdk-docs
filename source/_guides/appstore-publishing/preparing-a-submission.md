@@ -18,6 +18,7 @@ description: |
   How to prepare an app submission for the Pebble appstore.
 guide_group: appstore-publishing
 order: 0
+published: false
 ---
 
 Once a new Pebble watchface or watchapp has been created, the

@@ -21,6 +21,7 @@ menu: false
 permalink: /guides/migration/
 generate_toc: false
 hide_comments: true
+published: false
 ---
 
 When the Pebble SDK major version is increased (such as from 2.x to 3.x), some

@@ -1,0 +1,83 @@
+/**
+ * Copyright 2025 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// Landing page: fill the viewport with the content boxes when they are
+// stacked vertically (at the `s` breakpoint and below, where no col-m/col-l
+// widths apply so the boxes go full-width and stack).
+.landing-page {
+  .content--narrow {
+    @include bp-max(s) {
+      display: flex;
+      flex-direction: column;
+      // Fill the viewport minus the fixed search bar header.
+      min-height: calc(100vh - #{$header-height});
+    }
+  }
+
+  .row.no-gutter {
+    @include bp-max(s) {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      > [class*="col-"] {
+        flex: 1;
+        display: flex;
+
+        > .bigbox {
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+
+.welcome-banner {
+  background-color: #222;
+  color: $white;
+  padding: 1.5em 2em;
+  text-align: center;
+
+  // On desktop the sidebar already shows Pebble branding,
+  // so we hide this banner to keep things clean.
+  display: none;
+
+  @include bp-max($sidebar-hide-at) {
+    display: block;
+  }
+}
+
+.welcome-banner__title {
+  font-size: 1.4em;
+  font-weight: 600;
+  margin: 0 0 0.3em;
+}
+
+.welcome-banner__text {
+  font-size: 1em;
+  margin: 0;
+  color: $gray-09;
+}
+
+.welcome-banner__link {
+  color: $pebble-blue;
+  font-weight: 600;
+
+  &:hover {
+    color: $white;
+    text-decoration: underline;
+  }
+}

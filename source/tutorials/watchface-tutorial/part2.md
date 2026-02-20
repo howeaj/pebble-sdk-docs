@@ -1,5 +1,5 @@
 ---
-# Copyright 2025 Google LLC
+# Copyright 2026 Core Devices LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,255 +18,204 @@ tutorial: watchface
 tutorial_part: 2
 
 title: Customizing Your Watchface
-description: A guide to personalizing your new Pebble watchface
+description: |
+  How to add custom fonts to give your watchface a unique look.
 permalink: /tutorials/watchface-tutorial/part2/
 generate_toc: true
+platform_choice: true
 ---
 
-In the previous page of the tutorial, you learned how to create a new Pebble
-project, set it up as a basic watchface and use ``TickTimerService`` to display
-the current time. However, the design was pretty basic, so let's improve it with
-some customization!
+In the previous part we created a basic watchface that displays the time and
+date using system fonts. It works, but it looks like every other watchface out
+there. Let's fix that by adding a custom font.
 
-In order to do this we will be using some new Pebble SDK concepts, including:
-
-- Resource management
-- Custom fonts (using ``GFont``)
-- Images (using ``GBitmap`` and ``BitmapLayer``)
-
-These will allow us to completely change the look and feel of the watchface. We
-will provide some sample materials to use, but once you understand the process
-be sure to replace these with your own to truly make it your own! Once we're
-done, you should end up with a watchface looking like this:
+By the end of this part, your watchface will look something like this:
 
 {% screenshot_viewer %}
 {
-  "image": "/images/getting-started/watchface-tutorial/2-final.png",
+  "image": "/images/tutorials/watchface-tutorial/part2.png",
+  "default": "emery",
   "platforms": [
     {"hw": "aplite", "wrapper": "steel-black"},
     {"hw": "basalt", "wrapper": "time-red"},
-    {"hw": "chalk", "wrapper": "time-round-rosegold-14"}
+    {"hw": "chalk", "wrapper": "time-round-rosegold-14"},
+    {"hw": "diorite", "wrapper": "pebble2-black"},
+    {"hw": "emery", "wrapper": "core-time2-red"},
+    {"hw": "gabbro", "wrapper": "core-time-round2-black-20"}
   ]
 }
 {% endscreenshot_viewer %}
 
-## First Steps
 
-To continue from the last part, you can either modify your existing Pebble
-project or create a new one, using the code from that project's main `.c` file
-as a starting template. For reference, that should look
-[something like this](https://gist.github.com/pebble-gists/9b9d50b990d742a3ae34).
+## How Resources Work
 
-The result of the first part should look something like this - a basic time
-display:
+^CP^ App resources - fonts, images, and other data files - are managed through
+the **Resources** section in the left sidebar. Click **Add New** next to
+Resources to upload files and configure their type and identifier.
 
-{% screenshot_viewer %}
-{
-  "image": "/images/getting-started/watchface-tutorial/1-time.png",
-  "platforms": [
-    {"hw": "aplite", "wrapper": "steel-black"},
-    {"hw": "basalt", "wrapper": "time-red"},
-    {"hw": "chalk", "wrapper": "time-round-rosegold-14"}
-  ]
-}
-{% endscreenshot_viewer %}
+^LC^ App resources - fonts, images, and other data files - are managed through the
+`media` array in `package.json`. Each entry specifies the resource type, a name
+to reference it in code, and the path to the file.
 
-Let's improve it!
+^LC^ All resource files must be placed inside the `resources/` directory of your
+project.
+
 
 ## Adding a Custom Font
 
-App resources (fonts and images etc.) are managed in the `package.json`
-file in the project's root directory, as detailed in
-[*App Resources*](/guides/app-resources/). All image files and fonts must 
-reside in subfolders of the `/resources` folder of your project. Below is an 
-example entry in the `media` array:
+A custom font must be a [TrueType](http://en.wikipedia.org/wiki/TrueType) font
+in the `.ttf` file format. For this tutorial we will use
+[Jersey 10](https://fonts.google.com/specimen/Jersey+10) from Google Fonts, but
+you can use any `.ttf` font you like.
 
+^CP^ In CloudPebble, click **Add New** next to **Resources** in the left sidebar.
+Upload your `.ttf` font file, set the **Resource Type** to **TrueType Font**,
+and set the **Identifier** to `FONT_JERSEY_56`. Then add the same font file
+again with the identifier `FONT_JERSEY_24`. We register the same font twice at
+different sizes - one large size for the time, and a smaller one for the date.
+
+^LC^ Place your font file in `resources/fonts/` and add entries to the `media` array
+in `package.json`. We will register the same font twice at different sizes -
+one large size for the time, and a smaller one for the date:
+
+{% platform local %}
 ```json
-"media": [
-  {
-    "type": "font",
-    "name": "FONT_PERFECT_DOS_48",
-    "file": "fonts/perfect-dos-vga.ttf",
-    "compatibility":"2.7"
-  }
-]
+"resources": {
+  "media": [
+    {
+      "type": "font",
+      "name": "FONT_JERSEY_56",
+      "file": "fonts/Jersey10-Regular.ttf",
+      "compatibility": "2.7"
+    },
+    {
+      "type": "font",
+      "name": "FONT_JERSEY_24",
+      "file": "fonts/Jersey10-Regular.ttf",
+      "compatibility": "2.7"
+    }
+  ]
+}
 ```
+{% endplatform %}
 
-In the example above, we would place our `perfect-dos-vga.ttf` file in the
-`/resources/fonts/` folder of our project.
+The `name` field becomes a constant you can reference in C code, prefixed with
+`RESOURCE_ID_`. The number at the end of the name (56, 24) is just part of the
+name you chose - it serves as a reminder of the intended font size.
 
-A custom font file must be a
-[TrueType](http://en.wikipedia.org/wiki/TrueType) font in the `.ttf` file format.
-[Here is an example font to use]({{ site.asset_path }}/fonts/getting-started/watchface-tutorial/perfect-dos-vga.ttf)
-([source](http://www.dafont.com/perfect-dos-vga-437.font)).
 
-Now we will substitute the system font used before (`FONT_KEY_BITHAM_42_BOLD`)
-for our newly imported one.
+## Loading Custom Fonts in C
 
-To do this, we will declare a ``GFont`` globally.
+Back in `main.c`, declare two ``GFont`` variables at the top of the file to
+hold our loaded fonts:
 
 ```c
-// Declare globally
 static GFont s_time_font;
+static GFont s_date_font;
 ```
 
-Next, we add the creation and substitution of the new ``GFont`` in the existing
-call to ``text_layer_set_font()`` in `main_window_load()`. Shown here is an
-example identifier used when uploading the font earlier, `FONT_PERFECT_DOS_48`,
-which is always pre-fixed with `RESOURCE_ID_`:
+Load them in `main_window_load()` using ``fonts_load_custom_font()`` and
+``resource_get_handle()``:
 
 ```c
-void main_window_load() {
-  // ...
-  // Create GFont
-  s_time_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_PERFECT_DOS_48));
-
-  // Apply to TextLayer
-  text_layer_set_font(s_time_layer, s_time_font);
-  // ...
-}
+// Load custom fonts
+s_time_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_JERSEY_56));
+s_date_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_JERSEY_24));
 ```
 
-And finally, safe destruction of the ``GFont`` in `main_window_unload()`:
+## Centering the Layout
+
+While we're here, let's properly center the time and date on screen. The date
+starts 56 pixels below the time and its layer is 30 pixels tall, giving us a
+total block height. We center the block by subtracting half its height from the
+screen center:
 
 ```c
-void main_window_unload() {
-  // ...
-  // Unload GFont
-  fonts_unload_custom_font(s_time_font);
-  // ...
-}
+// Center the time + date block vertically
+int date_height = 30;
+int block_height = 56 + date_height;
+int time_y = (bounds.size.h / 2) - (block_height / 2) - 10;
+int date_y = time_y + 56;
 ```
 
-After re-compiling and re-installing with `pebble build && pebble install`,
-the watchface should feature a much more interesting font.
+Notice the `- 10` offset at the end of the `time_y` calculation. Custom fonts
+often include internal padding (ascent space above the tallest glyph) that
+shifts the rendered text lower than the calculated position. Subtracting a small
+offset compensates for this and keeps the block visually centered on screen. You
+may need to adjust this value depending on the font you choose.
 
-An example screenshot is shown below:
-
-{% screenshot_viewer %}
-{
-  "image": "/images/getting-started/watchface-tutorial/2-custom-font.png",
-  "platforms": [
-    {"hw": "aplite", "wrapper": "steel-black"},
-    {"hw": "basalt", "wrapper": "time-red"},
-    {"hw": "chalk", "wrapper": "time-round-rosegold-14"}
-  ]
-}
-{% endscreenshot_viewer %}
-
-
-## Adding a Bitmap
-
-The Pebble SDK also allows you to use a 2-color (black and white) bitmap image
-in your watchface project. You can ensure that you meet this requirement by
-checking the export settings in your graphics package, or by purely using only
-white (`#FFFFFF`) and black (`#000000`) in the image's creation. Another
-alternative is to use a dithering tool such as
-[HyperDither](http://2002-2010.tinrocket.com/software/hyperdither/index.html).
-This will be loaded from the watchface's resources into a ``GBitmap`` data
-structure before being displayed using a ``BitmapLayer`` element. These two
-behave in a similar fashion to ``GFont`` and ``TextLayer``, so let's get
-started.
-
-You add a bitmap to the `package.json` file in the
-[same way](/guides/app-resources/fonts) as a font, except the new `media` array
-object will have a `type` of `bitmap`. Below is an example:
-
-```json
-{
-  "type": "bitmap",
-  "name": "IMAGE_BACKGROUND",
-  "file": "images/background.png"
-}
-```
-
-As before, here is an example bitmap we have created for you to use, which looks
-like this:
-
-[![background](/images/getting-started/watchface-tutorial/background.png "background")]({{ site.asset_path }}/images/getting-started/watchface-tutorial/background.png)
-
-Once this has been added to the project, return to your `.c` file and declare
-two more pointers, one each of ``GBitmap`` and ``BitmapLayer`` near the top of
-the file:
+Use `time_y` and `date_y` in the ``text_layer_create()`` calls instead of the
+old ``PBL_IF_ROUND_ELSE()`` values:
 
 ```c
-static BitmapLayer *s_background_layer;
-static GBitmap *s_background_bitmap;
+s_time_layer = text_layer_create(
+    GRect(0, time_y, bounds.size.w, 60));
 ```
 
-Now we will create both of these in `main_window_load()`. After both elements
-are created, we set the ``BitmapLayer`` to use our ``GBitmap`` and then add it
-as a child of the main ``Window`` as we did for the ``TextLayer``.
-
-However, is should be noted that the ``BitmapLayer`` must be added to the
-``Window`` before the ``TextLayer``. This will ensure that the text is drawn *on
-top of* the image. Otherwise, the text will be drawn behind the image and remain
-invisible to us. Here is that process in full, to be as clear as possible:
+Now replace the system font calls with our custom fonts. Change the
+``text_layer_set_font()`` calls for both layers:
 
 ```c
-// Create GBitmap
-s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BACKGROUND);
+// For the time layer (was FONT_KEY_BITHAM_42_BOLD)
+text_layer_set_font(s_time_layer, s_time_font);
 
-// Create BitmapLayer to display the GBitmap
-s_background_layer = bitmap_layer_create(bounds);
-
-// Set the bitmap onto the layer and add to the window
-bitmap_layer_set_bitmap(s_background_layer, s_background_bitmap);
-layer_add_child(window_layer, bitmap_layer_get_layer(s_background_layer));
+// For the date layer (was FONT_KEY_GOTHIC_24_BOLD)
+text_layer_set_font(s_date_layer, s_date_font);
 ```
 
-As always, the final step should be to ensure we free up the memory consumed by
-these new elements in `main_window_unload()`:
+## Cleaning Up
+
+Custom fonts must be unloaded when no longer needed. Add the cleanup calls to
+`main_window_unload()`, after destroying the ``TextLayer``s:
 
 ```c
-// Destroy GBitmap
-gbitmap_destroy(s_background_bitmap);
-
-// Destroy BitmapLayer
-bitmap_layer_destroy(s_background_layer);
+// Unload custom fonts
+fonts_unload_custom_font(s_time_font);
+fonts_unload_custom_font(s_date_font);
 ```
 
-The final step is to set the background color of the main ``Window`` to match
-the background image. Do this in `init()`:
+> Always destroy layers before unloading the fonts they use. The layer may try
+> to access the font during destruction.
 
-```c
-window_set_background_color(s_main_window, GColorBlack);
-```
+^CP^ Click the **play** button to compile and install. You should see your
+watchface now uses the custom font, giving it a much more distinctive look.
 
-With all this in place, the example background image should nicely frame the
-time and match the style of the new custom font. Of course, if you have used
-your own font and bitmap (highly recommended!) then your watchface will not look
-exactly like this.
+^LC^ Compile and install with `pebble build && pebble install`. You should see your
+watchface now uses the custom font, giving it a much more distinctive look.
 
-{% screenshot_viewer %}
-{
-  "image": "/images/getting-started/watchface-tutorial/2-final.png",
-  "platforms": [
-    {"hw": "aplite", "wrapper": "steel-black"},
-    {"hw": "basalt", "wrapper": "time-red"},
-    {"hw": "chalk", "wrapper": "time-round-rosegold-14"}
-  ]
-}
-{% endscreenshot_viewer %}
+
+## Experimenting
+
+Here are some things you can try:
+
+- Use a different font file. There are many free `.ttf` fonts available online
+  at sites like [dafont.com](http://www.dafont.com) and
+  [Google Fonts](https://fonts.google.com).
+- Adjust the font sizes by changing the `name` values in `package.json`.
+- Try different Y-positions in ``text_layer_create()`` to adjust the layout.
+
+> **Tip**: Not all fonts render well at small sizes on the Pebble display.
+> Pixel-style and bitmap fonts tend to look the sharpest.
 
 
 ## Conclusion
 
-After adding a custom font and a background image, our new watchface now looks
-much nicer. If you want to go a bit further, try adding a new ``TextLayer`` in
-the same way as the time display one to show the current date (hint: look at the
-[formatting options](http://www.cplusplus.com/reference/ctime/strftime/)
-available for `strftime()`!)
+In this part we learned how to:
 
-As with last time, you can compare your own code to the example source code
-using the button below.
+1. Register font resources in `package.json`.
+2. Load custom fonts with ``fonts_load_custom_font()`` and
+   ``resource_get_handle()``.
+3. Apply fonts to ``TextLayer``s.
+4. Clean up font resources properly.
 
-[View Source Code >{center,bg-lightblue,fg-white}](https://gist.github.com/d216d9e0b840ed296539)
+Your watchface now has a unique visual identity. Check your code against
+[the source for this part](https://github.com/coredevices/c-watchface-tutorial/tree/main/part2)
+if you run into any issues.
 
 
 ## What's Next?
 
-The next section of the tutorial will introduce PebbleKit JS for adding
-web-based content to your watchface.
+In the next part we will add a battery meter and Bluetooth disconnect alerts
+to give users useful information at a glance.
 
 [Go to Part 3 &rarr; >{wide,bg-dark-red,fg-white}](/tutorials/watchface-tutorial/part3/)

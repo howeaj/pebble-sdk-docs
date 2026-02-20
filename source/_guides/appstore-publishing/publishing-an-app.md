@@ -18,6 +18,7 @@ description: |
   How to upload and publish an app in the Pebble appstore.
 guide_group: appstore-publishing
 order: 1
+published: false
 ---
 
 When an app is ready for publishing, the `.pbw` file needs to be uploaded to the

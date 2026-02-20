@@ -15,17 +15,17 @@
 # This is the listing of the various areas of the Guides.
 # It is used to build the primary navigation and the Guides.
 
+alloy:
+  title: Alloy
+  description: Information on creating apps with JavaScript using the Alloy framework, based on Moddable.
+  category: interactive-apps
+  sort_by: order
+
 app-resources:
   title: App Resources
   description: Information on the many kinds of files that can be used inside Pebble apps.
   category: beautiful-apps
   sort_by: title
-
-appstore-publishing:
-  title: Appstore Publishing
-  description: How to get your app ready for going live in the Pebble appstore.
-  category: publishing-apps
-  sort_by: order
 
 best-practices:
   title: Best Practices
@@ -63,12 +63,6 @@ graphics-and-animations:
   category: beautiful-apps
   sort_by: title
 
-migration:
-  title: Migrating Older Apps
-  description: Information useful for updating old code from older apps to use newer SDKs.
-  category: publishing-apps
-  sort_by: title
-
 pebble-packages:
   title: Pebble Packages
   description: How to create and use Pebble Packages
@@ -78,18 +72,6 @@ pebble-packages:
 pebble-timeline:
   title: Pebble Timeline
   description: How to use Pebble timeline to bring timely information to app users outside the app itself via web services.
-  category: interactive-apps
-  sort_by: title
-
-rocky-js:
-  title: Rocky.js
-  description: Information on creating apps with JavaScript using Rocky.js
-  category: interactive-apps
-  sort_by: title
-
-smartstraps:
-  title: Smartstraps
-  description: Information on creating and talking to smartstraps.
   category: interactive-apps
   sort_by: title
 

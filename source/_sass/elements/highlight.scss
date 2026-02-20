@@ -37,25 +37,23 @@
     overflow-x: auto;
   }
 
+  .prompt {
+    user-select: none;
+    opacity: 0.6;
+  }
+
   .code-copy-link {
     background-color: $turquoise;
     border-radius: $base-border-radius;
     color: $white;
-    opacity: 0.1;
-    padding: 0.3em 0.3em 0.3em 0.35em;
+    cursor: pointer;
+    font-size: 14px;
+    opacity: 0;
+    padding: 0.3em 0.4em;
     position: absolute;
     right: 0.4em;
     top: 0.4em;
     transition: opacity 0.2s;
-
-    &.zeroclipboard-is-hover {
-      opacity: 1;
-    }
-    
-    span {
-      display: inline-block;
-      margin-right: 0.5em;
-    }
   }
 
   &:hover {

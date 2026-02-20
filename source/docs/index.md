@@ -34,11 +34,12 @@ The Pebble C API, used for creating native **watchapps and watchfaces** in C.
 The Pebble C API can be used in combination with *any* of the PebbleKit APIs
 listed below to extend the application's functionality.
 
-### [Pebble JavaScript API](/docs/rockyjs/)
+### [Moddable API (Alloy)](https://www.moddable.com/documentation/readme)
 
-Pebble's embedded JavaScript API, used for creating native **watchfaces** in
-JavaScript. The embedded JavaScript API can be used in combination with
-PebbleKit JS to extend the application's functionality.
+Alloy is a modern JavaScript framework for building native Pebble **watchapps and watchfaces**, based on the Moddable SDK. 
+It provides a rich set of APIs for creating complex user interfaces,
+accessing sensors, and communicating with the phone. 
+Alloy is actively developed with new features and improvements.
 
 ## PebbleKit APIs
 
