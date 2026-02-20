@@ -38,8 +38,7 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: docs-c
-          path: |
-            build/sdk/basalt/doxygen_sdk
+          path: build/sdk/
 
   # TODO: maybe build in pebble-dev/pebble-android-sdk, and publish releases?
   gendocs-android:
