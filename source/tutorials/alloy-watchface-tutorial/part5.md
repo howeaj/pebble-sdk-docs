@@ -31,7 +31,8 @@ In this final part we will add user settings using `localStorage` - a simple
 key-value store built right into Alloy - and then add a phone-side configuration
 page using [Clay for Pebble](https://github.com/pebble-dev/clay) so users can
 change settings from their phone. Users will be able to choose background
-and text colors, toggle the date display, and pick temperature units.
+and text colors, toggle the date display, pick temperature units, and choose
+between 12-hour and 24-hour time formats.
 
 Here is an example of a customized watchface:
 
@@ -72,7 +73,8 @@ const DEFAULT_SETTINGS = {
     backgroundColor: { r: 0, g: 0, b: 0 },
     textColor: { r: 255, g: 255, b: 255 },
     useFahrenheit: false,
-    showDate: true
+    showDate: true,
+    use24Hour: true
 };
 ```
 
@@ -148,6 +150,15 @@ function drawScreen(event) {
 
     // ... battery bar and disconnect indicator ...
 
+    // Format time as HH:MM (24h) or H:MM (12h)
+    let hours = now.getHours();
+    if (!settings.use24Hour) {
+        hours = hours % 12 || 12;
+    }
+    const hoursStr = String(hours).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+    const timeStr = `${hoursStr}:${minutes}`;
+
     // Draw time
     let width = render.getTextWidth(timeStr, timeFont);
     render.drawText(timeStr, timeFont, textColor,
@@ -170,6 +181,9 @@ The key changes:
 - `bgColor` replaces `black` for the background fill
 - `textColor` replaces `white` for all text drawing
 - The date block is wrapped in `if (settings.showDate)`
+- Time formatting respects the `use24Hour` setting - when disabled, hours are
+  converted to 12-hour format using `hours % 12 || 12` (the `|| 12` turns
+  midnight's `0` into `12`)
 
 Also update the battery bar border to use `textColor` instead of hardcoded
 white, so it matches the user's color choice:
@@ -321,7 +335,7 @@ phone app.
 
 ^CP^ In CloudPebble, go to **Settings** and add the following message keys in the
 **PebbleKit JS Message Keys** section: `BackgroundColor`, `TextColor`,
-`TemperatureUnit`, and `ShowDate`.
+`TemperatureUnit`, `ShowDate`, and `HourFormat`.
 
 ^LC^ Clay sends settings to the watch as AppMessage key-value pairs. Add message
 keys for each setting to `package.json`:
@@ -332,7 +346,8 @@ keys for each setting to `package.json`:
   "BackgroundColor",
   "TextColor",
   "TemperatureUnit",
-  "ShowDate"
+  "ShowDate",
+  "HourFormat"
 ]
 ```
 {% endplatform %}
@@ -398,6 +413,12 @@ module.exports = [
         "messageKey": "ShowDate",
         "label": "Show Date",
         "defaultValue": true
+      },
+      {
+        "type": "toggle",
+        "messageKey": "HourFormat",
+        "label": "Use 24-Hour Format",
+        "defaultValue": true
       }
     ]
   },
@@ -450,7 +471,7 @@ Then add a `Message` instance at the end of the file:
 
 ```js
 const message = new Message({
-    keys: ["BackgroundColor", "TextColor", "TemperatureUnit", "ShowDate"],
+    keys: ["BackgroundColor", "TextColor", "TemperatureUnit", "ShowDate", "HourFormat"],
     onReadable() {
         const msg = this.read();
 
@@ -469,6 +490,10 @@ const message = new Message({
         const sd = msg.get("ShowDate");
         if (sd !== undefined) {
             settings.showDate = sd === 1;
+        }
+        const hf = msg.get("HourFormat");
+        if (hf !== undefined) {
+            settings.use24Hour = hf === 1;
         }
 
         saveSettings();
@@ -516,8 +541,9 @@ $ pebble emu-app-config
 ```
 {% endplatform %}
 
-Try changing the background color, text color, and toggling the date and
-temperature unit - you should see the watchface update immediately.
+Try changing the background color, text color, and toggling the date,
+temperature unit, and hour format - you should see the watchface update
+immediately.
 
 ![Settings page on phone](/images/tutorials/watchface-tutorial/part6-settings.gif)
 
@@ -544,7 +570,7 @@ The phone-side Clay setup is identical between C and Alloy - the same
 Congratulations! You have built a complete, feature-rich Pebble watchface in
 Alloy. Here is everything it includes:
 
-1. **Digital time display** with the Jersey font.
+1. **Digital time display** with the Jersey font and 12h/24h format option.
 2. **Date display** that can be toggled on/off.
 3. **Live weather** from Open-Meteo (no API key needed).
 4. **Battery meter** with color-coded levels.
@@ -557,7 +583,7 @@ In this final part we learned how to:
 
 - Use `localStorage` for persistent key-value storage.
 - Define default settings with a spread-merge pattern.
-- Apply color and display preferences dynamically.
+- Apply color, display, and time format preferences dynamically.
 - Pass unit preferences to the Open-Meteo API.
 - Cache API responses for faster startup.
 - Install and configure Clay for a phone-side settings page.
