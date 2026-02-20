@@ -99,7 +99,7 @@ jobs:
         working-directory: /tmp/docs
         run: |
           cd docs-c
-          zip -r ../PebbleSDK-4.3_docs.zip {aplite,basalt}/doxygen_sdk
+          zip -r ../PebbleSDK-4.3_docs.zip basalt/doxygen_sdk
           cd ..
 
           mv docs-android javadoc
