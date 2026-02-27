@@ -208,6 +208,7 @@ The file is assumed to be called `weather_image.pdc`:
     "file": "weather_image.pdc"
   }
 ]
+```
 
 Drawing a Pebble Draw Command image is just as simple as drawing a normal PNG
 image to a graphics context, requiring only one draw call. First, load the
