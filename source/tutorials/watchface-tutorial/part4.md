@@ -322,7 +322,7 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
   if (temp_tuple && conditions_tuple) {
     static char temperature_buffer[8];
     static char conditions_buffer[32];
-    static char weather_layer_buffer[32];
+    static char weather_layer_buffer[42];
 
     snprintf(temperature_buffer, sizeof(temperature_buffer), "%d°C", (int)temp_tuple->value->int32);
     snprintf(conditions_buffer, sizeof(conditions_buffer), "%s", conditions_tuple->value->cstring);

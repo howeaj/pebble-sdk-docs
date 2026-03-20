@@ -321,7 +321,7 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
   if (temp_tuple && conditions_tuple) {
     static char temperature_buffer[8];
     static char conditions_buffer[32];
-    static char weather_layer_buffer[32];
+    static char weather_layer_buffer[42];
 
     int temp_value = (int)temp_tuple->value->int32;
 
