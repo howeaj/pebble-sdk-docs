@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="group___event_service" kind="group">
+    <compoundname>EventService</compoundname>
+    <title>Event Service</title>
+    <innergroup refid="group___accelerometer_service">AccelerometerService</innergroup>
+    <innergroup refid="group___app_focus_service">AppFocusService</innergroup>
+    <innergroup refid="group___battery_state_service">BatteryStateService</innergroup>
+    <innergroup refid="group___compass_service">CompassService</innergroup>
+    <innergroup refid="group___connection_service">ConnectionService</innergroup>
+    <innergroup refid="group___health_service">HealthService</innergroup>
+    <innergroup refid="group___tick_timer_service">TickTimerService</innergroup>
+    <briefdescription>
+<para>APIs to handle event services. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Pebble OS provides you with a set of APIs for handling event services, like accelerometer taps, app focus for interactivity, battery states, Bluetooth connections, and tick timers to call when a time component has changed. You use event services to be notified, for example, when something happens on Pebble, like losing the connection to the phone or when a notification covers the screen and requires your Pebble game to pause. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

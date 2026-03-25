@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="group___foundation" kind="group">
+    <compoundname>Foundation</compoundname>
+    <title>Foundation</title>
+    <innergroup refid="group___app">App</innergroup>
+    <innergroup refid="group___app_comm">App Communication</innergroup>
+    <innergroup refid="group___app_glance">App Glance</innergroup>
+    <innergroup refid="group___app_message">AppMessage</innergroup>
+    <innergroup refid="group___app_sync">AppSync</innergroup>
+    <innergroup refid="group___app_worker">AppWorker</innergroup>
+    <innergroup refid="group___data_logging">DataLogging</innergroup>
+    <innergroup refid="group___data_structures">DataStructures</innergroup>
+    <innergroup refid="group___dictation">Dictation</innergroup>
+    <innergroup refid="group___dictionary">Dictionary</innergroup>
+    <innergroup refid="group___event_service">Event Service</innergroup>
+    <innergroup refid="group___exit_reason">Exit Reason</innergroup>
+    <innergroup refid="group___internationalization">Internationalization</innergroup>
+    <innergroup refid="group___launch_reason">Launch Reason</innergroup>
+    <innergroup refid="group___logging">Logging</innergroup>
+    <innergroup refid="group___math">Math</innergroup>
+    <innergroup refid="group___memory_management">Memory Management</innergroup>
+    <innergroup refid="group___platform">Platform</innergroup>
+    <innergroup refid="group___resources">Resources</innergroup>
+    <innergroup refid="group___rocky">Rocky</innergroup>
+    <innergroup refid="group___storage">Storage</innergroup>
+    <innergroup refid="group___timer">Timer</innergroup>
+    <innergroup refid="group___wakeup">Wakeup</innergroup>
+    <innergroup refid="group___wall_time">Wall Time</innergroup>
+    <innergroup refid="group___watch_info">WatchInfo</innergroup>
+    <briefdescription>
+<para>The core of the Pebble SDK. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The Pebble SDK consists of different frameworks that are organized by functionality. Each framework includes an API and provides access to the software libraries supported natively by Pebble OS. You use these interfaces (APIs) in the C programming language to write software for the Pebble platform.</para>
+<para>Frameworks are grouped hierarchically into Foundation, Graphics, Standard C and User Interface.</para>
+<para>The Foundation framework is the core of the Pebble OS. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

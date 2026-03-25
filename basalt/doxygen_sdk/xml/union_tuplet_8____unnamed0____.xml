@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="union_tuplet_8____unnamed0____" kind="union" language="C++" prot="public">
+    <compoundname>Tuplet.__unnamed0__</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="union_tuplet_8____unnamed0_____1a4b3a6218bb3e3a7303e8a171a60fcf92" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_tuplet" kindref="compound">Tuplet</ref></type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>bytes</name>
+        <qualifiedname>Tuplet.__unnamed0__::bytes</qualifiedname>
+        <briefdescription>
+<para>Valid when <computeroutput>.type.</computeroutput> is <ref refid="group___dictionary_1ggaf164f32d9bda6829f1738ef3fb2c6670ad852031b350c69166303a05dbe294ec7" kindref="member">TUPLE_BYTE_ARRAY</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/sdk/basalt/include/pebble.h" line="1887" column="11"/>
+      </memberdef>
+      <memberdef kind="variable" id="union_tuplet_8____unnamed0_____1a59df64e03292f845a11befa53b2845d1" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_tuplet" kindref="compound">Tuplet</ref></type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>cstring</name>
+        <qualifiedname>Tuplet.__unnamed0__::cstring</qualifiedname>
+        <briefdescription>
+<para>Valid when <computeroutput>.type.</computeroutput> is <ref refid="group___dictionary_1ggaf164f32d9bda6829f1738ef3fb2c6670a73c9d3384801aec20d36c732d9218dab" kindref="member">TUPLE_CSTRING</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/sdk/basalt/include/pebble.h" line="1894" column="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="union_tuplet_8____unnamed0_____1a157db7df530023575515d366c9b672e8" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_tuplet" kindref="compound">Tuplet</ref></type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>integer</name>
+        <qualifiedname>Tuplet.__unnamed0__::integer</qualifiedname>
+        <briefdescription>
+<para>Valid when <computeroutput>.type.</computeroutput> is <ref refid="group___dictionary_1ggaf164f32d9bda6829f1738ef3fb2c6670ad691daf1df77095c1e19fe30b6cea5b4" kindref="member">TUPLE_INT</ref> or <ref refid="group___dictionary_1ggaf164f32d9bda6829f1738ef3fb2c6670a6802e5d267fdda619ffb13fc80d873fe" kindref="member">TUPLE_UINT</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/sdk/basalt/include/pebble.h" line="1902" column="13"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Anonymous union containing the reference to the <ref refid="struct_tuplet" kindref="compound">Tuplet</ref>&apos;s value, being either a byte array, c-string or integer. See documentation of <computeroutput>.bytes</computeroutput>, <computeroutput>.cstring</computeroutput> and <computeroutput>.integer</computeroutput> fields. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="build/sdk/basalt/include/pebble.h" line="1880" column="3" bodyfile="build/sdk/basalt/include/pebble.h" bodystart="1880" bodyend="1903"/>
+    <listofallmembers>
+      <member refid="union_tuplet_8____unnamed0_____1a4b3a6218bb3e3a7303e8a171a60fcf92" prot="public" virt="non-virtual"><scope>Tuplet.__unnamed0__</scope><name>bytes</name></member>
+      <member refid="union_tuplet_8____unnamed0_____1a59df64e03292f845a11befa53b2845d1" prot="public" virt="non-virtual"><scope>Tuplet.__unnamed0__</scope><name>cstring</name></member>
+      <member refid="union_tuplet_8____unnamed0_____1a157db7df530023575515d366c9b672e8" prot="public" virt="non-virtual"><scope>Tuplet.__unnamed0__</scope><name>integer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

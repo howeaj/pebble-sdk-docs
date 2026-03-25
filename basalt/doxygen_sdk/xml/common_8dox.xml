@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="common_8dox" kind="file" language="C++">
+    <compoundname>common.dox</compoundname>
+    <sectiondef kind="define">
+      <member refid="group___standard_math_1ga690f251553b39fd4f31894826141b61a" kind="define"><name>RAND_MAX</name></member>
+    </sectiondef>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="common_8dox_1ab5525e8f9f02c79fbadd0f03ff724e23" prot="public" static="no">
+        <type>int</type>
+        <definition>typedef int int16_t</definition>
+        <argsstring></argsstring>
+        <name>int16_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="495" column="13" bodyfile="sdk/docs/common.dox" bodystart="495" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="common_8dox_1a32f2e37ee053cf2ce8ca28d1f74630e5" prot="public" static="no">
+        <type>int</type>
+        <definition>typedef int int32_t</definition>
+        <argsstring></argsstring>
+        <name>int32_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="497" column="13" bodyfile="sdk/docs/common.dox" bodystart="497" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="common_8dox_1a519c26d715a011b90dedc081154bcef3" prot="public" static="no">
+        <type>int</type>
+        <definition>typedef int int64_t</definition>
+        <argsstring></argsstring>
+        <name>int64_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="499" column="13" bodyfile="sdk/docs/common.dox" bodystart="499" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="common_8dox_1ab22d47f4bee9afe3edc1e71fdee8c954" prot="public" static="no">
+        <type>int</type>
+        <definition>typedef int int8_t</definition>
+        <argsstring></argsstring>
+        <name>int8_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="493" column="13" bodyfile="sdk/docs/common.dox" bodystart="493" bodyend="-1"/>
+      </memberdef>
+      <member refid="group___standard_memory_1ga7c94ea6f8948649f8d181ae55911eeaf" kind="typedef"><name>size_t</name></member>
+      <member refid="group___standard_time_1ga3364eb8c173382cf152d7f163211b29e" kind="typedef"><name>time_t</name></member>
+      <member refid="group___standard_c_1gaa686eebdb9c21527b4ed32a4427c28b7" kind="typedef"><name>uint16_t</name></member>
+      <member refid="group___standard_c_1ga9c50f76d143708c221a73ff579a463a4" kind="typedef"><name>uint32_t</name></member>
+      <memberdef kind="typedef" id="common_8dox_1a4f6b3a66a68a073748f717951a18251c" prot="public" static="no">
+        <type>int</type>
+        <definition>typedef int uint64_t</definition>
+        <argsstring></argsstring>
+        <name>uint64_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="500" column="13" bodyfile="sdk/docs/common.dox" bodystart="500" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="common_8dox_1a7d53f2453530768d827375a53d3c5d81" prot="public" static="no">
+        <type>int</type>
+        <definition>typedef int uint8_t</definition>
+        <argsstring></argsstring>
+        <name>uint8_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="494" column="13" bodyfile="sdk/docs/common.dox" bodystart="494" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <member refid="group___standard_memory_1gad65564be3c3e7ff6f7586303aebf9949" kind="function"><name>calloc</name></member>
+      <member refid="group___standard_memory_1gafbedc913aa4651b3c3b4b3aecd9b4711" kind="function"><name>free</name></member>
+      <member refid="group___standard_memory_1ga9c36d0fe3ec4675cbffdc9b52f5fb399" kind="function"><name>malloc</name></member>
+      <member refid="group___standard_memory_1gaa56e371c647a620f94577879c6a164cf" kind="function"><name>memcmp</name></member>
+      <member refid="group___standard_memory_1gaba088e716bccbc96d42da97e96316df1" kind="function"><name>memcpy</name></member>
+      <member refid="group___standard_memory_1ga340d11725e5c81a874f508fbcdf1c5ef" kind="function"><name>memmove</name></member>
+      <member refid="group___standard_memory_1ga1dfdc55c5334154353963674598faf1b" kind="function"><name>memset</name></member>
+      <member refid="group___standard_math_1ga20e50ab9d6b10af0e2940d9419448f42" kind="function"><name>rand</name></member>
+      <member refid="group___standard_memory_1gad28fed1039f35d754710633141b4edf0" kind="function"><name>realloc</name></member>
+      <member refid="group___standard_locale_1ga32b174e036be8744d4fcdde290012d3c" kind="function"><name>setlocale</name></member>
+      <member refid="group___standard_i_o_1gae61fd4217e6f042ae06debdb148455d2" kind="function"><name>snprintf</name></member>
+      <member refid="group___standard_math_1ga83a727cc697aea22e24cad5f39198dd2" kind="function"><name>srand</name></member>
+      <member refid="group___standard_string_1ga19546e43db31c3095991b04023b422b2" kind="function"><name>strcat</name></member>
+      <member refid="group___standard_string_1ga6f3dcb20ff11ff9db5904c3cfb61a38c" kind="function"><name>strcmp</name></member>
+      <member refid="group___standard_string_1gac5082c8ce4f0cddd88bf4d0d2e738308" kind="function"><name>strcpy</name></member>
+      <member refid="group___standard_string_1ga008e171a518fe0e0352f31b245e03875" kind="function"><name>strlen</name></member>
+      <member refid="group___standard_string_1gaef7c0be850a2df7a4e4c5f76774a721b" kind="function"><name>strncat</name></member>
+      <member refid="group___standard_string_1gab36f95eb212013e67f97dacede2751db" kind="function"><name>strncmp</name></member>
+      <member refid="group___standard_string_1ga9380f4a95b2c4e3d979b1634d3a8bcc9" kind="function"><name>strncpy</name></member>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="459"><highlight class="normal"></highlight></codeline>
+<codeline lineno="460"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>stdio.h<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="461" refid="group___standard_i_o_1gae61fd4217e6f042ae06debdb148455d2" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group___standard_i_o_1gae61fd4217e6f042ae06debdb148455d2" kindref="member">snprintf</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*str,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*fmt,<sp/>...);</highlight></codeline>
+<codeline lineno="462"><highlight class="normal"></highlight></codeline>
+<codeline lineno="463"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>stdlib.h<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="464" refid="group___standard_math_1ga690f251553b39fd4f31894826141b61a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RAND_MAX</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="465" refid="group___standard_math_1ga20e50ab9d6b10af0e2940d9419448f42" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group___standard_math_1ga20e50ab9d6b10af0e2940d9419448f42" kindref="member">rand</ref>();</highlight></codeline>
+<codeline lineno="466" refid="group___standard_math_1ga83a727cc697aea22e24cad5f39198dd2" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group___standard_math_1ga83a727cc697aea22e24cad5f39198dd2" kindref="member">srand</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>seed);</highlight></codeline>
+<codeline lineno="467" refid="group___standard_memory_1ga9c36d0fe3ec4675cbffdc9b52f5fb399" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="group___standard_memory_1ga9c36d0fe3ec4675cbffdc9b52f5fb399" kindref="member">malloc</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size);</highlight></codeline>
+<codeline lineno="468" refid="group___standard_memory_1gad65564be3c3e7ff6f7586303aebf9949" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="group___standard_memory_1gad65564be3c3e7ff6f7586303aebf9949" kindref="member">calloc</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size);</highlight></codeline>
+<codeline lineno="469" refid="group___standard_memory_1gad28fed1039f35d754710633141b4edf0" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="group___standard_memory_1gad28fed1039f35d754710633141b4edf0" kindref="member">realloc</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*ptr,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size);</highlight></codeline>
+<codeline lineno="470" refid="group___standard_memory_1gafbedc913aa4651b3c3b4b3aecd9b4711" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group___standard_memory_1gafbedc913aa4651b3c3b4b3aecd9b4711" kindref="member">free</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*ptr);</highlight></codeline>
+<codeline lineno="471"><highlight class="normal"></highlight></codeline>
+<codeline lineno="472"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>string.h<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="473" refid="group___standard_memory_1ga7c94ea6f8948649f8d181ae55911eeaf" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group___standard_memory_1ga7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref>;</highlight></codeline>
+<codeline lineno="474" refid="group___standard_memory_1gaa56e371c647a620f94577879c6a164cf" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group___standard_memory_1gaa56e371c647a620f94577879c6a164cf" kindref="member">memcmp</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*ptr1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*ptr2,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n);</highlight></codeline>
+<codeline lineno="475" refid="group___standard_memory_1gaba088e716bccbc96d42da97e96316df1" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="group___standard_memory_1gaba088e716bccbc96d42da97e96316df1" kindref="member">memcpy</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*dest,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*src,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n);</highlight></codeline>
+<codeline lineno="476" refid="group___standard_memory_1ga340d11725e5c81a874f508fbcdf1c5ef" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="group___standard_memory_1ga340d11725e5c81a874f508fbcdf1c5ef" kindref="member">memmove</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*dest,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*src,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n);</highlight></codeline>
+<codeline lineno="477" refid="group___standard_memory_1ga1dfdc55c5334154353963674598faf1b" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="group___standard_memory_1ga1dfdc55c5334154353963674598faf1b" kindref="member">memset</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*dest,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>c,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n);</highlight></codeline>
+<codeline lineno="478" refid="group___standard_string_1ga6f3dcb20ff11ff9db5904c3cfb61a38c" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group___standard_string_1ga6f3dcb20ff11ff9db5904c3cfb61a38c" kindref="member">strcmp</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*str1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*str2);</highlight></codeline>
+<codeline lineno="479" refid="group___standard_string_1gab36f95eb212013e67f97dacede2751db" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group___standard_string_1gab36f95eb212013e67f97dacede2751db" kindref="member">strncmp</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*str1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*str2,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n);</highlight></codeline>
+<codeline lineno="480" refid="group___standard_string_1gac5082c8ce4f0cddd88bf4d0d2e738308" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="group___standard_string_1gac5082c8ce4f0cddd88bf4d0d2e738308" kindref="member">strcpy</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*dest,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*src);</highlight></codeline>
+<codeline lineno="481" refid="group___standard_string_1ga9380f4a95b2c4e3d979b1634d3a8bcc9" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="group___standard_string_1ga9380f4a95b2c4e3d979b1634d3a8bcc9" kindref="member">strncpy</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*dest,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*src,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n);</highlight></codeline>
+<codeline lineno="482" refid="group___standard_string_1ga19546e43db31c3095991b04023b422b2" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="group___standard_string_1ga19546e43db31c3095991b04023b422b2" kindref="member">strcat</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*dest,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*src);</highlight></codeline>
+<codeline lineno="483" refid="group___standard_string_1gaef7c0be850a2df7a4e4c5f76774a721b" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="group___standard_string_1gaef7c0be850a2df7a4e4c5f76774a721b" kindref="member">strncat</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*dest,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*src,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n);</highlight></codeline>
+<codeline lineno="484" refid="group___standard_string_1ga008e171a518fe0e0352f31b245e03875" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="group___standard_string_1ga008e171a518fe0e0352f31b245e03875" kindref="member">strlen</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*str);</highlight></codeline>
+<codeline lineno="485"><highlight class="normal"></highlight></codeline>
+<codeline lineno="486"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>locale.h<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="487" refid="group___standard_locale_1ga32b174e036be8744d4fcdde290012d3c" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="group___standard_locale_1ga32b174e036be8744d4fcdde290012d3c" kindref="member">setlocale</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>category,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*locale);</highlight></codeline>
+<codeline lineno="488"><highlight class="normal"></highlight></codeline>
+<codeline lineno="489"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>time.h<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="490" refid="group___standard_time_1ga3364eb8c173382cf152d7f163211b29e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group___standard_time_1ga3364eb8c173382cf152d7f163211b29e" kindref="member">time_t</ref>;</highlight></codeline>
+<codeline lineno="491"><highlight class="normal"></highlight></codeline>
+<codeline lineno="492"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>C99<sp/>integer<sp/>types<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="493"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>int8_t;</highlight></codeline>
+<codeline lineno="494"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>uint8_t;</highlight></codeline>
+<codeline lineno="495"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>int16_t;</highlight></codeline>
+<codeline lineno="496" refid="group___standard_c_1gaa686eebdb9c21527b4ed32a4427c28b7" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group___standard_c_1gaa686eebdb9c21527b4ed32a4427c28b7" kindref="member">uint16_t</ref>;</highlight></codeline>
+<codeline lineno="497"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>int32_t;</highlight></codeline>
+<codeline lineno="498" refid="group___standard_c_1ga9c50f76d143708c221a73ff579a463a4" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group___standard_c_1ga9c50f76d143708c221a73ff579a463a4" kindref="member">uint32_t</ref>;</highlight></codeline>
+<codeline lineno="499"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>int64_t;</highlight></codeline>
+<codeline lineno="500"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>uint64_t;</highlight></codeline>
+    </programlisting>
+    <location file="sdk/docs/common.dox"/>
+  </compounddef>
+</doxygen>

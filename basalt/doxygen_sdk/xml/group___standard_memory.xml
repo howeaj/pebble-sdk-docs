@@ -1,0 +1,382 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="group___standard_memory" kind="group">
+    <compoundname>StandardMemory</compoundname>
+    <title>Memory</title>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="group___standard_memory_1gad65564be3c3e7ff6f7586303aebf9949" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * calloc</definition>
+        <argsstring>(size_t count, size_t size)</argsstring>
+        <name>calloc</name>
+        <param>
+          <type><ref refid="group___standard_memory_1ga7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type><ref refid="group___standard_memory_1ga7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>Allocates space for count objects that are size bytes and fills the memory with bytes of value 0. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>count</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of objects to allocate space for </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The size of the object type being allocated </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A pointer to the allocated memory or NULL on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="468" column="6" declfile="sdk/docs/common.dox" declline="468" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group___standard_memory_1gafbedc913aa4651b3c3b4b3aecd9b4711" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void free</definition>
+        <argsstring>(void *ptr)</argsstring>
+        <name>free</name>
+        <param>
+          <type>void *</type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+<para>Frees previously allocated memory. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ptr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The memory buffer to free. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="470" column="6" declfile="sdk/docs/common.dox" declline="470" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group___standard_memory_1ga9c36d0fe3ec4675cbffdc9b52f5fb399" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * malloc</definition>
+        <argsstring>(size_t size)</argsstring>
+        <name>malloc</name>
+        <param>
+          <type><ref refid="group___standard_memory_1ga7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>Allocates a requested amount of memory. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of bytes to allocate </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A pointer to the allocated memory or NULL on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="467" column="6" declfile="sdk/docs/common.dox" declline="467" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group___standard_memory_1gaa56e371c647a620f94577879c6a164cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int memcmp</definition>
+        <argsstring>(const void *ptr1, const void *ptr2, size_t n)</argsstring>
+        <name>memcmp</name>
+        <param>
+          <type>const void *</type>
+          <declname>ptr1</declname>
+        </param>
+        <param>
+          <type>const void *</type>
+          <declname>ptr2</declname>
+        </param>
+        <param>
+          <type><ref refid="group___standard_memory_1ga7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+<para>Compares the first n bytes of memory regions ptr1 and ptr2. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ptr1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pointer to the first memory region to compare </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ptr2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pointer to the second memory region to compare </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of bytes to compare </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 if the first n bytes of ptr1 and ptr 2 match. Otherwise, the sign is determined by the sign of the difference between the first pair of bytes that differ in ptr1 and ptr2. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="474" column="5" declfile="sdk/docs/common.dox" declline="474" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group___standard_memory_1gaba088e716bccbc96d42da97e96316df1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * memcpy</definition>
+        <argsstring>(void *dest, const void *src, size_t n)</argsstring>
+        <name>memcpy</name>
+        <param>
+          <type>void *</type>
+          <declname>dest</declname>
+        </param>
+        <param>
+          <type>const void *</type>
+          <declname>src</declname>
+        </param>
+        <param>
+          <type><ref refid="group___standard_memory_1ga7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+<para>Copies n bytes from src to dest. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dest</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pointer to the destination memory region </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>src</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pointer to the source memory region </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of bytes to copy </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="475" column="6" declfile="sdk/docs/common.dox" declline="475" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group___standard_memory_1ga340d11725e5c81a874f508fbcdf1c5ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * memmove</definition>
+        <argsstring>(void *dest, const void *src, size_t n)</argsstring>
+        <name>memmove</name>
+        <param>
+          <type>void *</type>
+          <declname>dest</declname>
+        </param>
+        <param>
+          <type>const void *</type>
+          <declname>src</declname>
+        </param>
+        <param>
+          <type><ref refid="group___standard_memory_1ga7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+<para>Copies n bytes from src to dest by first copying to a temporary area first, allowing dest and src to potentially overlap. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This can be used to move data to a location that overlaps its previous location. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dest</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pointer to the destination memory region </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>src</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pointer to the source memory region </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of bytes to copy </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="476" column="6" declfile="sdk/docs/common.dox" declline="476" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group___standard_memory_1ga1dfdc55c5334154353963674598faf1b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * memset</definition>
+        <argsstring>(void *dest, int c, size_t n)</argsstring>
+        <name>memset</name>
+        <param>
+          <type>void *</type>
+          <declname>dest</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type><ref refid="group___standard_memory_1ga7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+<para>Sets n bytes to c starting at dest. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This can be used to clear a memory region for example if c is 0. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dest</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pointer to the destination memory region </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The integer used as an unsigned char to assign to each byte </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of bytes to set </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="477" column="6" declfile="sdk/docs/common.dox" declline="477" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group___standard_memory_1gad28fed1039f35d754710633141b4edf0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * realloc</definition>
+        <argsstring>(void *ptr, size_t size)</argsstring>
+        <name>realloc</name>
+        <param>
+          <type>void *</type>
+          <declname>ptr</declname>
+        </param>
+        <param>
+          <type><ref refid="group___standard_memory_1ga7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>Takes the memory allocated at ptr and changes the length of its allocation to the size specified. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Copies the smaller of the length of the original allocation or the new size into the newly allocated buffer. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ptr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The memory allocation to be changed </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The size to change the ptr allocation to </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A pointer to the new allocated memory or NULL on error </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="469" column="6" declfile="sdk/docs/common.dox" declline="469" declcolumn="6"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="group___standard_memory_1ga7c94ea6f8948649f8d181ae55911eeaf" prot="public" static="no">
+        <type>unsigned int</type>
+        <definition>typedef unsigned int size_t</definition>
+        <argsstring></argsstring>
+        <name>size_t</name>
+        <briefdescription>
+<para>size as an unsigned integer </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="473" column="22" bodyfile="sdk/docs/common.dox" bodystart="473" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Standard memory functions. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

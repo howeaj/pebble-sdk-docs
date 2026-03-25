@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="group___standard_locale" kind="group">
+    <compoundname>StandardLocale</compoundname>
+    <title>Locale</title>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="group___standard_locale_1ga32b174e036be8744d4fcdde290012d3c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char * setlocale</definition>
+        <argsstring>(int category, char *locale)</argsstring>
+        <name>setlocale</name>
+        <param>
+          <type>int</type>
+          <declname>category</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>locale</declname>
+        </param>
+        <briefdescription>
+<para>Set the app&apos;s locale for a category of routines. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>setlocale</computeroutput> can be used to:<itemizedlist>
+<listitem><para>set the app&apos;s locale to a specific locale: <computeroutput>setlocale(LC_ALL, &quot;en_CA&quot;)</computeroutput></para>
+</listitem><listitem><para>set the app&apos;s locale to the system locale: <computeroutput>setlocale(LC_ALL, &quot;&quot;)</computeroutput></para>
+</listitem><listitem><para>get the app&apos;s curent locale: <computeroutput>setlocale(LC_ALL, NULL)</computeroutput></para>
+</listitem></itemizedlist>
+</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>category</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The category of routines for which to set the locale </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>locale</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ISO formatted locale to use, or &quot;&quot; for the system locale </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the locale after the change is applied, NULL on failure (e.g. unsuported category) </para>
+</simplesect>
+<simplesect kind="note"><para>Currently, we only support two categories: LC_ALL and LC_TIME </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="487" column="6" declfile="sdk/docs/common.dox" declline="487" declcolumn="6"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Standard locale functions. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

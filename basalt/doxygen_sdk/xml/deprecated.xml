@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="deprecated" kind="page">
+    <compoundname>deprecated</compoundname>
+    <title>Deprecated List</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><variablelist>
+<varlistentry><term>Global <ref refid="group___connection_service_1ga31ae0c22e1cbf2af34b39b49e98c777a" kindref="member">bluetooth_connection_service_peek</ref>  (void)</term></varlistentry>
+<listitem><para><anchor id="deprecated_1_deprecated000002"/>Backward compatibility function for connection_service_peek_pebble_app_connection. New code should use connection_service_peek_pebble_app_connection directly. This will be removed in a future version of the Pebble SDK  </para>
+</listitem>
+<varlistentry><term>Global <ref refid="group___connection_service_1ga8aeb8a0512a53c1eec9b7a1547cd8ae5" kindref="member">bluetooth_connection_service_subscribe</ref>  (ConnectionHandler handler)</term></varlistentry>
+<listitem><para><anchor id="deprecated_1_deprecated000003"/>Backward compatibility function for connection_service_subscribe. New code should use connection_service_subscribe directly. This will be removed in a future version of the Pebble SDK  </para>
+</listitem>
+<varlistentry><term>Global <ref refid="group___connection_service_1gae3a446e0d93d0d71f4265d5ff9352c0a" kindref="member">bluetooth_connection_service_unsubscribe</ref>  (void)</term></varlistentry>
+<listitem><para><anchor id="deprecated_1_deprecated000004"/>Backward compatibility function for connection_service_unsubscribe. New code should use connection_service_unsubscribe directly. This will be removed in a future version of the Pebble SDK  </para>
+</listitem>
+<varlistentry><term>Global <ref refid="group___connection_service_1gab05ff58b641cc7f9d589cde8fe0baadb" kindref="member">BluetoothConnectionHandler</ref>  </term></varlistentry>
+<listitem><para><anchor id="deprecated_1_deprecated000001"/>Backwards compatibility typedef for ConnectionHandler. New code should use ConnectionHandler directly. This will be removed in a future version of the Pebble SDK. </para>
+</listitem>
+</variablelist>
+</para>
+    </detaileddescription>
+    <location file="deprecated"/>
+  </compounddef>
+</doxygen>

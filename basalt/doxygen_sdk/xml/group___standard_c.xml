@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="group___standard_c" kind="group">
+    <compoundname>StandardC</compoundname>
+    <title>Standard C</title>
+    <innergroup refid="group___standard_i_o">Format</innergroup>
+    <innergroup refid="group___standard_locale">Locale</innergroup>
+    <innergroup refid="group___standard_math">Math</innergroup>
+    <innergroup refid="group___standard_memory">Memory</innergroup>
+    <innergroup refid="group___standard_string">String</innergroup>
+    <innergroup refid="group___standard_time">Time</innergroup>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="group___standard_c_1gaa686eebdb9c21527b4ed32a4427c28b7" prot="public" static="no">
+        <type>int</type>
+        <definition>typedef int uint16_t</definition>
+        <argsstring></argsstring>
+        <name>uint16_t</name>
+        <briefdescription>
+<para>16-bit unsigned integer number </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="496" column="13" bodyfile="sdk/docs/common.dox" bodystart="496" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group___standard_c_1ga9c50f76d143708c221a73ff579a463a4" prot="public" static="no">
+        <type>int</type>
+        <definition>typedef int uint32_t</definition>
+        <argsstring></argsstring>
+        <name>uint32_t</name>
+        <briefdescription>
+<para>32-bit unsigned integer number </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="498" column="13" bodyfile="sdk/docs/common.dox" bodystart="498" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Standard C types, functions, constants, etc.</para>
+<para>The standard C functions available here, such as <ref refid="group___standard_i_o_1gae61fd4217e6f042ae06debdb148455d2" kindref="member">snprintf()</ref> and <ref refid="group___standard_time_1ga99ef1cb2c789827dd5db3886dccf9067" kindref="member">time()</ref>, are provided by the firmware. Using these functions will not significantly increase the size of your app beyond what is needed to call the function. You may use other standard C functions not listed here, but be aware that not all will successfully be added to your app, and if they are added, your app&apos;s binary size will increase accordingly. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

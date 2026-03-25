@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="group___standard_i_o" kind="group">
+    <compoundname>StandardIO</compoundname>
+    <title>Format</title>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="group___standard_i_o_1gae61fd4217e6f042ae06debdb148455d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int snprintf</definition>
+        <argsstring>(char *str, size_t n, const *fmt,...)</argsstring>
+        <name>snprintf</name>
+        <param>
+          <type>char *</type>
+          <declname>str</declname>
+        </param>
+        <param>
+          <type><ref refid="group___standard_memory_1ga7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>const *</type>
+          <declname>fmt</declname>
+        </param>
+        <param>
+          <type>...</type>
+        </param>
+        <briefdescription>
+<para>Format a string into a buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The Pebble-supported format specifiers are displayed below.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>str</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The string buffer to write the formatted string into </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum size of the buffer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fmt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The C formatting string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The number of bytes written</para>
+</simplesect>
+<htmlonly> 
+&lt;style type=&quot;text/css&quot;&gt;
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+&lt;/style&gt;
+&lt;table class=&quot;tg&quot;&gt;
+  &lt;tr&gt;
+    &lt;th class=&quot;tg-031e&quot;&gt;Specifier&lt;/th&gt;
+    &lt;th class=&quot;tg-031e&quot;&gt;Output&lt;/th&gt;
+    &lt;th class=&quot;tg-031e&quot;&gt;Example&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;d or i&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;Signed decimal integer&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;294&lt;br&gt;-294&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;u&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;Unsigned decimal integer&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;7235&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;o&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;Unsigned octal&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;610&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;x&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;Unsigned hexadecimal integer&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;8b2&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;X&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;Unsigned hexadecimal integer (uppercase)&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;8B2&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;c&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;Character&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;h&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;s&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;Null-terminated string of characters&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;pebble&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;p&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;Pointer address&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;0xb8000000&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;%&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;A % followed by another % character will write a single % to the stream.&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;%&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;
+</htmlonly></para>
+<para>Length specifiers can also be combined with the format specifiers above:</para>
+<para><htmlonly> 
+&lt;style type=&quot;text/css&quot;&gt;
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-s6z2{text-align:center}
+&lt;/style&gt;
+&lt;table class=&quot;tg&quot;&gt;
+  &lt;tr&gt;
+    &lt;th class=&quot;tg-031e&quot;&gt;&lt;/th&gt;
+    &lt;th class=&quot;tg-s6z2&quot;&gt;u o x X&lt;/th&gt;
+    &lt;th class=&quot;tg-s6z2&quot;&gt;c&lt;/th&gt;
+    &lt;th class=&quot;tg-s6z2&quot;&gt;s&lt;/th&gt;
+    &lt;th class=&quot;tg-s6z2&quot;&gt;p&lt;/th&gt;
+    &lt;th class=&quot;tg-s6z2&quot;&gt;n&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;(none)&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;unsigned int&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;int&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;char*&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;void*&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;int*&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;h&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;unsigned short int&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;short int*&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;l&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;unsigned long int&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;wint_t&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;wchar_t*&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;&lt;/td&gt;
+    &lt;td class=&quot;tg-031e&quot;&gt;long int*&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+</htmlonly> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sdk/docs/common.dox" line="461" column="5" declfile="sdk/docs/common.dox" declline="461" declcolumn="5"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Standard formatting. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>If you&apos;re looking for input/output functions, check out the <ref refid="group___logging" kindref="compound">Logging</ref> API. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>
