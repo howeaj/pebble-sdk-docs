@@ -13,21 +13,22 @@
 # limitations under the License.
 
 require 'pygments'
-require 'zip'
 require 'nokogiri'
 require 'htmlentities'
 require_relative 'c_docs/doc_group.rb'
 
 module Pebble
   # Pebble C documentation processing class.
+  # Reads doxygen XML from local platform directories.
   class DocumentationC < Documentation
     MASTER_GROUP_IDS = %w(foundation graphics u_i worker standard_c)
+    PLATFORMS = %w(aplite basalt emery)
 
-    def initialize(site, source, root, language='c')
+    def initialize(site, source_dir, root, language='c')
       super(site)
       @site = site
       @url_root = root
-      @source = source
+      @source_dir = source_dir
       @tmp_dir = 'tmp/docs/c'
       @groups = []
       @language = language
@@ -42,7 +43,7 @@ module Pebble
 
     def run
       cleanup
-      download_and_extract(@source, @tmp_dir)
+      prepare_local_docs
       process
       add_images
     end
@@ -51,15 +52,15 @@ module Pebble
       FileUtils.rmtree @tmp_dir
     end
 
-    def download_and_extract(zip, folder)
-      open(zip) do | zf |
-        Zip::File.open(zf.path) do | zipfile |
-          zipfile.each do | entry |
-            path = File.join(folder, entry.name).sub('/doxygen_sdk/', '/')
-            FileUtils.mkdir_p(File.dirname(path))
-            zipfile.extract(entry, path) unless File.exist?(path)
-          end
-        end
+    def prepare_local_docs
+      PLATFORMS.each do |platform|
+        src = File.join(@source_dir, platform, 'doxygen_sdk')
+        next unless File.directory?(src)
+        dst = File.join(@tmp_dir, platform)
+        FileUtils.mkdir_p(dst)
+        FileUtils.cp_r(File.join(src, 'xml'), File.join(dst, 'xml'))
+        html_src = File.join(src, 'html')
+        FileUtils.cp_r(html_src, File.join(dst, 'html')) if File.directory?(html_src)
       end
     end
 
@@ -68,13 +69,16 @@ module Pebble
         @groups << DocGroup.new(@url_root, @tmp_dir, 'aplite', id)
       end
       @groups.each { |group| group.load_xml('basalt') }
+      @groups.each { |group| group.load_xml('emery') }
 
       mapping = []
       @groups.each { |group| mapping += group.mapping_array }
       @groups.each do |group|
         group.process(mapping, 'aplite')
         group.process(mapping, 'basalt')
+        group.process(mapping, 'emery')
       end
+      apply_force_latest(@groups)
 
       add_symbols(@groups)
       @groups.each { |group| @tree << group.to_branch }
@@ -85,6 +89,7 @@ module Pebble
     def add_images
       move_images('aplite')
       move_images('basalt')
+      move_images('emery')
       images = Dir.glob("#{@tmp_dir}/assets/images/**/*.png")
       images.each do |img|
         source = File.join(@site.source, '../tmp/docs/c/')
@@ -136,6 +141,13 @@ module Pebble
       end
     end
 
+    def apply_force_latest(groups)
+      groups.each do |group|
+        group.force_latest!
+        apply_force_latest(group.groups)
+      end
+    end
+
     def add_redirects(mapping)
       mapping.each do |map|
         next if map[:id].match(/_1/)
@@ -157,7 +169,7 @@ module Pebble
       process(@name)
       read_yaml(File.join(base, '_layouts', 'docs'), 'c.html')
       data['title'] = @group.name
-      data['platforms'] = %w(aplite basalt)
+      data['platforms'] = @group.xml.keys
 
     end
 

@@ -55,12 +55,7 @@ module Jekyll
         pages: [],
         tree: {}
       }
-      if @site.config['docs_url'].nil? || @site.config['docs_url'].empty?
-        Jekyll.logger.warn(
-          'Config Warning:',
-          'You did not provide a DOCS_URL environment variable.'
-        )
-      elsif !@site.config['skip_docs'].nil? && (@site.config['skip_docs'] == 'true')
+      if !@site.config['skip_docs'].nil? && (@site.config['skip_docs'] == 'true')
         Jekyll.logger.info('Docs Generation:', 'Skipping documentation generation...')
       else
         Jekyll.logger.info('Docs Generation:', 'Generating pages...')
@@ -78,11 +73,12 @@ module Jekyll
       # when looking up symbols e.g. double backticks
       # DO NOT CHANGE THE ORDER UNLESS YOU KNOW WHAT YOU ARE DOING
       generate_docs_c
-      generate_docs_c_preview unless @site.data['docs']['c_preview'].nil?
       generate_docs_rocky_js
       generate_docs_pebblekit_js
-      generate_docs_pebblekit_android
-      generate_docs_pebblekit_ios
+      if @site.config['docs_url'] && !@site.config['docs_url'].empty?
+        generate_docs_pebblekit_android
+        generate_docs_pebblekit_ios
+      end
     end
 
     def render_pages
@@ -100,22 +96,13 @@ module Jekyll
     end
 
     def generate_docs_c
+      c_docs_dir = @site.config['c_docs_dir'] || File.join(@site.source, '..')
       docs = Pebble::DocumentationC.new(
         @site,
-        @site.config['docs_url'] + @site.data['docs']['c'],
+        c_docs_dir,
         '/docs/c/'
       )
       load_data(docs, :c)
-    end
-
-    def generate_docs_c_preview
-      docs = Pebble::DocumentationC.new(
-          @site,
-          @site.config['docs_url'] + @site.data['docs']['c_preview'],
-          '/docs/c/preview/',
-          'c_preview'
-      )
-      load_data(docs, :c_preview)
     end
 
     def generate_docs_rocky_js

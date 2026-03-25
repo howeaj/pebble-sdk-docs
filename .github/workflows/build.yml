@@ -6,7 +6,6 @@ on:
     branches: [main]
 
 jobs:
-  # TODO: build these docs in pebble-dev/pebble-firmware, and publish in releases
   gendocs-c:
     runs-on: ubuntu-24.04
     container:
@@ -25,9 +24,9 @@ jobs:
           pip install -U pip
           pip install -r requirements.txt
 
-      - name: Build basalt SDK
+      - name: Build emery SDK
         run: |
-          ./waf configure --board snowy_bb2
+          ./waf configure --board snowy_emery
           ./waf build --onlysdk
 
       - name: Generate SDK documentation
@@ -37,8 +36,8 @@ jobs:
       - name: Publish docs artifact
         uses: actions/upload-artifact@v6
         with:
-          name: docs-c
-          path: build/sdk/basalt/doxygen_sdk
+          name: docs-c-emery
+          path: build/sdk/emery/doxygen_sdk
 
   # TODO: maybe build in pebble-dev/pebble-android-sdk, and publish releases?
   gendocs-android:
@@ -94,16 +93,14 @@ jobs:
           pattern: docs-*
           path: /tmp/docs
 
-      - name: Create docs archives
+      - name: Prepare emery doxygen docs
+        run: |
+          mkdir -p emery/doxygen_sdk
+          cp -r /tmp/docs/docs-c-emery/* emery/doxygen_sdk/
+
+      - name: Prepare PebbleKit archives
         working-directory: /tmp/docs
         run: |
-          mkdir -p sdk-docs/basalt/doxygen_sdk sdk-docs/aplite
-          cp -r docs-c/* sdk-docs/basalt/doxygen_sdk/
-          cp -r "$GITHUB_WORKSPACE/aplite/doxygen_sdk" sdk-docs/aplite/
-          cd sdk-docs
-          zip -r ../PebbleSDK-4.3_docs.zip aplite/doxygen_sdk basalt/doxygen_sdk
-          cd ..
-
           mv docs-android javadoc
           zip -r pebblekit_android_4.0.1.zip javadoc
 
