@@ -127,9 +127,12 @@ module Pebble
       @groups.sort! { |a, b| a.name <=> b.name }
     end
 
+    HIDDEN_GROUPS = %w(rocky).freeze
+
     def create_inner_groups(platform)
       @xml[platform].css('innergroup').each do |child|
         id = child['refid'].sub(/^group___/, '')
+        next if HIDDEN_GROUPS.include?(id)
         new_group  = DocGroup.new(@root, @dir, platform, id, @menu_path)
         group = @groups.select { |grp| new_group.name == grp.name }.first
         if group.nil?
