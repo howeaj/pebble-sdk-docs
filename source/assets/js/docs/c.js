@@ -36,7 +36,7 @@ $(function () {
     Cookies.set('docs-platform', platform);
   }
 
-  var defaultPlatform = $('[data-basalt-only]').length ? 'basalt' : 'aplite';
+  var defaultPlatform = $('[data-emery-only]').length ? 'emery' : $('[data-basalt-only]').length ? 'basalt' : 'aplite';
   showPlatform(Cookies.get('docs-platform') || defaultPlatform);
 
 });

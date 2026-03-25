@@ -46,8 +46,12 @@ scripts:
   <div class="col-l-8">
     <div class="documentation documentation__c">
 
-      {% if page.group.basalt_only %}
-      <div class="alert alert--bg-lightblue alert--fg-white" >
+      {% if page.group.emery_only %}
+      <div class="alert alert--bg-lightblue alert--fg-white" data-emery-only>
+        <p>The APIs on this page will only work with SDK 4.9+.</p>
+      </div>
+      {% elsif page.group.basalt_only %}
+      <div class="alert alert--bg-lightblue alert--fg-white" data-basalt-only>
         <p>The APIs on this page will only work with SDK 3.x.</p>
       </div>
       {% endif %}
@@ -83,7 +87,7 @@ scripts:
         {% for function in page.group.functions %}
           <div class="docs__item__anchor" id="{{ function.name }}">
             {% if function.uniform %}
-              {% include docs/c/function.html function=function platform='basalt' %}
+              {% include docs/c/function.html function=function platform=page.platforms.last %}
             {% else %}
               {% include docs/c/elements/tabs.html %}
               {% for platform in page.platforms %}
@@ -105,7 +109,7 @@ scripts:
         {% for struct in page.group.structs %}
           <div class="docs__item__anchor" id="{{ struct.name }}">
             {% if struct.uniform %}
-              {% include docs/c/struct.html struct=struct platform='basalt' %}
+              {% include docs/c/struct.html struct=struct platform=page.platforms.last %}
             {% else %}
               {% include docs/c/elements/tabs.html %}
               {% for platform in page.platforms %}
@@ -127,7 +131,7 @@ scripts:
         {% for union in page.group.unions %}
           <div class="docs__item__anchor" id="{{ union.name }}">
             {% if union.uniform %}
-              {% include docs/c/struct.html struct=union platform='basalt' %}
+              {% include docs/c/struct.html struct=union platform=page.platforms.last %}
             {% else %}
               {% include docs/c/elements/tabs.html %}
               {% for platform in page.platforms %}
@@ -149,7 +153,7 @@ scripts:
         {% for enum in page.group.enums %}
           <div class="docs__item__anchor" id="{{ enum.name }}">
             {% if enum.uniform %}
-            {% include docs/c/enum.html enum=enum platform='basalt' %}
+            {% include docs/c/enum.html enum=enum platform=page.platforms.last %}
             {% else %}
               {% include docs/c/elements/tabs.html %}
               {% for platform in page.platforms %}
@@ -171,7 +175,7 @@ scripts:
         {% for typedef in page.group.typedefs %}
           <div class="docs__item__anchor" id="{{ typedef.name }}">
             {% if typedef.uniform %}
-            {% include docs/c/typedef.html typedef=typedef platform='basalt' %}
+            {% include docs/c/typedef.html typedef=typedef platform=page.platforms.last %}
             {% else %}
               {% include docs/c/elements/tabs.html %}
               {% for platform in page.platforms %}
@@ -193,7 +197,7 @@ scripts:
         {% for define in page.group.defines %}
           <div class="docs__item__anchor" id="{{ define.name }}">
             {% if define.uniform %}
-            {% include docs/c/define.html define=define platform='basalt' %}
+            {% include docs/c/define.html define=define platform=page.platforms.last %}
             {% else %}
               {% include docs/c/elements/tabs.html %}
               {% for platform in page.platforms %}

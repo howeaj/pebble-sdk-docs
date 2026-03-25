@@ -21,7 +21,8 @@ module Pebble
   # A DocGroup is a a collection of members, structs and subgroups that will
   # become a page in the C documentation.
   class DocGroup < DocElement
-    attr_accessor :groups, :members, :name, :path, :menu_path, :classes, :id
+    FORCE_LATEST_GROUPS = %w(Platform WatchInfo).freeze
+    attr_accessor :groups, :members, :name, :path, :menu_path, :classes, :id, :xml
 
     def initialize(root, dir, platform, id, menu_path = [])
       super(root, platform)
@@ -95,11 +96,26 @@ module Pebble
         'unions'      => @classes.select { |member| member.kind == 'union'    },
         'data'        => @data,
         'basalt_only' => !@xml.key?('aplite'),
+        'emery_only'  => !@xml.key?('aplite') && !@xml.key?('basalt'),
+        'platforms'   => @xml.keys,
         'summary'     => default_data('summary'),
         'description' => default_data('description')
       }
     end
     # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
+
+    def force_latest!
+      return unless FORCE_LATEST_GROUPS.include?(@name) && @xml.key?('emery')
+      @members.each do |m|
+        m.force_uniform!
+        m.reorder_children_for_platform!('emery') if m.respond_to?(:reorder_children_for_platform!)
+        m.children.each(&:force_uniform!) if m.respond_to?(:children) && m.children
+      end
+      @classes.each do |c|
+        c.force_uniform!
+        c.children.each(&:force_uniform!) if c.respond_to?(:children) && c.children
+      end
+    end
 
     private
 
@@ -108,6 +124,7 @@ module Pebble
       create_members(platform)
       create_inner_classes(platform)
       @members.sort! { |m, n| m.position <=> n.position }
+      @groups.sort! { |a, b| a.name <=> b.name }
     end
 
     def create_inner_groups(platform)

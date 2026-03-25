@@ -19,6 +19,8 @@ module FilterFakePlatform
         'SDK 3'
       when 'basalt'
         'SDK 4'
+      when 'emery'
+        'SDK 4.9+'
       else
         '??'
     end
