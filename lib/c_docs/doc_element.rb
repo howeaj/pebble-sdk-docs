@@ -24,7 +24,12 @@ module Pebble
       @root = root
       @data = {}
       @data[platform] = {}
+      @force_uniform = false
       @doxygen_processor = DoxygenProcessor.new(platform)
+    end
+
+    def force_uniform!
+      @force_uniform = true
     end
 
     def to_symbol
@@ -45,6 +50,7 @@ module Pebble
     private
 
     def default_data(key)
+      return @data['emery'][key] unless @data['emery'].nil? || @data['emery'][key].nil?
       return @data['basalt'][key] unless @data['basalt'].nil? || @data['basalt'][key].nil?
       return @data['aplite'][key] unless @data['aplite'].nil? || @data['aplite'][key].nil?
       ''
@@ -52,6 +58,10 @@ module Pebble
 
     def url
       "#{@root}#{@path}"
+    end
+
+    def data_for_comparison(value)
+      value.to_json.gsub(/<[^>]*>/, '').gsub(/\.\s/, ' ').gsub(/\s+/, ' ')
     end
 
     def add_data(type, value, platform)

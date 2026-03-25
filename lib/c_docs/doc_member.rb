@@ -42,6 +42,12 @@ module Pebble
       create_enum_values(node, platform) if @kind == 'enum'
     end
 
+    def reorder_children_for_platform!(platform)
+      return unless @kind == 'enum' && @nodes.key?(platform)
+      order = @nodes[platform].css('enumvalue').map { |v| v.at_css('name').content.to_s }
+      @children.sort_by! { |child| order.index(child.name) || Float::INFINITY }
+    end
+
     def to_liquid
       {
         'name'      => @name,
@@ -67,7 +73,8 @@ module Pebble
     end
 
     def uniform?
-      identical = data['aplite'].to_json == data['basalt'].to_json
+      return true if @force_uniform
+      identical = data.values.compact.map { |v| data_for_comparison(v) }.uniq.length <= 1
       identical &&= children.all?(&:uniform?) if @kind == 'enum'
       identical
     end
@@ -109,7 +116,7 @@ module Pebble
       unless node.at_css('initializer').nil?
         @data[platform]['initializer'] = process_to_html(
           node.at_css('initializer'), mapping
-        )
+        ).strip
       end
       process_return_type(node, mapping, platform)
       process_parameter_list(node, mapping, platform)

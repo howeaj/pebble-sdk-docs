@@ -69,7 +69,8 @@ module Pebble
     end
 
     def uniform?
-      identical = @data['aplite'].to_json == @data['basalt'].to_json
+      return true if @force_uniform
+      identical = @data.values.compact.map { |v| data_for_comparison(v) }.uniq.length <= 1
       identical &&= @children.all?(&:uniform?)
       identical
     end
@@ -125,7 +126,8 @@ module Pebble
     end
 
     def uniform?
-      @data['aplite'].to_json == @data['basalt'].to_json
+      return true if @force_uniform
+      @data.values.compact.map { |v| data_for_comparison(v) }.uniq.length <= 1
     end
 
     def process(mapping, platform)
