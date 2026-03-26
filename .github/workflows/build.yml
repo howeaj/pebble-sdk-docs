@@ -26,7 +26,7 @@ jobs:
 
       - name: Build emery SDK
         run: |
-          ./waf configure --board snowy_emery --js_engine none
+          ./waf configure --board snowy_emery --js-engine none
           ./waf build --onlysdk
 
       - name: Generate SDK documentation
