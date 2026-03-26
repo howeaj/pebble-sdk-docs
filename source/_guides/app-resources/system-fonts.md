@@ -30,33 +30,42 @@ SDK, sorted by family. A sample of each is also shown.
 <table>
   <thead>
     <th>Available Font Keys</th>
-    <th>Preview</th>
+    <th>Basalt Preview</th>
+    <th>Emery Preview</th>
   </thead>
   <tbody>
     <tr>
       <td><code>FONT_KEY_GOTHIC_14</code></td>
       <td><img src="/assets/images/guides/app-resources/fonts/gothic_14_preview.png"/></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/gothic_14_emery.png"/></td>
     </tr><tr>
       <td><code>FONT_KEY_GOTHIC_14_BOLD</code></td>
       <td><img src="/assets/images/guides/app-resources/fonts/gothic_14_bold_preview.png"/></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/gothic_14_bold_emery.png"/></td>
     </tr><tr>
       <td><code>FONT_KEY_GOTHIC_18</code></td>
       <td><img src="/assets/images/guides/app-resources/fonts/gothic_18_preview.png"/></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/gothic_18_emery.png"/></td>
     </tr><tr>
       <td><code>FONT_KEY_GOTHIC_18_BOLD</code></td>
       <td><img src="/assets/images/guides/app-resources/fonts/gothic_18_bold_preview.png"/></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/gothic_18_bold_emery.png"/></td>
     </tr><tr>
       <td><code>FONT_KEY_GOTHIC_24</code></td>
       <td><img src="/assets/images/guides/app-resources/fonts/gothic_24_preview.png"/></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/gothic_24_emery.png"/></td>
     </tr><tr>
       <td><code>FONT_KEY_GOTHIC_24_BOLD</code></td>
       <td><img src="/assets/images/guides/app-resources/fonts/gothic_24_bold_preview.png"/></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/gothic_24_bold_emery.png"/></td>
     </tr><tr>
       <td><code>FONT_KEY_GOTHIC_28</code></td>
       <td><img src="/assets/images/guides/app-resources/fonts/gothic_28_preview.png"/></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/gothic_28_emery.png"/></td>
     </tr><tr>
       <td><code>FONT_KEY_GOTHIC_28_BOLD</code></td>
       <td><img src="/assets/images/guides/app-resources/fonts/gothic_28_bold_preview.png"/></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/gothic_28_bold_emery.png"/></td>
     </tr>
   </tbody>
 </table>
@@ -67,24 +76,30 @@ SDK, sorted by family. A sample of each is also shown.
 <table>
   <thead>
     <th>Available Font Keys</th>
-    <th>Preview</th>
+    <th>Basalt Preview</th>
+    <th>Emery Preview</th>
   </thead>
   <tbody>
     <tr>
       <td><code>FONT_KEY_BITHAM_30_BLACK</code></td>
       <td><img src="/assets/images/guides/app-resources/fonts/bitham_30_black_preview.png"/></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/bitham_30_black_emery.png"/></td>
     </tr><tr>
       <td><code>FONT_KEY_BITHAM_34_MEDIUM_NUMBERS</code></td>
       <td><img src="/assets/images/guides/app-resources/fonts/bitham_34_medium_numbers_preview.png"/></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/bitham_34_medium_numbers_emery.png"/></td>
     </tr><tr>
       <td><code>FONT_KEY_BITHAM_42_BOLD</code></td>
       <td><img src="/assets/images/guides/app-resources/fonts/bitham_42_bold_preview.png"/></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/bitham_42_bold_emery.png"/></td>
     </tr><tr>
       <td><code>FONT_KEY_BITHAM_42_LIGHT</code></td>
       <td><img src="/assets/images/guides/app-resources/fonts/bitham_42_light_preview.png"/></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/bitham_42_light_emery.png"/></td>
     </tr><tr>
       <td><code>FONT_KEY_BITHAM_42_MEDIUM_NUMBERS</code></td>
       <td><img src="/assets/images/guides/app-resources/fonts/bitham_42_medium_numbers_preview.png"/></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/bitham_42_medium_numbers_emery.png"/></td>
     </tr>
   </tbody>
 </table>
@@ -95,18 +110,22 @@ SDK, sorted by family. A sample of each is also shown.
 <table>
   <thead>
     <th>Available Font Keys</th>
-    <th>Preview</th>
+    <th>Basalt Preview</th>
+    <th>Emery Preview</th>
   </thead>
   <tbody>
     <tr>
       <td><code>FONT_KEY_ROBOTO_CONDENSED_21</code></td>
       <td><img src="/assets/images/guides/app-resources/fonts/roboto_21_condensed_preview.png"/></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/roboto_21_condensed_emery.png"/></td>
     </tr><tr>
       <td><code>FONT_KEY_ROBOTO_BOLD_SUBSET_49</code></td>
       <td><img src="/assets/images/guides/app-resources/fonts/roboto_49_bold_subset_preview.png"/></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/roboto_49_bold_subset_emery.png"/></td>
     </tr><tr>
       <td><code>FONT_KEY_DROID_SERIF_28_BOLD</code></td>
       <td><img src="/assets/images/guides/app-resources/fonts/droid_28_bold_preview.png"/></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/droid_28_bold_emery.png"/></td>
     </tr>
   </tbody>
 </table>
@@ -117,30 +136,46 @@ SDK, sorted by family. A sample of each is also shown.
 <table>
   <thead>
     <th>Available Font Keys</th>
-    <th>Preview</th>
+    <th>Basalt Preview</th>
+    <th>Emery Preview</th>
   </thead>
   <tbody>
     <tr>
       <td><code>FONT_KEY_LECO_20_BOLD_NUMBERS</code></td>
       <td><img src="/assets/images/guides/app-resources/fonts/leco_20_bold_preview.png"/></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/leco_20_bold_emery.png"/></td>
     </tr><tr>
       <td><code>FONT_KEY_LECO_26_BOLD_NUMBERS_AM_PM</code></td>
       <td><img src="/assets/images/guides/app-resources/fonts/leco_26_bold_preview.png"/></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/leco_26_bold_emery.png"/></td>
     </tr><tr>
       <td><code>FONT_KEY_LECO_28_LIGHT_NUMBERS</code></td>
       <td><img src="/assets/images/guides/app-resources/fonts/leco_28_light_preview.png"/></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/leco_28_light_emery.png"/></td>
     </tr><tr>
       <td><code>FONT_KEY_LECO_32_BOLD_NUMBERS</code></td>
       <td><img src="/assets/images/guides/app-resources/fonts/leco_32_bold_preview.png"/></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/leco_32_bold_emery.png"/></td>
     </tr><tr>
       <td><code>FONT_KEY_LECO_36_BOLD_NUMBERS</code></td>
       <td><img src="/assets/images/guides/app-resources/fonts/leco_36_bold_preview.png"/></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/leco_36_bold_emery.png"/></td>
     </tr><tr>
       <td><code>FONT_KEY_LECO_38_BOLD_NUMBERS</code></td>
       <td><img src="/assets/images/guides/app-resources/fonts/leco_38_bold_preview.png"/></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/leco_38_bold_emery.png"/></td>
     </tr><tr>
       <td><code>FONT_KEY_LECO_42_NUMBERS</code></td>
       <td><img src="/assets/images/guides/app-resources/fonts/leco_42_preview.png"/></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/leco_42_emery.png"/></td>
+    </tr><tr>
+      <td><code>FONT_KEY_LECO_60_NUMBERS_AM_PM</code></td>
+      <td><em>Emery and newer only</em></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/leco_60_emery.png"/></td>
+    </tr><tr>
+      <td><code>FONT_KEY_LECO_60_BOLD_NUMBERS_AM_PM</code></td>
+      <td><em>Emery and newer only</em></td>
+      <td><img src="/assets/images/guides/app-resources/fonts/leco_60_bold_emery.png"/></td>
     </tr>
   </tbody>
 </table>
