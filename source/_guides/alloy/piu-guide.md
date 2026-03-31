@@ -419,6 +419,250 @@ application.add(new Content(null, {
 }));
 ```
 
+## PDC (Pebble Draw Command) Images
+
+PDC images are vector graphics converted from SVG. In Piu, use the `SVGImage`
+class to display and transform PDC files. Place `.pdc` files in your
+`src/embeddedjs/assets/` directory and reference them by filename:
+
+```javascript
+const application = new Application(null, {
+    skin: new Skin({ fill: "gray" }),
+    contents: [
+        SVGImage(null, { path: "icon.pdc" })
+    ]
+});
+```
+
+The `path` property specifies the `.pdc` filename from your assets directory.
+
+### SVGImage Transforms
+
+SVGImage supports rotation, scaling, and translation through built-in
+properties:
+
+| Property | Description |
+|----------|-------------|
+| `r` | Rotation angle in radians |
+| `s` | Uniform scale factor |
+| `sx`, `sy` | Non-uniform scale (horizontal, vertical) |
+| `tx`, `ty` | Translation offset (x, y) |
+| `cx`, `cy` | Center of rotation |
+
+In the [gravity example](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/apps/gravity),
+a PDC star is continuously rotated and moved based on accelerometer readings.
+The rotation portion of its Behavior updates the `r` property each frame:
+
+```javascript
+let degree = this.degree + 1;
+if (degree > 360)
+    degree -= 360;
+this.degree = degree;
+star.r = (this.degree / 180) * Math.PI;
+```
+
+Unlike Poco's `clone().rotate()` approach, Piu transforms the SVGImage in place
+through its properties - no cloning needed.
+
+### Animated SVGImage with Timeline
+
+Use `duration`, `fraction`, and `start()` to animate SVGImage transforms with
+easing:
+
+```javascript
+const graySkin = new Skin({ fill: "gray" });
+
+class ImageBehavior extends Behavior {
+    onAnimate(image) {
+        image.duration = 1500;
+        image.time = 0;
+        image.start();
+    }
+    onDisplaying(image) {
+        this.delta = (image.container.width >> 1) + image.width;
+        image.tx = this.delta;
+    }
+    onFinished(image) {
+        image.r = 0;
+        image.tx = this.delta;
+        let next = image.next ?? image.container.first;
+        next.delegate("onAnimate");
+    }
+    onTimeChanged(image) {
+        let fraction = image.fraction;
+        if (fraction < 0.4) {
+            fraction = Math.quadEaseOut(0.4 - fraction);
+            image.r = fraction * Math.PI;
+            image.tx = this.delta * fraction;
+        }
+        else if (fraction > 0.6) {
+            fraction = Math.quadEaseOut(0.6 - fraction);
+            image.r = fraction * Math.PI;
+            image.tx = this.delta * fraction;
+        }
+        else {
+            image.r = 0;
+            image.tx = 0;
+        }
+    }
+}
+
+class TestApplicationBehavior {
+    onDisplaying(application) {
+        application.duration = 1000;
+        application.first.delegate("onAnimate");
+    }
+}
+
+const TestApplication = Application.template($ => ({
+    Behavior: TestApplicationBehavior, skin: graySkin,
+    contents: [
+        SVGImage(6, { path: "Pebble_80x80_Incoming_call_centered.pdc", Behavior: ImageBehavior }),
+        SVGImage(5, { path: "Pebble_80x80_Scheduled_event.pdc", Behavior: ImageBehavior }),
+        SVGImage(4, { path: "Pebble_80x80_Outgoing_call.pdc", Behavior: ImageBehavior }),
+    ]
+}));
+
+export default new TestApplication({}, {
+    displayListLength: 4096, touchCount: 0, pixels: screen.width * 4,
+});
+```
+
+The `fraction` property returns a value from 0 to 1 representing progress
+through the `duration`. Combine it with easing functions from `Math` for smooth
+motion.
+
+### PDC Sequences
+
+PDC sequences are animated vector graphics containing multiple frames. Use
+`SVGImage` with a sequence `.pdc` file and control playback through Behavior
+events:
+
+```javascript
+const graySkin = new Skin({ fill: "gray" });
+
+class ClockBehavior extends Behavior {
+    onDisplaying(image) {
+        image.start();
+    }
+    onFinished(image) {
+        image.time = 0;
+        image.start();
+    }
+    onTimeChanged(image) {
+        let fraction = image.fraction;
+        if (fraction < 0.5)
+            fraction = 1 + fraction;
+        else
+            fraction = 2 - fraction;
+        image.sx = image.sy = fraction;
+    }
+}
+
+class TestApplicationBehavior {
+}
+
+const TestApplication = Application.template($ => ({
+    Behavior: TestApplicationBehavior, skin: graySkin,
+    contents: [
+        SVGImage($, { bottom: 20, path: "clock_sequence.pdc", Behavior: ClockBehavior })
+    ]
+}));
+
+export default new TestApplication({}, {
+    displayListLength: 2048, touchCount: 0, pixels: screen.width * 4,
+});
+```
+
+### Clock Hands with SVGImage
+
+A common pattern is using SVGImage for watchface clock hands. Each hand is a
+separate PDC file, rotated based on the current time:
+
+```javascript
+const scale = Math.min(screen.width, screen.height) / 240;
+
+class FaceHandBehavior {
+    onFractionChanged(content, fraction) {
+        const angle = ((-fraction * 2) - 1) * Math.PI;
+        content.r = angle;
+    }
+    onClockResized(content) {
+        const container = content.container;
+        content.x = (container.width >> 1) - content.cx;
+        content.y = (container.height >> 1) - content.cy;
+    }
+}
+
+class FaceHoursBehavior extends FaceHandBehavior {
+    onDisplaying(content) {
+        content.cx = 7;
+        content.cy = 14;
+        content.s = scale;
+        this.onClockResized(content);
+    }
+    onClockChanged(content, clock) {
+        this.onFractionChanged(content,
+            (clock.hours % 12 + clock.minutes / 60) / 12);
+    }
+}
+
+class FaceMinutesBehavior extends FaceHandBehavior {
+    onDisplaying(content) {
+        content.cx = 5;
+        content.cy = 20;
+        content.s = scale;
+        this.onClockResized(content);
+    }
+    onClockChanged(content, clock) {
+        this.onFractionChanged(content, clock.minutes / 60);
+    }
+}
+```
+
+The `cx` and `cy` properties set the rotation center, which should match the
+pivot point of the clock hand in the original SVG. The `scale` factor adapts
+the hand size to the screen.
+
+In the application template, layer the hands from bottom to top:
+
+```javascript
+class FaceApplicationBehavior {
+    onDisplaying(application) {
+        watch.addEventListener("secondchange", (clock) => {
+            const date = clock.date;
+            application.distribute("onClockChanged", {
+                date,
+                hours: date.getHours(),
+                minutes: date.getMinutes(),
+                seconds: date.getSeconds(),
+            });
+        });
+    }
+    onResize(application) {
+        application.distribute("onClockResized");
+    }
+}
+
+const FaceApplication = Application.template($ => ({
+    Behavior: FaceApplicationBehavior,
+    contents: [
+        Content($, { skin: new Skin({ texture: new Texture("dial.png"),
+            width: screen.width, height: screen.height }) }),
+        SVGImage($, { left: 0, width: 14, top: 0, height: 79,
+            path: "hours.pdc", Behavior: FaceHoursBehavior }),
+        SVGImage($, { left: 0, width: 10, top: 0, height: 100,
+            path: "minutes.pdc", Behavior: FaceMinutesBehavior }),
+    ]
+}));
+
+export default new FaceApplication(null, {
+    displayListLength: 2048, touchCount: 0, pixels: screen.width * 4,
+});
+```
+
+Use `distribute()` to send clock updates to all hands simultaneously.
+
 ## Complete Example: Bouncing Balls
 
 Here's a complete animated app with multiple bouncing balls:
@@ -477,6 +721,10 @@ export default new BallApplication(null, { pixels: screen.width * 4 });
   custom Poco-style drawing
 - [Poco Graphics](/guides/alloy/poco-guide/) - Low-level graphics alternative
   to Piu
+- [Converting SVG to PDC](/guides/app-resources/converting-svg-to-pdc/) - How to
+  create PDC files from SVG
+- [Vector Graphics](/guides/graphics-and-animations/vector-graphics/) - Overview
+  of vector graphics on Pebble
 
 ## Examples
 
@@ -489,3 +737,8 @@ repository includes several Piu examples:
 - [`hellopiu-jsicon`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-jsicon) - displaying a Moddable SDK bitmap from a PNG resource
 - [`hellopiu-text`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-text) - dynamic text layout with different fonts and alignment
 - [`hellopiu-pebbletext`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-pebbletext) - text rendering with Pebble's built-in fonts
+- [`piu/apps/pdc-images`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/apps/pdc-images) - moving and rotating PDC (SVG) images
+- [`piu/apps/pdc-sequence`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/apps/pdc-sequence) - playback of animated PDC sequences
+- [`piu/apps/compass`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/apps/compass) - compass visualization with rotating PDC image
+- [`piu/apps/gravity`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/apps/gravity) - accelerometer-driven PDC star animation
+- [`piu/watchfaces/minato`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/watchfaces/minato) - watchface with PDC clock hands
