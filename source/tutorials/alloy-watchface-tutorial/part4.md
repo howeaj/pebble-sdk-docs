@@ -290,8 +290,7 @@ Your watchface now shows live weather data! Check your code against
 
 ## What's Next?
 
-In the next part we will add user settings - letting users choose colors, toggle
-the date display, and pick temperature units - all persisted with
-`localStorage`.
+In the next part we will add support for Timeline Quick View - adapting
+the layout when the screen is partially obstructed.
 
 [Go to Part 5 &rarr; >{wide,bg-dark-red,fg-white}](/tutorials/alloy-watchface-tutorial/part5/)
