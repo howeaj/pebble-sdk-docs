@@ -122,6 +122,48 @@ For more information on system memory usage, checkout the
 [Size presentation from the 2014 Developer Retreat](https://www.youtube.com/watch?v=8tOhdUXcSkw).
 
 
+## Alloy Instrumentation Logging
+
+Alloy apps can enable instrumentation logging to get detailed output from the
+JavaScript runtime. This is useful for profiling and understanding what the XS
+engine is doing under the hood.
+
+To enable instrumentation logging, modify the `src/c/mdbl.c` file in your Alloy
+project. Instead of passing `NULL` to `moddable_createMachine()`, pass a
+``ModdableCreationRecord`` with the
+`kModdableCreationFlagLogInstrumentation` flag:
+
+```c
+#include <pebble.h>
+
+int main(void) {
+  Window *w = window_create();
+  window_stack_push(w, true);
+
+  ModdableCreationRecord creation = {
+    .recordSize = sizeof(ModdableCreationRecord),
+    .flags = kModdableCreationFlagLogInstrumentation,
+  };
+  moddable_createMachine(&creation);
+
+  window_destroy(w);
+}
+```
+
+The key changes from the default `mdbl.c` are:
+
+1. Create a ``ModdableCreationRecord`` struct, setting `recordSize` to
+   `sizeof(ModdableCreationRecord)` for version compatibility.
+2. Set `flags` to `kModdableCreationFlagLogInstrumentation`.
+3. Pass a pointer to the creation record to `moddable_createMachine()` instead
+   of `NULL`.
+
+The instrumentation output will appear alongside regular app logs.
+
+> **Note**: Instrumentation logging adds overhead and produces verbose output.
+> Disable it for release builds by reverting to `moddable_createMachine(NULL)`.
+
+
 ## Avoid Excessive Logging
 
 As noted in the [API documentation](``Logging``), logging over
