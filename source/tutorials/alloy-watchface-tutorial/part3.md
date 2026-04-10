@@ -218,13 +218,13 @@ $ pebble build && pebble install --emulator emery
 
 ^CP^ In the CloudPebble emulator, use the gear menu to adjust the battery level.
 
-^LC^ Use `pebble emu-set-battery` to change the simulated battery level:
+^LC^ Use `pebble emu-battery` to change the simulated battery level:
 
 {% platform local %}
 ```nc|text
-$ pebble emu-set-battery --percent 80
-$ pebble emu-set-battery --percent 30
-$ pebble emu-set-battery --percent 10
+$ pebble emu-battery --percent 80
+$ pebble emu-battery --percent 30
+$ pebble emu-battery --percent 10
 ```
 {% endplatform %}
 

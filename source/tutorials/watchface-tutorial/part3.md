@@ -277,14 +277,14 @@ without needing a real watch:
 ^CP^ In the CloudPebble emulator, use the gear menu to adjust the battery level.
 Try a few different values to see the bar color change.
 
-^LC^ Use `pebble emu-set-battery` to change the simulated battery level. Try a few
+^LC^ Use `pebble emu-battery` to change the simulated battery level. Try a few
 different values to see the bar color change:
 
 {% platform local %}
 ```text
-pebble emu-set-battery --percent 80
-pebble emu-set-battery --percent 30
-pebble emu-set-battery --percent 10
+pebble emu-battery --percent 80
+pebble emu-battery --percent 30
+pebble emu-battery --percent 10
 ```
 {% endplatform %}
 
