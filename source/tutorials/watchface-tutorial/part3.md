@@ -149,7 +149,7 @@ s_battery_layer = layer_create(GRect(bar_x, bar_y, bar_width, 8));
 layer_set_update_proc(s_battery_layer, battery_update_proc);
 
 // Add to Window
-layer_add_child(window_get_root_layer(window), s_battery_layer);
+layer_add_child(window_layer, s_battery_layer);
 ```
 
 Clean up in `main_window_unload()`:
