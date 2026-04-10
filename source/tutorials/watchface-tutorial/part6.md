@@ -55,8 +55,8 @@ This section continues from
 
 ## Installing Clay
 
-^CP^ In CloudPebble, go to the **Packages** section in the left sidebar and add
-`@rebble/clay`.
+^CP^ In CloudPebble, go to the **Dependencies** section in the left sidebar and add
+`@rebble/clay` as a NPM Dependency.
 
 ^LC^ Clay is available as a Pebble Package. Install it from your project directory:
 

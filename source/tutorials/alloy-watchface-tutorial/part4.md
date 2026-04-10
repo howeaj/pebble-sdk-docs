@@ -77,8 +77,8 @@ through PebbleKit JS (PKJS) running on the phone. This means you need:
 
 ## Setting Up the Network Proxy
 
-^CP^ In CloudPebble, go to the **Packages** section in the left sidebar and add
-`@moddable/pebbleproxy`.
+^CP^ In CloudPebble, go to the **Dependencies** section in the left sidebar and add
+`@moddable/pebbleproxy` as a NPM Dependency.
 
 ^LC^ Install the `@moddable/pebbleproxy` package:
 
