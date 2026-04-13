@@ -42,19 +42,19 @@ brew install node
 You will need to install a few dependencies to make the SDK run:
 
 ```bash
-sudo apt install nodejs npm libsdl1.2debian libfdt1
+sudo apt install nodejs npm libsdl1.2debian libfdt1 libsdl2-2.0-0 libpixman-1-0
 ```
 
 > Note: if you already have `node` installed, you can install only:
 
 ```bash
-sudo apt install libsdl1.2debian libfdt1
+sudo apt install libsdl1.2debian libfdt1 libsdl2-2.0-0 libpixman-1-0
 ```
 
 #### Fedora
 
 ```bash
-sudo dnf install nodejs SDL-devel dtc
+sudo dnf install nodejs SDL-devel dtc SDL2 pixman glib2
 ```
 
 #### Windows
