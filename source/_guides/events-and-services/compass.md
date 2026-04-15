@@ -47,6 +47,12 @@ different directions.
 Refer to the [compass example]({{site.links.examples_org}}/feature-compass) for
 an example of how to implement this screen.
 
+Calibration only runs while at least one app is subscribed to the compass
+service. If all apps unsubscribe before calibration is complete, the calibration
+is discarded and will start again from scratch the next time an app subscribes.
+Once calibration succeeds, it is saved for future reuse by all apps without
+recalibration. Putting the pebble on charge deletes any saved calibration.
+
 
 ## Magnetic North and True North
 
@@ -117,7 +123,7 @@ int clockwise_angle = TRIG_MAX_ANGLE - heading_data.magnetic_heading;
 ```
 
 Once you have an angle relative to North, you can convert that to degrees using 
-the helper function `TRIGANGLE_TO_DEG()`:
+the helper function ``TRIGANGLE_TO_DEG()``:
 
 ```c
 int degrees = TRIGANGLE_TO_DEG(TRIG_MAX_ANGLE - heading_data.magnetic_heading);
@@ -181,8 +187,7 @@ compass_service_unsubscribe();
 
 ## Peeking at Compass Data
 
-To fetch a compass heading without subscribing, simply peek to get a single
-sample:
+To fetch a compass heading, simply peek to get a single sample:
 
 ```c
 // Peek to get data
@@ -190,6 +195,16 @@ CompassHeadingData data;
 compass_service_peek(&data);
 ```
 
+If not already subscribed, this temporarily subscribes the app to the compass
+service without a handler.
+
+WARNING: Regardless of if you were already subscribed with a handler or not,
+calling `compass_service_peek()` sets a timer to unsubscribe after 11 seconds
+(refreshed on each call).
+
 > Similar to the subscription-provided data, the app should examine the peeked
-> `CompassHeadingData` to determine if it is valid (i.e. the compass is
-> calibrated).
+> ``CompassHeadingData`` to determine if it is valid (i.e. the compass is
+> calibrated). Note that as calibration requires an active subscription, and
+> calibration can take longer than 11 seconds, to calibrate while only using
+> peek you must keep calling `compass_service_peek()` over time to refresh its
+> unsubscribe timer until calibration is successful.
