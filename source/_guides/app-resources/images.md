@@ -220,9 +220,58 @@ rejected by the SDK.
 }
 ```
 
-If your `png` file is color, we will use the luminance of the image to add some
-subtle gray when rendering it in the launcher, rather than just black and white.
-Transparency will be preserved.
+There are four different menu icon display modes, each of which is automatically
+used based on the platform, type of app, and the way you specify the icon
+resource.
+
+1. Inversion mode is supported on the black & white platforms, for both apps and
+watchfaces. This is the mode used by all system icons.
+In this mode, the icon gets inverted depending on the background on which it is
+placed. Aplite requires the resource to specify 1Bit memory format and the icon
+to contain only black and white; transparency and color is not handled. Diorite
+and Flint don't require the 1Bit memory format to be set for apps (but do for
+watchfaces), treat any transparency in the file as white, and automatically
+convert any color to black & white.
+2. Non-inverting transparent black & white is an optional mode only for Diorite
+& Flint watchfaces. The icon is never inverted, and transparency works.
+If you provide a color icon, it is automatically converted to black & white
+based on luminance. This mode is enabled when the memory format is not 1Bit.
+3. Non-inverting transparent greyscale is the only mode for apps on color
+platforms. If you provide a color icon, it will be automatically converted to
+greyscale based on luminance.
+4. Non-inverting transparent color is the only mode for watchfaces on color
+platforms (of course, your icon doesn't have to contain color).
+
+Therefore, to support all platforms with the fewest different icons, one option
+is to provide two files `icon~bw.png` and `icon~color.png` (see
+{% guide_link app-resources/platform-specific "Platform-specific Resources" %})
+and add the following to platform.json:
+
+```js
+"resources": {
+  "media": [
+    {
+      "file": "icon.png",
+      "name": "APP_ICON",
+      "type": "bitmap",
+      "memoryFormat": "1Bit",
+      "menuIcon": true,
+      "targetPlatforms": ["aplite", "diorite", "flint"]
+    },
+    {
+      "file": "icon.png",
+      "name": "APP_ICON",
+      "type": "bitmap",
+      "targetPlatforms": ["basalt", "chalk", "emery", "gabbro"]
+    },
+  ]
+}
+```
+
+If you wish to have a non-inverting transparent icon for Diorite and Flint
+(watchfaces only) you could specify those two platforms to use a different 
+(non-1Bit) icon than Aplite or, if the automatic black & white conversion is
+sufficient, to use the same resource as the color platforms.
 
 The app icons specified during submission to the appstore are independent of
 this image resource (used in other places such as the mobile app and the
