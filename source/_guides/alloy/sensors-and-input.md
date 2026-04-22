@@ -198,6 +198,81 @@ Pebble.addEventListener('appmessage', moddableProxy.appMessageReceived);
 No custom location code is needed in PKJS - the proxy handles GPS lookup
 automatically.
 
+## Touch
+
+On platforms with a touchscreen (Emery, Gabbro), read raw touch points using
+the `Touch` sensor exposed as `device.sensor.Touch`:
+
+```js
+const touch = new device.sensor.Touch({
+    onSample() {
+        const points = this.sample();
+        if (!points) return;
+
+        if (points.length === 0) {
+            console.log("lift-off");
+            return;
+        }
+
+        const { x, y } = points[0];
+        console.log("touch " + x + ", " + y);
+    }
+});
+```
+
+### Touch Sample Data
+
+`sample()` returns either a falsy value (no new data since the last call) or
+an array of current contact points. An empty array signals that the last
+finger has lifted off the screen.
+
+| Property | Description |
+|----------|-------------|
+| `x` | X coordinate in screen pixels |
+| `y` | Y coordinate in screen pixels |
+
+### Tracking Touch State
+
+`onSample` only tells you the current set of contact points, not when a
+touch started or ended. Track that state yourself to get began/moved/ended
+semantics:
+
+```js
+const touch = new device.sensor.Touch({
+    onSample() {
+        const points = this.sample();
+        if (!points) return;
+
+        const last = this.points[0];
+
+        if (points.length === 0) {
+            if (last) {
+                console.log("ended at " + last.x + ", " + last.y);
+                this.points[0] = undefined;
+            }
+            return;
+        }
+
+        const { x, y } = points[0];
+
+        if (last) {
+            last.x = x;
+            last.y = y;
+            console.log("moved to " + x + ", " + y);
+        } else {
+            this.points[0] = { x, y };
+            console.log("began at " + x + ", " + y);
+        }
+    }
+});
+touch.points = new Array(1);
+```
+
+> **Note**: For Piu apps, you generally don't need this sensor directly -
+> Piu delivers `onTouchBegan`/`onTouchEnded` events to container Behaviors
+> when `touchCount` is set on the Application. See the
+> [Piu guide](/guides/alloy/piu-guide/) for details.
+
 ## Battery Status
 
 Monitor battery level and charging state:
@@ -345,5 +420,6 @@ repository includes sensor and input examples:
 - [`helloaccelerometer`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/helloaccelerometer) - reading accelerometer data and detecting taps
 - [`hellobattery`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellobattery) - monitoring battery level and charging state
 - [`hellolocation`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellolocation) - getting GPS location from the phone
+- [`hellopoco-drag`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-drag) - draggable UI built on the `device.sensor.Touch` driver
 - [`piu/apps/gravity`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/apps/gravity) - visualizes accelerometer readings with an animated display
 - [`piu/apps/compass`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/apps/compass) - visualizes compass readings with a rotating compass rose

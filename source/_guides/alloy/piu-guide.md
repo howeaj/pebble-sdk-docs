@@ -177,10 +177,66 @@ Content(6, {
 | `onTimeChanged(content)` | Animation frame (after `start()`) |
 | `onFinished(content)` | Animation/duration completed |
 
-Pebble button presses are handled using the `Button` class rather than touch
+Pebble button presses are handled using the `Button` class rather than Behavior
 events. See the [Sensors and Input](/guides/alloy/sensors-and-input/) guide for
 details on button handling. Piu also uses the `Button` class internally for
 button input.
+
+### Touch Events
+
+On platforms with a touchscreen (Emery, Gabbro), Piu delivers touch events to
+Behaviors on the content under the user's finger. Enable touch input by
+setting `touchCount` on the Application when it is constructed — this is the
+number of simultaneous contacts Piu will track (Pebble hardware supports
+`1`):
+
+```javascript
+new MyApplication({}, {
+    displayListLength: 2048,
+    touchCount: 1,
+    pixels: screen.width * 4
+});
+```
+
+With `touchCount: 0` (the default) Piu does not poll the touch sensor and no
+touch events fire.
+
+Once enabled, Behaviors receive `onTouchBegan` and `onTouchEnded` events.
+Hit-testing is handled by Piu — the events are delivered to the innermost
+active content under the touch. Set `active: true` on a container to make it
+receive touches:
+
+```javascript
+class TTTSquareBehavior {
+    onTouchBegan(container) {
+        container.state = 1;   // visual press feedback via skin variants
+    }
+    onTouchEnded(container) {
+        container.state = 0;
+        container.bubble("onTap", container);
+    }
+}
+
+const TTTSquare = Container.template($ => ({
+    width: 67, height: 67, skin: squareSkin, active: true,
+    Behavior: TTTSquareBehavior,
+    contents: [ /* ... */ ]
+}));
+```
+
+Use `container.bubble(event, ...args)` from inside `onTouchEnded` to forward
+higher-level events (tap, long-press, etc.) up the content tree, where an
+Application or container Behavior can handle them.
+
+| Event | Description |
+|-------|-------------|
+| `onTouchBegan(content, id, x, y, ticks)` | Finger pressed on the content |
+| `onTouchEnded(content, id, x, y, ticks)` | Finger lifted from the content |
+
+For free-form touch input outside of Piu's hit-testing (for example,
+dragging in a Poco-rendered app), use the lower-level
+[`device.sensor.Touch`](/guides/alloy/sensors-and-input/#touch) driver
+instead.
 
 ## Templates
 
@@ -741,4 +797,5 @@ repository includes several Piu examples:
 - [`piu/apps/pdc-sequence`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/apps/pdc-sequence) - playback of animated PDC sequences
 - [`piu/apps/compass`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/apps/compass) - compass visualization with rotating PDC image
 - [`piu/apps/gravity`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/apps/gravity) - accelerometer-driven PDC star animation
+- [`piu/apps/tic-tac-toe`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/apps/tic-tac-toe) - touch input via `onTouchBegan`/`onTouchEnded` Behavior events
 - [`piu/watchfaces/minato`](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/watchfaces/minato) - watchface with PDC clock hands

@@ -115,6 +115,7 @@ development. Here's a categorized overview:
 | [hellobattery](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellobattery) | Battery and charging status |
 | [hellolocation](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellolocation) | GPS location via phone |
 | [hellobutton](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellobutton) | Pebble button events |
+| [hellopoco-drag](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-drag) | Touch events with the ECMA-419 touch driver |
 
 ### Piu UI Framework
 
@@ -171,6 +172,7 @@ development. Here's a categorized overview:
 |---------|-------------|
 | [compass](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/apps/compass) | Compass visualization (Emery only) |
 | [gravity](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/apps/gravity) | Accelerometer visualization (Emery only) |
+| [tic-tac-toe](https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/apps/tic-tac-toe) | Touch game using Piu Behavior touch events |
 
 ## Additional Resources
 
