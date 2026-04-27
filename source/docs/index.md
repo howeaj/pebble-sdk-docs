@@ -60,7 +60,7 @@ PebbleKit iOS is an Objective-C library that enables developers to create
 companion apps for iOS devices that are capable for bi-directional communication
 with their Pebble API projects.
 
-### [PebbleKit Android](/docs/pebblekit-android/)
+### [PebbleKit Android](https://github.com/pebble-dev/PebbleKitAndroid2)
 
 PebbleKit Android is a Java library that enables developers to create companion
 apps for Android devices that are capable for bi-directional communication with
