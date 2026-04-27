@@ -62,6 +62,14 @@ representation of a single pixel, shown in the table below.
 | Aplite | ``GBitmapFormat1Bit`` | One bit (black or white) |
 | Basalt | ``GBitmapFormat8Bit`` | One byte (two bits per color) |
 | Chalk | ``GBitmapFormat8BitCircular`` | One byte (two bits per color) |
+| Diorite | ``GBitmapFormat1Bit`` | One bit (black or white) |
+| Flint | ``GBitmapFormat1Bit`` | One bit (black or white) |
+| Emery | ``GBitmapFormat8Bit`` | One byte (two bits per color) |
+| Gabbro | ``GBitmapFormat8Bit`` | One byte (two bits per color) |
+
+Note that although Gabbro has a round display, its framebuffer is a regular
+rectangular ``GBitmapFormat8Bit`` rather than the packed
+``GBitmapFormat8BitCircular`` used on Chalk.
 
 
 ## Modifying the Framebuffer Data
@@ -69,10 +77,12 @@ representation of a single pixel, shown in the table below.
 Once the framebuffer has been captured, the underlying data can be manipulated
 on a row-by-row or even pixel-by-pixel basis. This data region can be obtained
 using ``gbitmap_get_data()``, but the recommended approach is to make use of
-``gbitmap_get_data_row_info()`` objects to cater for platforms (such as Chalk),
-where not every row is of the same width. The ``GBitmapDataRowInfo`` object
-helps with this by providing a `min_x` and `max_x` value for each `y` used to
-build it.
+``gbitmap_get_data_row_info()`` objects to cater for framebuffer formats (such
+as ``GBitmapFormat8BitCircular`` on Chalk) where not every row is of the same
+width. The ``GBitmapDataRowInfo`` object helps with this by providing a `min_x`
+and `max_x` value for each `y` used to build it. Using it on platforms with a
+regular rectangular framebuffer is still safe — `min_x` and `max_x` will simply
+span the full row width.
 
 To iterate over all rows and columns, safely avoiding those with irregular start
 and end indices, use two nested loops as shown below. The implementation of
