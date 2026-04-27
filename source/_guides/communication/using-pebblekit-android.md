@@ -19,6 +19,12 @@ guide_group: communication
 order: 2
 ---
 
+# PebbleKit Android 2
+
+Currently recommended way of communicating with the watch is to use PebbleKit Android 2. See [its documentation](https://github.com/pebble-dev/PebbleKitAndroid2) for more information.
+
+# Legacy PebbleKit Android 1
+
 [PebbleKit Android](https://github.com/pebble/pebble-android-sdk/) is a Java
 library that works with the Pebble SDK and can be embedded in any Android
 application. Using the classes and methods in this library, an Android companion
