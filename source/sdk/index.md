@@ -121,10 +121,13 @@ to write a simple C Pebble application.
 
 ### Installation Problems?
 
-If you have any issues with downloading or installing the Pebble SDK, feel free to post your comments in `#sdk-dev` in the
+Check the [FAQ](/faqs/) first - common install, emulator, and `pebble` tool errors are answered there.
+
+If you're still stuck, ask on the [Pebble Developer Forum][dev-forum] or in `#sdk-dev` on the
 [Rebble Discord][rebble-discord]. Please provide as many details as you can about the issues
 you may have encountered.
 
 **Tip:** Copying and pasting commands from your Terminal output will help a great deal.
 
+[dev-forum]: https://forum.repebble.com/c/developers-ask-questions-and-get-help/7
 [rebble-discord]: https://discord.com/invite/aRUAYFN
