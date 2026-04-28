@@ -18,6 +18,9 @@ description: |
   How to subscribe to touch events on platforms with a touchscreen.
 guide_group: events-and-services
 order: 10
+related_examples:
+  - title: Touch Thing
+    url: https://github.com/coredevices/example-apps/tree/main/touch-thing
 ---
 
 On hardware platforms with a touchscreen, the `TouchService` lets an app

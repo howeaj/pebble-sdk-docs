@@ -19,6 +19,9 @@ description: |
   backlight - tint it.
 guide_group: events-and-services
 order: 9
+related_examples:
+  - title: RGB Backlight Thing
+    url: https://github.com/coredevices/example-apps/tree/main/rgb-backlight-thing
 ---
 
 The Light API gives an app limited control over the watch backlight. An app can

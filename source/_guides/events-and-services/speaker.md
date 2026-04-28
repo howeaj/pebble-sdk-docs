@@ -19,6 +19,15 @@ description: |
   speaker.
 guide_group: events-and-services
 order: 11
+related_examples:
+  - title: Note Player Thing
+    url: https://github.com/coredevices/example-apps/tree/main/speaker/note-player-thing
+  - title: Note Sample Thing
+    url: https://github.com/coredevices/example-apps/tree/main/speaker/note-sample-thing
+  - title: Polyphonic Thing
+    url: https://github.com/coredevices/example-apps/tree/main/speaker/polyphonic-thing
+  - title: PCM Resource Thing
+    url: https://github.com/coredevices/example-apps/tree/main/speaker/pcm-resource-thing
 ---
 
 On hardware platforms with a built-in speaker, the Speaker API gives apps four
