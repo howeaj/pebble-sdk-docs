@@ -145,6 +145,33 @@ console.log("Sum: " + add(2, 3));       // 5
 console.log("Product: " + multiply(4, 5));  // 20
 ```
 
+### Declaring Modules in manifest.json
+
+Each additional module must be listed in `src/embeddedjs/manifest.json` so
+the Moddable build system knows to compile it. The default manifest only
+includes `main.js`:
+
+```json
+"modules": {
+    "*": "./main.js"
+}
+```
+
+To add more modules, change the value to an array of paths. The `.js`
+extension is optional:
+
+```json
+"modules": {
+    "*": [
+        "./main",
+        "./math"
+    ]
+}
+```
+
+If you import a module that isn't listed here, you'll get a module-not-found
+error at runtime.
+
 ## Important JavaScript Differences
 
 Alloy runs on the XS JavaScript engine, which has some differences from
