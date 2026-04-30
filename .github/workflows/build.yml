@@ -12,11 +12,18 @@ jobs:
       image: ghcr.io/pebble-dev/pebbleos-docker:main
 
     steps:
+      - name: Checkout sdk-docs
+        uses: actions/checkout@v6
+
+      - name: Read emery SDK version
+        id: version
+        run: echo "version=$(cat EMERY_SDK_VERSION)" >> "$GITHUB_OUTPUT"
+
       - name: Checkout pebble-firmware
         uses: actions/checkout@v6
         with:
           repository: coredevices/pebbleos
-          ref: main
+          ref: ${{ steps.version.outputs.version }}
           submodules: true
 
       - name: Install Python dependencies
